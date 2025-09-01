@@ -1,16 +1,25 @@
 "use client"
 
 import type React from "react"
-
-import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
+
+function ClientLayoutContent({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  // This component can use useSearchParams safely within Suspense
+  return <>{children}</>
+}
 
 export default function ClientLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const searchParams = useSearchParams()
-
-  return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ClientLayoutContent>{children}</ClientLayoutContent>
+    </Suspense>
+  )
 }
