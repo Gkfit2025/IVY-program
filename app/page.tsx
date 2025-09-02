@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Phone, Mail, Instagram, Facebook } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function IVYHomePage() {
   return (
@@ -14,17 +15,17 @@ export default function IVYHomePage() {
             <div className="flex items-center space-x-2">
               <Image
                 src="/logo12.png"
-                
                 width={40}
                 height={40}
                 className="object-contain"
+                alt="Grace Kennett Foundation Logo"
               />
               <span className="font-playfair font-bold text-2xl text-foreground">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/pages/opportunities" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/pages/opportunities" className="text-foreground hover:text-primary transition-colors">
                 Find Opportunities
-              </a>
+              </Link>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
@@ -56,10 +57,14 @@ export default function IVYHomePage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Find Opportunities
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <Link href="/pages/opportunities" passHref legacyBehavior>
+                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <span>
+                      Find Opportunities
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </span>
+                  </Button>
+                </Link>
                 <Button
                   size="lg"
                   variant="outline"
@@ -186,14 +191,19 @@ export default function IVYHomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-            >
-              View All Opportunities
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/pages/opportunities" passHref legacyBehavior>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              >
+                <span>
+                  View All Opportunities
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </span>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -316,9 +326,11 @@ export default function IVYHomePage() {
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              Find Opportunities
-            </Button>
+            <Link href="/pages/opportunities" passHref legacyBehavior>
+              <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                Find Opportunities
+              </Button>
+            </Link>
             <Button
               size="lg"
               variant="outline"
@@ -351,7 +363,7 @@ export default function IVYHomePage() {
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Volunteers</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Find Opportunities</div>
+                <Link href="/pages/opportunities" className="block hover:text-primary">Find Opportunities</Link>
                 <div>How It Works</div>
                 <div>Safety Guidelines</div>
                 <div>FAQs</div>
