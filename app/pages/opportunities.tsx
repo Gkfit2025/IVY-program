@@ -1,6 +1,5 @@
 "use client"
-import type React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 
 // Define types for our data
 interface Opportunity {
@@ -91,13 +90,13 @@ export default function OpportunitiesPage() {
     setFilters(prev => {
       const currentFilters = [...prev[filterType]]
       const index = currentFilters.indexOf(value)
-      
+
       if (index > -1) {
         currentFilters.splice(index, 1)
       } else {
         currentFilters.push(value)
       }
-      
+
       return {
         ...prev,
         [filterType]: currentFilters
@@ -109,6 +108,25 @@ export default function OpportunitiesPage() {
   const handleViewDetails = (id: number) => {
     alert(`Opportunity ${id} details would be shown here. This would navigate to a detail page in the real application.`)
   }
+
+  // Helper: duration filter logic (for demonstration, matches sample durations to filter categories)
+  const durationMatches = (opportunityDuration: string, activeFilters: string[]): boolean => {
+    if (activeFilters.length === 0) return true
+    for (const filter of activeFilters) {
+      if (filter === "less-than-week" && (opportunityDuration.includes("1 week") || opportunityDuration.includes("week") && !opportunityDuration.includes("2"))) return true
+      if (filter === "1-2-weeks" && (opportunityDuration === "2 weeks" || opportunityDuration.includes("week") && opportunityDuration !== "1 week" && opportunityDuration !== "3 weeks")) return true
+      if (filter === "2-4-weeks" && (opportunityDuration === "3 weeks")) return true
+      if (filter === "1-plus-months" && (opportunityDuration === "1 month")) return true
+    }
+    return false
+  }
+
+  // Filter opportunities based on filters
+  const filteredOpportunities = opportunitiesData.filter(opportunity =>
+    filters.locations.includes(opportunity.location) &&
+    filters.themes.includes(opportunity.theme) &&
+    durationMatches(opportunity.duration, filters.durations)
+  )
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -142,7 +160,7 @@ export default function OpportunitiesPage() {
           <div className="w-full md:w-1/4 pr-0 md:pr-6 mb-6 md:mb-0">
             <div className="bg-white p-6 rounded-lg shadow-md sticky top-4 overflow-y-auto max-h-screen">
               <h2 className="text-xl font-bold mb-6 text-gray-800">Filters</h2>
-              
+
               {/* Location Filter */}
               <div className="mb-6">
                 <h3 className="font-semibold mb-3 text-gray-700">Location</h3>
@@ -161,7 +179,7 @@ export default function OpportunitiesPage() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Theme Filter */}
               <div className="mb-6">
                 <h3 className="font-semibold mb-3 text-gray-700">Theme</h3>
@@ -187,7 +205,7 @@ export default function OpportunitiesPage() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Duration Filter */}
               <div className="mb-6">
                 <h3 className="font-semibold mb-3 text-gray-700">Duration</h3>
@@ -211,20 +229,20 @@ export default function OpportunitiesPage() {
                   ))}
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition-colors"
-                onClick={() => alert('Filters applied! In a real application, this would filter the opportunities.')}
+                onClick={() => {/* Filters are already applied live! */}}
               >
                 Apply Filters
               </button>
             </div>
           </div>
-          
+
           {/* Opportunities List */}
           <div className="w-full md:w-3/4">
             <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 sm:mb-0">{opportunitiesData.length} Opportunities Available</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 sm:mb-0">{filteredOpportunities.length} Opportunities Available</h2>
               <div className="flex items-center">
                 <span className="mr-2 text-gray-600">Sort by:</span>
                 <select className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
@@ -235,12 +253,12 @@ export default function OpportunitiesPage() {
                 </select>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {opportunitiesData.map(opportunity => {
+              {filteredOpportunities.map(opportunity => {
                 // Determine theme badge color based on theme type
                 let badgeClass = ""
-                switch(opportunity.theme) {
+                switch (opportunity.theme) {
                   case "childcare":
                     badgeClass = "bg-green-100 text-green-800"
                     break
@@ -262,11 +280,11 @@ export default function OpportunitiesPage() {
                   default:
                     badgeClass = "bg-gray-100 text-gray-800"
                 }
-                
+
                 return (
                   <div key={opportunity.id} className="opportunity-card bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-                    <div 
-                      className="h-48 bg-cover bg-center" 
+                    <div
+                      className="h-48 bg-cover bg-center"
                       style={{ backgroundImage: `url(${opportunity.imageUrl})` }}
                     ></div>
                     <div className="p-5">
@@ -284,7 +302,7 @@ export default function OpportunitiesPage() {
                         <span className="text-sm text-gray-500">
                           <i className="far fa-clock mr-1"></i> {opportunity.duration}
                         </span>
-                        <button 
+                        <button
                           className="text-green-600 font-semibold hover:text-green-800"
                           onClick={() => handleViewDetails(opportunity.id)}
                         >
@@ -296,7 +314,7 @@ export default function OpportunitiesPage() {
                 )
               })}
             </div>
-            
+
             {/* Pagination */}
             <div className="mt-8 flex justify-center">
               <nav className="flex items-center space-x-2">
