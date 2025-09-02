@@ -23,7 +23,7 @@ export default function IVYHomePage() {
               <span className="font-playfair font-bold text-2xl text-foreground">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/pages/opportunities" className="text-foreground hover:text-primary transition-colors">
+              <Link href="/opportunities" className="text-foreground hover:text-primary transition-colors">
                 Find Opportunities
               </Link>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
@@ -58,7 +58,7 @@ export default function IVYHomePage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Link href="/pages/opportunities">
+                  <Link href="/opportunities">
                     <span>
                       Find Opportunities
                       <ArrowRight className="ml-2 h-5 w-5" />
@@ -192,7 +192,7 @@ export default function IVYHomePage() {
 
           <div className="text-center mt-12">
             <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent">
-              <Link href="/pages/opportunities">
+              <Link href="/opportunities">
                 <span>
                   View All Opportunities
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -322,7 +322,7 @@ export default function IVYHomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/pages/opportunities">
+              <Link href="/opportunities">
                 Find Opportunities
               </Link>
             </Button>
@@ -358,7 +358,7 @@ export default function IVYHomePage() {
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Volunteers</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/pages/opportunities" className="block hover:text-primary">Find Opportunities</Link>
+                <Link href="/opportunities" className="block hover:text-primary">Find Opportunities</Link>
                 <div>How It Works</div>
                 <div>Safety Guidelines</div>
                 <div>FAQs</div>
