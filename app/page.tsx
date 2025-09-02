@@ -22,7 +22,7 @@ export default function IVYHomePage() {
               <span className="font-playfair font-bold text-2xl text-foreground">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#opportunities" className="text-foreground hover:text-primary transition-colors">
+              <a href="/opportunities" className="text-foreground hover:text-primary transition-colors">
                 Find Opportunities
               </a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
