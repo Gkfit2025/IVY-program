@@ -14,7 +14,7 @@ export default function IVYHomePage() {
             <div className="flex items-center space-x-2">
               <Image
                 src="/logo12.png"
-                alt="Grace Kennett Foundation Logo"
+                
                 width={40}
                 height={40}
                 className="object-contain"
