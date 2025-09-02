@@ -12,8 +12,14 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY Program</span>
+              <Image
+                src="/logo12.png"
+                alt="Grace Kennett Foundation Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+              />
+              <span className="font-playfair font-bold text-2xl text-foreground">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#opportunities" className="text-foreground hover:text-primary transition-colors">
@@ -331,7 +337,7 @@ export default function IVYHomePage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
+                <span className="font-playfair font-bold text-xl text-foreground">Grace Kennett Foundation</span>
               </div>
               <p className="text-muted-foreground text-sm">
                 Connecting volunteers with meaningful opportunities across South India.
@@ -382,7 +388,7 @@ export default function IVYHomePage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
+            <p>&copy; 2024 Grace Kennett Foundation. All rights reserved. Spreading kindness across South India.</p>
           </div>
         </div>
       </footer>
