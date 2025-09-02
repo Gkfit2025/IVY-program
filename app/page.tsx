@@ -13,7 +13,7 @@ export default function IVYHomePage() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY Program</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#opportunities" className="text-foreground hover:text-primary transition-colors">
