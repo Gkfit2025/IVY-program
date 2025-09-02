@@ -57,14 +57,14 @@ export default function IVYHomePage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/pages/opportunities" passHref legacyBehavior>
-                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Link href="/pages/opportunities">
                     <span>
                       Find Opportunities
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </span>
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 <Button
                   size="lg"
                   variant="outline"
@@ -191,19 +191,14 @@ export default function IVYHomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/pages/opportunities" passHref legacyBehavior>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-              >
+            <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent">
+              <Link href="/pages/opportunities">
                 <span>
                   View All Opportunities
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -326,11 +321,11 @@ export default function IVYHomePage() {
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/pages/opportunities" passHref legacyBehavior>
-              <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+              <Link href="/pages/opportunities">
                 Find Opportunities
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <Button
               size="lg"
               variant="outline"
