@@ -783,27 +783,3 @@ export default function OpportunitiesPage() {
     </div>
   )
 }
-```
-
-### Guidelines for Changes and Deployment
-1. **File Structure in Next.js (Assuming App Router)**:
-   - Place the first code (home page) in `app/page.tsx` (or whatever your root page file is named; rename "page (4).tsx.txt" to "page.tsx").
-   - Place the second code (opportunities page) in `app/opportunities/page.tsx` (create the `opportunities` folder if needed; rename "opportunities.tsx.txt" to "page.tsx" inside that folder).
-   - This sets up routes: Home at `/` and Opportunities at `/opportunities`.
-
-2. **Key Changes Made**:
-   - **Navigation Fixes**: Changed incorrect paths like `/pages/opportunities` to `/opportunities`. Replaced plain `<a>` tags with `<Link>` from `next/link` for client-side routing (faster navigation without full page reloads).
-   - **Button Links**: Wrapped "Find Opportunities", "View All Opportunities", and "Learn More" buttons with `<Link href="/opportunities">` so clicking them navigates to the opportunities list.
-   - **Consistency**: No major branding changes, but note the home page uses "Grace Kennett Foundation" while opportunities uses "IVY Program". If you want to unify (e.g., change opportunities header to "Grace Kennett Foundation - IVY Program"), edit the `<h1>` in the header.
-   - **No New Features**: The opportunities page already displays the list with filters. "View Details" alerts for now; to add a real detail page, create `app/opportunities/[id]/page.tsx` and update `handleViewDetails` to use `router.push(`/opportunities/${id}`)` (import `useRouter` from `next/navigation`).
-   - **Internships**: The code mentions "internship and volunteer" in the footer, but data is volunteer-focused. To add internships, expand `opportunitiesData` array with new entries (e.g., { theme: "internship", ... }) and update filters/themes accordingly.
-
-3. **Deployment on Vercel via GitHub**:
-   - **Edit Files**: Go to your GitHub repo, edit the files (or upload the corrected ones), and commit changes (e.g., message: "Fix navigation and add links to opportunities list").
-   - **Vercel Auto-Deploy**: Vercel will detect the push and redeploy automatically. Check the deployment status in your Vercel dashboard.
-   - **Test**: After deploy, visit your site URL, click "Find Opportunities" or "Learn More" – it should navigate to the list page without errors.
-   - **Add More Data**: For real data, replace `opportunitiesData` with a fetch from an API (e.g., in `useEffect`). Use environment variables for API keys.
-   - **Errors?**: If images/imports break, ensure paths (e.g., `/logo12.png`) exist in `/public`. Run locally with `npm run dev` to test before pushing.
-   - **Adding Pages/Features**: For a "Become a Host" page, create `app/host/page.tsx` and link buttons to `/host`. Push to GitHub for Vercel to update.
-
-If you need more pages (e.g., detail view) or backend integration, provide details!
