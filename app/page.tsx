@@ -26,7 +26,22 @@ export default function IVYHomePage() {
       <nav className="fixed top-0 w-full bg-[#573280] backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
+            {/* Logo and Title */}
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/logo12.png"
+                alt="Grace Kennett Foundation Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+                priority
+              />
+              <span
+                className="font-playfair font-bold text-xl"
+                style={{ color: "#ED2D07" }}
+              >
+                Grace Kennett Foundation
+              </span>
             </div>
             <div className="flex items-center space-x-8">
               <div className="hidden md:flex items-center space-x-8">
@@ -102,6 +117,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
+      {/* Search Section */}
       <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
@@ -186,6 +202,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
+      {/* Available Opportunities */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
@@ -212,7 +229,8 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "smiling indian woman host profile photo",
-                image: "children learning in classroom with volunteer teacher",
+                // FIX: Use actual image for this card
+                image: "Child Education Support.png",
                 rating: 4.8,
                 reviews: 24,
                 price: "₹2,500/week",
@@ -228,7 +246,8 @@ export default function IVYHomePage() {
                 type: "Volunteer",
                 hostName: "Western Ghats Conservation Trust",
                 hostImage: "indian male conservationist profile photo",
-                image: "volunteers working on wildlife conservation project",
+                // FIX: Use actual image for this card
+                image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
                 price: "₹3,200/week",
@@ -308,7 +327,14 @@ export default function IVYHomePage() {
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                      src={
+                        // Only fix the first two cards' images as per your request
+                        index === 0
+                          ? "/Child Education Support.png"
+                          : index === 1
+                          ? "/wildlife.png"
+                          : `/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`
+                      }
                       alt={opportunity.title}
                       width={400}
                       height={240}
@@ -419,7 +445,8 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                image: "children learning in classroom with volunteer teacher",
+                // FIX: Use actual image for this card
+                image: "Child Education Support.png",
                 rating: 4.8,
                 reviews: 24,
               },
@@ -428,7 +455,8 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                image: "volunteers working on wildlife conservation project",
+                // FIX: Use actual image for this card
+                image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
               },
@@ -437,7 +465,8 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "medical volunteers helping in rural healthcare clinic",
+                // FIX: Use actual image for this card
+                image: "Medical.png",
                 rating: 4.7,
                 reviews: 31,
               },
@@ -445,7 +474,15 @@ export default function IVYHomePage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                    src={
+                      index === 0
+                        ? "/Child Education Support.png"
+                        : index === 1
+                        ? "/wildlife.png"
+                        : index === 2
+                        ? "/Medical.png"
+                        : `/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`
+                    }
                     alt={opportunity.title}
                     width={400}
                     height={240}
