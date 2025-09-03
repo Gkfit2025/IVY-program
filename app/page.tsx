@@ -38,7 +38,7 @@ export default function IVYHomePage() {
               />
               <span
                 className="font-playfair font-bold text-xl"
-                style={{ color: "F22D05" }}
+                style={{ color: "#F22D05" }}
               >
                 Grace Kennett Foundation
               </span>
@@ -71,7 +71,7 @@ export default function IVYHomePage() {
           <div className="text-left mb-4">
             <span 
               className="font-playfair font-bold text-2xl md:text-3xl"
-              style={{ color: "#FFC107" }}
+              style={{ color: "#9c1c62" }}
             >
               Internship and Volunteer Youth Programs
             </span>
