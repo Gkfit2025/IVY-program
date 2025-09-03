@@ -230,7 +230,7 @@ export default function IVYHomePage() {
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "smiling indian woman host profile photo",
                 // FIX: Use actual image for this card
-                image: "Child Education Support.png",
+                image: "Child Education.png",
                 rating: 4.8,
                 reviews: 24,
                 price: "₹2,500/week",
