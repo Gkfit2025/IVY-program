@@ -179,14 +179,6 @@ export default function IVYHomePage() {
                       <MapPin className="h-4 w-4 text-primary" />
                       <span>{opportunity.location}</span>
                     </div>
-
-header colour code can be #000000
-                <CardContent className="space-y-4">
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span>{opportunity.location}</span>
-                    </div>
                     <div className="flex items-center space-x-2">
                       <Calendar className="h-4 w-4 text-primary" />
                       <span>{opportunity.duration}</span>
