@@ -171,7 +171,7 @@ export default function IVYHomePage() {
                   <SelectContent>
                     <SelectItem value="volunteer">Volunteer</SelectItem>
                     <SelectItem value="intern">Internship</SelectItem>
-                    <SelectItem value="both">Both</SelectItem>
+                    <SelectItem value="both">Others</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
