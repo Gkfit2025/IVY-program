@@ -38,7 +38,7 @@ export default function IVYHomePage() {
               />
               <span
                 className="font-playfair font-bold text-xl"
-                style={{ color: "#ED2D07" }}
+                style={{ color: "#fa2d05" }}
               >
                 Grace Kennett Foundation
               </span>
