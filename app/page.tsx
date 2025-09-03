@@ -23,30 +23,28 @@ export default function IVYHomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#000000] backdrop-blur-sm border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-[#573280] backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <div className="flex items-center space-x-2">
-                <Heart className="h-8 w-8 text-primary" />
-                <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
-              </div>
+            </div>
+            <div className="flex items-center space-x-8">
               <div className="hidden md:flex items-center space-x-8">
-                <a href="#search" className="text-[#FF4F0F] hover:text-[#FF4F0F]/80 transition-colors">
+                <a href="#search" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
                   Find Opportunities
                 </a>
-                <a href="#about" className="text-[#FF4F0F] hover:text-[#FF4F0F]/80 transition-colors">
+                <a href="#about" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
                   About Us
                 </a>
-                <a href="#impact" className="text-[#FF4F0F] hover:text-[#FF4F0F]/80 transition-colors">
+                <a href="#impact" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
                   Impact Stories
                 </a>
-                <a href="#contact" className="text-[#FF4F0F] hover:text-[#FF4F0F]/80 transition-colors">
+                <a href="#contact" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
                   Contact
                 </a>
               </div>
+              <Button className="bg-[#131214] hover:bg-[#131214]/90 text-[#f1edf5]">Join IVY</Button>
             </div>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Join IVY</Button>
           </div>
         </div>
       </nav>
@@ -58,10 +56,11 @@ export default function IVYHomePage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  Find Your Perfect
-                  <span className="text-primary"> Volunteering</span> Match
+                  <span style={{ color: '#ac7ce6' }}>Find Your Perfect</span>
+                  <span style={{ color: '#a60be6' }}> Volunteering</span>
+                  <span style={{ color: '#ac7ce6' }}> Match</span>
                 </h1>
-                <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
+                <p className="text-xl text-muted-foreground text-pretty/relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
                   match for your skills and passion.
                 </p>
@@ -381,7 +380,7 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button size "sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                       Apply Now
                     </Button>
                   </div>
@@ -500,7 +499,7 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
+            <h2 className="font-playfair font-bold text-3xl md:test-4xl text-foreground">Impact Stories</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real stories from volunteers who made a difference
             </p>
