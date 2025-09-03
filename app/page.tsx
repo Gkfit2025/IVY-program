@@ -30,16 +30,16 @@ export default function IVYHomePage() {
             </div>
             <div className="flex items-center space-x-8">
               <div className="hidden md:flex items-center space-x-8">
-                <a href="#search" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
+                <a href="#search" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Find Opportunities
                 </a>
-                <a href="#about" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
+                <a href="#about" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   About Us
                 </a>
-                <a href="#impact" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
+                <a href="#impact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Impact Stories
                 </a>
-                <a href="#contact" className="text-[#FFC107] hover:text-[#573280] transition-colors font-bold">
+                <a href="#contact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Contact
                 </a>
               </div>
@@ -177,7 +177,7 @@ export default function IVYHomePage() {
                 </Select>
               </div>
 
-              <Button className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-lg">
+              <Button className="w-full h-12 bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground text-lg">
                 <Search className="mr-2 h-5 w-5" />
                 Search Opportunities
               </Button>
@@ -195,7 +195,7 @@ export default function IVYHomePage() {
             </div>
             <Button
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
             >
               <Filter className="mr-2 h-4 w-4" />
               More Filters
@@ -380,7 +380,7 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button size="sm" className="bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">
                       Apply Now
                     </Button>
                   </div>
@@ -393,7 +393,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
             >
               Load More Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -476,7 +476,7 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Learn More</Button>
+                  <Button className="w-full bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">Learn More</Button>
                 </CardContent>
               </Card>
             ))}
@@ -486,7 +486,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
             >
               View All Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -612,20 +612,20 @@ export default function IVYHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#573280] text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
           <p className="text-xl opacity-90 text-pretty">
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Button size="lg" variant="secondary" className="bg-[#573280] hover:bg-[#573280]/90 text-accent-foreground">
               Find Opportunities
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
+              className="border-primary-foreground text-primary-foreground hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
             >
               Become a Host
             </Button>
