@@ -38,7 +38,7 @@ export default function IVYHomePage() {
               />
               <span
                 className="font-playfair font-bold text-xl"
-                style={{ color: "#fa2d05" }}
+                style={{ color: "F22D05" }}
               >
                 Grace Kennett Foundation
               </span>
@@ -68,12 +68,12 @@ export default function IVYHomePage() {
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* FIX 1: Add IVY Program heading above main hero heading */}
-          <div className="text-center mb-4">
+          <div className="text-left mb-4">
             <span 
               className="font-playfair font-bold text-2xl md:text-3xl"
-              style={{ color: "#573280" }}
+              style={{ color: "#FFC107" }}
             >
-              IVY Program
+              Internship and Volunteer Youth Programs
             </span>
           </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
