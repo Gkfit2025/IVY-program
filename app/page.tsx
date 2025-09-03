@@ -1,9 +1,23 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Phone, Mail, Instagram, Facebook } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Heart,
+  MapPin,
+  Users,
+  Calendar,
+  Star,
+  ArrowRight,
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+  Search,
+  Filter,
+} from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
 
 export default function IVYHomePage() {
   return (
@@ -13,19 +27,13 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Image
-                src="/logo12.png"
-                width={40}
-                height={40}
-                className="object-contain"
-                alt="Grace Kennett Foundation Logo"
-              />
-              <span className="font-playfair font-bold text-2xl text-foreground">Grace Kennett Foundation</span>
+              <Heart className="h-8 w-8 text-primary" />
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/opportunities" className="text-foreground hover:text-primary transition-colors">
+              <a href="#search" className="text-foreground hover:text-primary transition-colors">
                 Find Opportunities
-              </Link>
+              </a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
@@ -41,37 +49,20 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-16 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Hero Section with Search */}
+      <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  Spread Kindness Through
-                  <span className="text-primary"> Volunteering</span>
+                  Find Your Perfect
+                  <span className="text-primary"> Volunteering</span> Match
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Connect with meaningful volunteering opportunities across South India. Make a difference in
-                  communities while experiencing rich cultural exchange.
+                  Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
+                  match for your skills and passion.
                 </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Link href="/opportunities">
-                    <span>
-                      Find Opportunities
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </span>
-                  </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-                >
-                  Become a Host
-                </Button>
               </div>
               <div className="flex items-center space-x-8 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
@@ -106,6 +97,306 @@ export default function IVYHomePage() {
                 <p className="text-sm opacity-90">From 200+ reviews</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
+            <div className="space-y-6">
+              <div className="text-center space-y-2">
+                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
+                <p className="text-muted-foreground">
+                  Search and filter volunteering opportunities that match your interests
+                </p>
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  placeholder="Search opportunities, organizations, or keywords..."
+                  className="pl-10 h-12 text-lg"
+                />
+              </div>
+
+              {/* Filters */}
+              <div className="grid md:grid-cols-4 gap-4">
+                <Select>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
+                    <SelectItem value="kerala">Kerala</SelectItem>
+                    <SelectItem value="karnataka">Karnataka</SelectItem>
+                    <SelectItem value="andhra-pradesh">Andhra Pradesh</SelectItem>
+                    <SelectItem value="telangana">Telangana</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Theme" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="childcare">Childcare & Education</SelectItem>
+                    <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
+                    <SelectItem value="wildlife">Wildlife & Environment</SelectItem>
+                    <SelectItem value="heritage">Heritage & Culture</SelectItem>
+                    <SelectItem value="community">Community Development</SelectItem>
+                    <SelectItem value="elderly">Elderly Care</SelectItem>
+                    <SelectItem value="disability">Disability Support</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Duration" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
+                    <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
+                    <SelectItem value="1-2months">1-2 months</SelectItem>
+                    <SelectItem value="3-6months">3-6 months</SelectItem>
+                    <SelectItem value="6months+">6+ months</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="volunteer">Volunteer</SelectItem>
+                    <SelectItem value="intern">Internship</SelectItem>
+                    <SelectItem value="both">Both</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <Button className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-lg">
+                <Search className="mr-2 h-5 w-5" />
+                Search Opportunities
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="font-playfair font-bold text-3xl text-foreground">Available Opportunities</h2>
+              <p className="text-muted-foreground">147 opportunities found</p>
+            </div>
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+            >
+              <Filter className="mr-2 h-4 w-4" />
+              More Filters
+            </Button>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Child Education Support",
+                location: "Madurai, Tamil Nadu",
+                duration: "2-4 weeks",
+                category: "Childcare & Education",
+                type: "Volunteer & Intern",
+                hostName: "Sunshine Children's Foundation",
+                hostImage: "smiling indian woman host profile photo",
+                image: "children learning in classroom with volunteer teacher",
+                rating: 4.8,
+                reviews: 24,
+                price: "₹2,500/week",
+                accommodation: "Shared dormitory",
+                meals: "3 meals included",
+                verified: true,
+              },
+              {
+                title: "Wildlife Conservation Project",
+                location: "Coimbatore, Tamil Nadu",
+                duration: "1-3 months",
+                category: "Wildlife & Environment",
+                type: "Volunteer",
+                hostName: "Western Ghats Conservation Trust",
+                hostImage: "indian male conservationist profile photo",
+                image: "volunteers working on wildlife conservation project",
+                rating: 4.9,
+                reviews: 18,
+                price: "₹3,200/week",
+                accommodation: "Private room",
+                meals: "Vegetarian meals",
+                verified: true,
+              },
+              {
+                title: "Rural Healthcare Support",
+                location: "Kochi, Kerala",
+                duration: "3-6 weeks",
+                category: "Healthcare & Medical",
+                type: "Intern",
+                hostName: "Kerala Rural Health Initiative",
+                hostImage: "indian female doctor profile photo",
+                image: "medical volunteers helping in rural healthcare clinic",
+                rating: 4.7,
+                reviews: 31,
+                price: "₹2,800/week",
+                accommodation: "Host family",
+                meals: "Local cuisine",
+                verified: true,
+              },
+              {
+                title: "Heritage Site Restoration",
+                location: "Hampi, Karnataka",
+                duration: "2-8 weeks",
+                category: "Heritage & Culture",
+                type: "Volunteer",
+                hostName: "Hampi Heritage Foundation",
+                hostImage: "indian male archaeologist profile photo",
+                image: "volunteers restoring ancient temple structures",
+                rating: 4.6,
+                reviews: 15,
+                price: "₹2,200/week",
+                accommodation: "Guesthouse",
+                meals: "Traditional meals",
+                verified: true,
+              },
+              {
+                title: "Elderly Care Program",
+                location: "Chennai, Tamil Nadu",
+                duration: "1-4 weeks",
+                category: "Elderly Care",
+                type: "Volunteer & Intern",
+                hostName: "Golden Years Care Center",
+                hostImage: "indian female social worker profile photo",
+                image: "volunteers spending time with elderly residents",
+                rating: 4.8,
+                reviews: 28,
+                price: "₹2,000/week",
+                accommodation: "Nearby hostel",
+                meals: "South Indian meals",
+                verified: true,
+              },
+              {
+                title: "Special Needs Education",
+                location: "Bangalore, Karnataka",
+                duration: "2-12 weeks",
+                category: "Disability Support",
+                type: "Intern",
+                hostName: "Inclusive Learning Center",
+                hostImage: "indian male special educator profile photo",
+                image: "volunteers working with children with special needs",
+                rating: 4.9,
+                reviews: 22,
+                price: "₹3,000/week",
+                accommodation: "Shared apartment",
+                meals: "Flexible dining",
+                verified: true,
+              },
+            ].map((opportunity, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
+              >
+                <div className="relative">
+                  <div className="aspect-video overflow-hidden">
+                    <Image
+                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                      alt={opportunity.title}
+                      width={400}
+                      height={240}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  {opportunity.verified && (
+                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
+                  )}
+                  <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
+                    <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
+                  </div>
+                </div>
+
+                <CardContent className="p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20 text-xs">
+                      {opportunity.category}
+                    </Badge>
+                    <div className="flex items-center space-x-1 text-sm">
+                      <Star className="h-4 w-4 fill-current text-yellow-500" />
+                      <span className="font-medium">{opportunity.rating}</span>
+                      <span className="text-muted-foreground">({opportunity.reviews})</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground mt-1">
+                      <MapPin className="h-3 w-3" />
+                      <span>{opportunity.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Host Information */}
+                  <div className="flex items-center space-x-2 py-2">
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
+                      <Image
+                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${opportunity.hostImage}`}
+                        alt={opportunity.hostName}
+                        width={32}
+                        height={32}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{opportunity.hostName}</p>
+                      <p className="text-xs text-muted-foreground">Host organization</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center justify-between">
+                      <span>Duration:</span>
+                      <span className="text-foreground">{opportunity.duration}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Type:</span>
+                      <span className="text-foreground">{opportunity.type}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Accommodation:</span>
+                      <span className="text-foreground">{opportunity.accommodation}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-border">
+                    <div>
+                      <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
+                      <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
+                    </div>
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                      Apply Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+            >
+              Load More Opportunities
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
@@ -191,13 +482,13 @@ export default function IVYHomePage() {
           </div>
 
           <div className="text-center mt-12">
-            <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent">
-              <Link href="/opportunities">
-                <span>
-                  View All Opportunities
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </span>
-              </Link>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+            >
+              View All Opportunities
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -277,18 +568,16 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About Us</h2>
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY Platform</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
-                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. Our well is our hospital and our allied services. We address the physical, mental, 
-                  and social well being of the community and raise resources to pursue our lofty objectives.
-                  </p>
                 <p>
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
                   South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
-                  in volunteer work. Our mission is to create lasting positive impact in communities while providing volunteers with authentic 
-                  cultural experiences and personal growth opportunities.
+                  in volunteer work.
+                </p>
+                <p>
+                  Our mission is to create lasting positive impact in communities while providing volunteers with
+                  authentic cultural experiences and personal growth opportunities.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-6">
@@ -323,10 +612,8 @@ export default function IVYHomePage() {
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/opportunities">
-                Find Opportunities
-              </Link>
+            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+              Find Opportunities
             </Button>
             <Button
               size="lg"
@@ -346,7 +633,7 @@ export default function IVYHomePage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">Grace Kennett Foundation</span>
+                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
               </div>
               <p className="text-muted-foreground text-sm">
                 Connecting volunteers with meaningful opportunities across South India.
@@ -360,7 +647,7 @@ export default function IVYHomePage() {
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Volunteers</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/opportunities" className="block hover:text-primary">Find Opportunities</Link>
+                <div>Find Opportunities</div>
                 <div>How It Works</div>
                 <div>Safety Guidelines</div>
                 <div>FAQs</div>
@@ -397,7 +684,7 @@ export default function IVYHomePage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 Grace Kennett Foundation. All rights reserved. Spreading kindness across South India.</p>
+            <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
           </div>
         </div>
       </footer>
