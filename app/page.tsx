@@ -67,6 +67,15 @@ export default function IVYHomePage() {
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* FIX 1: Add IVY Program heading above main hero heading */}
+          <div className="text-center mb-4">
+            <span 
+              className="font-playfair font-bold text-2xl md:text-3xl"
+              style={{ color: "#573280" }}
+            >
+              IVY Program
+            </span>
+          </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -123,8 +132,15 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
-                <p className="text-muted-foreground">
+                {/* 7. Find Your Perfect Opportunity must be in #573280 */}
+                <h2
+                  className="font-playfair font-bold text-2xl"
+                  style={{ color: "#573280" }}
+                >
+                  Find Your Perfect Opportunity
+                </h2>
+                {/* 8. Search and filter volunteering opportunities... #915ccc */}
+                <p style={{ color: "#915ccc" }}>
                   Search and filter volunteering opportunities that match your interests
                 </p>
               </div>
@@ -229,7 +245,6 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "smiling indian woman host profile photo",
-                // FIX: Use actual image for this card
                 image: "Child Education.png",
                 rating: 4.8,
                 reviews: 24,
@@ -246,7 +261,6 @@ export default function IVYHomePage() {
                 type: "Volunteer",
                 hostName: "Western Ghats Conservation Trust",
                 hostImage: "indian male conservationist profile photo",
-                // FIX: Use actual image for this card
                 image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
@@ -328,7 +342,6 @@ export default function IVYHomePage() {
                   <div className="aspect-video overflow-hidden">
                     <Image
                       src={
-                        // Only fix the first two cards' images as per your request
                         index === 0
                           ? "/Child Education Support.png"
                           : index === 1
@@ -445,7 +458,6 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                // FIX: Use actual image for this card
                 image: "Child Education Support.png",
                 rating: 4.8,
                 reviews: 24,
@@ -455,7 +467,6 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                // FIX: Use actual image for this card
                 image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
@@ -465,7 +476,6 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                // FIX: Use actual image for this card
                 image: "Medical.png",
                 rating: 4.7,
                 reviews: 31,
@@ -536,8 +546,18 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            {/* 2. Fix Impact Stories color - #573280 */}
+            <h2
+              className="font-playfair font-bold text-3xl md:text-4xl"
+              style={{ color: "#573280" }}
+            >
+              Impact Stories
+            </h2>
+            {/* 3. Real stories from volunteers... #915ccc */}
+            <p
+              className="text-xl max-w-2xl mx-auto"
+              style={{ color: "#915ccc" }}
+            >
               Real stories from volunteers who made a difference
             </p>
           </div>
@@ -606,8 +626,19 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY Platform</h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              {/* 4. About IVY Platform must changed in to About Us */}
+              {/* 5. About Us colour must be in #573280 */}
+              <h2
+                className="font-playfair font-bold text-3xl md:text-4xl"
+                style={{ color: "#573280" }}
+              >
+                About Us
+              </h2>
+              {/* 6. About Us content must be in justify */}
+              <div
+                className="space-y-4 text-muted-foreground leading-relaxed"
+                style={{ textAlign: "justify" }}
+              >
                 <p>
                   Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
                   Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
