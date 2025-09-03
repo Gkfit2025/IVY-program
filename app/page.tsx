@@ -380,7 +380,7 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size "sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                       Apply Now
                     </Button>
                   </div>
@@ -499,7 +499,7 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:test-4xl text-foreground">Impact Stories</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real stories from volunteers who made a difference
             </p>
