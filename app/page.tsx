@@ -283,13 +283,12 @@ export default function IVYHomePage() {
                   Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
                   A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. Our well is our hospital and our allied services. We address the physical, mental, 
                   and social well being of the community and raise resources to pursue our lofty objectives.
+                  </p>
+                <p>
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
                   South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
-                  in volunteer work.
-                </p>
-                <p>
-                  Our mission is to create lasting positive impact in communities while providing volunteers with
-                  authentic cultural experiences and personal growth opportunities.
+                  in volunteer work. Our mission is to create lasting positive impact in communities while providing volunteers with authentic 
+                  cultural experiences and personal growth opportunities.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-6">
