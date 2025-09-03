@@ -571,6 +571,12 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY Platform</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
+                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+
+                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
+                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
+                  
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
                   South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
                   in volunteer work.
@@ -669,15 +675,15 @@ export default function IVYHomePage() {
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>hello@ivyplatform.org</span>
+                  <span>gkfit2025@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>+91 98765 43210</span>
+                  <span>+91 96268 40401</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
-                  <span>Madurai, Tamil Nadu</span>
+                  <span>8, Kennett Road, Madurai - 625016, Tamil Nadu</span>
                 </div>
               </div>
             </div>
