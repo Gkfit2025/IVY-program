@@ -109,7 +109,7 @@ export default function IVYHomePage() {
                 <Image
                   src="/bg6.png"
                   alt="Volunteers working together in community project"
-                  width={600}
+                  width={700}
                   height={600}
                   className="object-cover w-full h-full"
                 />
