@@ -6,20 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
-import {
-  Heart,
-  MapPin,
-  Users,
-  Calendar,
-  Star,
-  ArrowRight,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Search,
-  Filter,
-} from "lucide-react"
+import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Phone, Mail, Instagram, Facebook, Search, Filter } from "lucide-react"
 import Image from "next/image"
 
 export default function IVYHomePage() {
@@ -35,7 +22,6 @@ export default function IVYHomePage() {
     Object.entries(searchFilters).forEach(([key, value]) => {
       if (value) params.set(key, value)
     })
-
     const queryString = params.toString()
     window.location.href = `/search${queryString ? `?${queryString}` : ""}`
   }
@@ -45,7 +31,7 @@ export default function IVYHomePage() {
       {/* Navigation */}
       <nav
         className="fixed top-0 w-full border-b border-border z-50"
-        style={{ background: "#000000" }}
+        style={{ background: "#E65A15" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -60,137 +46,119 @@ export default function IVYHomePage() {
               />
               <span
                 className="font-playfair font-bold text-2xl"
-                style={{ color: "#F53D02" }}
+                style={{ color: "#FFFFFF" }}
               >
                 Grace Kennett Foundation
               </span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="flex items-center space-x-8">
               <a
                 href="#search"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#F53D02" }}
+                style={{ color: "#FFFFFF" }}
               >
                 Find Opportunities
               </a>
               <a
                 href="#about"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#F53D02" }}
+                style={{ color: "#FFFFFF" }}
               >
                 About Us
               </a>
               <a
                 href="#impact"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#F53D02" }}
+                style={{ color: "#FFFFFF" }}
               >
                 Impact Stories
               </a>
               <a
                 href="#contact"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#F53D02" }}
+                style={{ color: "#FFFFFF" }}
               >
                 Contact
               </a>
+              <Button
+                className="transition-colors"
+                style={{
+                  background: "#FFFFFF",
+                  color: "#E65A15",
+                  fontWeight: 700,
+                }}
+                onMouseOver={(e) => {
+                  (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                  (e.target as HTMLButtonElement).style.color = "#E65A15"
+                }}
+                onMouseOut={(e) => {
+                  (e.target as HTMLButtonElement).style.background = "#FFFFFF"
+                  (e.target as HTMLButtonElement).style.color = "#E65A15"
+                }}
+              >
+                Join IVY
+              </Button>
             </div>
-            <Button
-              className="transition-colors"
-              style={{
-                background: "#91381C",
-                color: "#000000",
-                fontWeight: 700,
-              }}
-              onMouseOver={e => {
-                (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                ;(e.target as HTMLButtonElement).style.color = "#91381C"
-              }}
-              onMouseOut={e => {
-                (e.target as HTMLButtonElement).style.background = "#91381C"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
-              }}
-            >
-              Join IVY
-            </Button>
           </div>
         </div>
       </nav>
 
       {/* Hero Section with Search */}
-      <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span style={{ color: "#EB7552" }}>Find Your Perfect</span>
-                  <span className="pl-2" style={{ color: "#F53600" }}>
-                    Volunteering
-                  </span>
-                  <span className="pl-2" style={{ color: "#EB7552" }}>
-                    Match
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
-                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
-                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
-                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
-                 
-                  Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
-                  match for your skills and passion.
-                </p>
-              </div>
-              <div className="flex items-center space-x-8 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <Users className="h-5 w-5 text-accent" />
-                  <span>500+ Volunteers</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-accent" />
-                  <span>50+ Locations</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Heart className="h-5 w-5 text-accent" />
-                  <span>100+ Projects</span>
-                </div>
-              </div>
+      <section
+        className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative"
+        style={{
+          backgroundImage: "url('/bg6.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{ background: "rgba(0, 0, 0, 0.5)" }}
+        ></div>
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-white text-balance">
+            Find Your Perfect Volunteering Match
+          </h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4">
+            Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+            Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+            A thousand happy families have been built through adoption. Discover meaningful opportunities across South India.
+          </p>
+          <div className="flex justify-center items-center space-x-8 text-sm text-white/80 mt-8">
+            <div className="flex items-center space-x-2">
+              <Users className="h-5 w-5 text-white" />
+              <span>500+ Volunteers</span>
             </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/volunteers-working-together-in-south-india-communi.png"
-                  alt="Volunteers working together in community project"
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Star className="h-5 w-5 fill-current" />
-                  <span className="font-semibold">4.9/5 Rating</span>
-                </div>
-                <p className="text-sm opacity-90">From 200+ reviews</p>
-              </div>
+            <div className="flex items-center space-x-2">
+              <MapPin className="h-5 w-5 text-white" />
+              <span>50+ Locations</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Heart className="h-5 w-5 text-white" />
+              <span>100+ Projects</span>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Search Section */}
       <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
+                <h2 className="font-playfair font-bold text-2xl text-foreground">
+                  Find Your Perfect Opportunity
+                </h2>
                 <p className="text-muted-foreground">
                   Search and filter volunteering opportunities that match your interests
                 </p>
               </div>
-
-              {/* Search Bar */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -198,12 +166,12 @@ export default function IVYHomePage() {
                   className="pl-10 h-12 text-lg"
                 />
               </div>
-
-              {/* Filters */}
               <div className="grid md:grid-cols-4 gap-4">
                 <Select
                   value={searchFilters.location}
-                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, location: value }))}
+                  onValueChange={(value) =>
+                    setSearchFilters((prev) => ({ ...prev, location: value }))
+                  }
                 >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Location" />
@@ -216,10 +184,11 @@ export default function IVYHomePage() {
                     <SelectItem value="telangana">Telangana</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Select
                   value={searchFilters.theme}
-                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, theme: value }))}
+                  onValueChange={(value) =>
+                    setSearchFilters((prev) => ({ ...prev, theme: value }))
+                  }
                 >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Theme" />
@@ -234,10 +203,11 @@ export default function IVYHomePage() {
                     <SelectItem value="disability">Disability Support</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Select
                   value={searchFilters.duration}
-                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, duration: value }))}
+                  onValueChange={(value) =>
+                    setSearchFilters((prev) => ({ ...prev, duration: value }))
+                  }
                 >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Duration" />
@@ -250,10 +220,11 @@ export default function IVYHomePage() {
                     <SelectItem value="6months+">6+ months</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Select
                   value={searchFilters.type}
-                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, type: value }))}
+                  onValueChange={(value) =>
+                    setSearchFilters((prev) => ({ ...prev, type: value }))
+                  }
                 >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Type" />
@@ -265,22 +236,21 @@ export default function IVYHomePage() {
                   </SelectContent>
                 </Select>
               </div>
-
               <Button
                 onClick={handleSearch}
                 className="w-full h-12 text-lg"
                 style={{
                   background: "#E65A15",
-                  color: "#000000",
+                  color: "#FFFFFF",
                   fontWeight: 700,
                 }}
-                onMouseOver={e => {
+                onMouseOver={(e) => {
                   (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                  ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                  (e.target as HTMLButtonElement).style.color = "#E65A15"
                 }}
-                onMouseOut={e => {
+                onMouseOut={(e) => {
                   (e.target as HTMLButtonElement).style.background = "#E65A15"
-                  ;(e.target as HTMLButtonElement).style.color = "#000000"
+                  (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
               >
                 <Search className="mr-2 h-5 w-5" />
@@ -291,11 +261,14 @@ export default function IVYHomePage() {
         </div>
       </section>
 
+      {/* Available Opportunities */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="font-playfair font-bold text-3xl text-foreground">Available Opportunities</h2>
+              <h2 className="font-playfair font-bold text-3xl text-foreground">
+                Available Opportunities
+              </h2>
               <p className="text-muted-foreground">147 opportunities found</p>
             </div>
             <Button
@@ -303,24 +276,23 @@ export default function IVYHomePage() {
               className="border-primary bg-transparent"
               style={{
                 borderColor: "#E65A15",
-                color: "#000000",
+                color: "#E65A15",
                 background: "transparent",
                 fontWeight: 700,
               }}
-              onMouseOver={e => {
+              onMouseOver={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#E65A15"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
-              onMouseOut={e => {
+              onMouseOut={(e) => {
                 (e.target as HTMLButtonElement).style.background = "transparent"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               <Filter className="mr-2 h-4 w-4" />
               More Filters
             </Button>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -331,7 +303,7 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "smiling indian woman host profile photo",
-                image: "children learning in classroom with volunteer teacher",
+                image: "Child.png",
                 rating: 4.8,
                 reviews: 24,
                 price: "₹2,500/week",
@@ -347,7 +319,7 @@ export default function IVYHomePage() {
                 type: "Volunteer",
                 hostName: "Western Ghats Conservation Trust",
                 hostImage: "indian male conservationist profile photo",
-                image: "volunteers working on wildlife conservation project",
+                image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
                 price: "₹3,200/week",
@@ -363,7 +335,7 @@ export default function IVYHomePage() {
                 type: "Intern",
                 hostName: "Kerala Rural Health Initiative",
                 hostImage: "indian female doctor profile photo",
-                image: "medical volunteers helping in rural healthcare clinic",
+                image: "Medical.png",
                 rating: 4.7,
                 reviews: 31,
                 price: "₹2,800/week",
@@ -427,7 +399,7 @@ export default function IVYHomePage() {
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                      src={`/${opportunity.image}`}
                       alt={opportunity.title}
                       width={400}
                       height={240}
@@ -435,13 +407,14 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
+                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">
+                      Verified
+                    </Badge>
                   )}
                   <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
                     <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
                   </div>
                 </div>
-
                 <CardContent className="p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20 text-xs">
@@ -453,7 +426,6 @@ export default function IVYHomePage() {
                       <span className="text-muted-foreground">({opportunity.reviews})</span>
                     </div>
                   </div>
-
                   <div>
                     <h3 className="font-semibold text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
                     <div className="flex items-center space-x-1 text-sm text-muted-foreground mt-1">
@@ -461,8 +433,6 @@ export default function IVYHomePage() {
                       <span>{opportunity.location}</span>
                     </div>
                   </div>
-
-                  {/* Host Information */}
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
@@ -478,7 +448,6 @@ export default function IVYHomePage() {
                       <p className="text-xs text-muted-foreground">Host organization</p>
                     </div>
                   </div>
-
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-between">
                       <span>Duration:</span>
@@ -493,7 +462,6 @@ export default function IVYHomePage() {
                       <span className="text-foreground">{opportunity.accommodation}</span>
                     </div>
                   </div>
-
                   <div className="flex items-center justify-between pt-2 border-t border-border">
                     <div>
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
@@ -503,16 +471,16 @@ export default function IVYHomePage() {
                       size="sm"
                       style={{
                         background: "#E65A15",
-                        color: "#000000",
+                        color: "#FFFFFF",
                         fontWeight: 700,
                       }}
-                      onMouseOver={e => {
+                      onMouseOver={(e) => {
                         (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                        ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                        (e.target as HTMLButtonElement).style.color = "#E65A15"
                       }}
-                      onMouseOut={e => {
+                      onMouseOut={(e) => {
                         (e.target as HTMLButtonElement).style.background = "#E65A15"
-                        ;(e.target as HTMLButtonElement).style.color = "#000000"
+                        (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                       }}
                     >
                       Apply Now
@@ -522,7 +490,6 @@ export default function IVYHomePage() {
               </Card>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Button
               size="lg"
@@ -530,16 +497,17 @@ export default function IVYHomePage() {
               className="border-primary bg-transparent"
               style={{
                 borderColor: "#E65A15",
-                color: "#000000",
+                color: "#E65A15",
+                background: "transparent",
                 fontWeight: 700,
               }}
-              onMouseOver={e => {
+              onMouseOver={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#E65A15"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
-              onMouseOut={e => {
+              onMouseOut={(e) => {
                 (e.target as HTMLButtonElement).style.background = "transparent"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               Load More Opportunities
@@ -553,12 +521,13 @@ export default function IVYHomePage() {
       <section id="opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Featured Opportunities</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+              Featured Opportunities
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Discover meaningful ways to contribute to communities across South India
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -566,7 +535,7 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                image: "children learning in classroom with volunteer teacher",
+                image: "Child.png",
                 rating: 4.8,
                 reviews: 24,
               },
@@ -575,7 +544,7 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                image: "volunteers working on wildlife conservation project",
+                image: "wildlife.png",
                 rating: 4.9,
                 reviews: 18,
               },
@@ -584,7 +553,7 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "medical volunteers helping in rural healthcare clinic",
+                image: "Medical.png",
                 rating: 4.7,
                 reviews: 31,
               },
@@ -592,7 +561,7 @@ export default function IVYHomePage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                    src={`/${opportunity.image}`}
                     alt={opportunity.title}
                     width={400}
                     height={240}
@@ -627,16 +596,16 @@ export default function IVYHomePage() {
                     className="w-full"
                     style={{
                       background: "#E65A15",
-                      color: "#000000",
+                      color: "#FFFFFF",
                       fontWeight: 700,
                     }}
-                    onMouseOver={e => {
+                    onMouseOver={(e) => {
                       (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                      ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                      (e.target as HTMLButtonElement).style.color = "#E65A15"
                     }}
-                    onMouseOut={e => {
+                    onMouseOut={(e) => {
                       (e.target as HTMLButtonElement).style.background = "#E65A15"
-                      ;(e.target as HTMLButtonElement).style.color = "#000000"
+                      (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                     }}
                   >
                     Learn More
@@ -645,7 +614,6 @@ export default function IVYHomePage() {
               </Card>
             ))}
           </div>
-
           <div className="text-center mt-12">
             <Button
               size="lg"
@@ -653,16 +621,17 @@ export default function IVYHomePage() {
               className="border-primary bg-transparent"
               style={{
                 borderColor: "#E65A15",
-                color: "#000000",
+                color: "#E65A15",
+                background: "transparent",
                 fontWeight: 700,
               }}
-              onMouseOver={e => {
+              onMouseOver={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#E65A15"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
-              onMouseOut={e => {
+              onMouseOut={(e) => {
                 (e.target as HTMLButtonElement).style.background = "transparent"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               View All Opportunities
@@ -676,36 +645,34 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+              Impact Stories
+            </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real stories from volunteers who made a difference
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 name: "Sarah Johnson",
                 role: "Education Volunteer",
                 location: "Madurai",
-                quote:
-                  "Working with local children was incredibly rewarding. I learned as much as I taught, and the cultural exchange was beautiful.",
+                quote: "Working with local children was incredibly rewarding. I learned as much as I taught, and the cultural exchange was beautiful.",
                 image: "young woman volunteer with children in classroom",
               },
               {
                 name: "Michael Chen",
                 role: "Healthcare Volunteer",
                 location: "Kochi",
-                quote:
-                  "The experience opened my eyes to different healthcare challenges and solutions. The community welcomed me with open arms.",
+                quote: "The experience opened my eyes to different healthcare challenges and solutions. The community welcomed me with open arms.",
                 image: "male volunteer in healthcare setting",
               },
               {
                 name: "Emma Rodriguez",
                 role: "Environmental Volunteer",
                 location: "Coimbatore",
-                quote:
-                  "Contributing to wildlife conservation while learning about local ecosystems was a life-changing experience.",
+                quote: "Contributing to wildlife conservation while learning about local ecosystems was a life-changing experience.",
                 image: "female volunteer in nature conservation project",
               },
             ].map((story, index) => (
@@ -746,7 +713,9 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY Platform</h2>
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+                About IVY Platform
+              </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
@@ -785,7 +754,9 @@ export default function IVYHomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
+          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">
+            Ready to Make a Difference?
+          </h2>
           <p className="text-xl opacity-90 text-pretty">
             Join our community of changemakers and start your volunteering journey today
           </p>
@@ -795,16 +766,16 @@ export default function IVYHomePage() {
               variant="secondary"
               style={{
                 background: "#E65A15",
-                color: "#000000",
+                color: "#FFFFFF",
                 fontWeight: 700,
               }}
-              onMouseOver={e => {
+              onMouseOver={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
-              onMouseOut={e => {
+              onMouseOut={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#E65A15"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
             >
               Find Opportunities
@@ -814,17 +785,17 @@ export default function IVYHomePage() {
               variant="outline"
               style={{
                 borderColor: "#E65A15",
-                color: "#000000",
+                color: "#E65A15",
                 background: "transparent",
                 fontWeight: 700,
               }}
-              onMouseOver={e => {
+              onMouseOver={(e) => {
                 (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
-              onMouseOut={e => {
+              onMouseOut={(e) => {
                 (e.target as HTMLButtonElement).style.background = "transparent"
-                ;(e.target as HTMLButtonElement).style.color = "#000000"
+                (e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               Become a Host
@@ -850,7 +821,6 @@ export default function IVYHomePage() {
                 <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
               </div>
             </div>
-
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Volunteers</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
@@ -860,7 +830,6 @@ export default function IVYHomePage() {
                 <div>FAQs</div>
               </div>
             </div>
-
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Hosts</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
@@ -870,7 +839,6 @@ export default function IVYHomePage() {
                 <div>Support</div>
               </div>
             </div>
-
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">Contact</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
@@ -889,7 +857,6 @@ export default function IVYHomePage() {
               </div>
             </div>
           </div>
-
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
             <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
           </div>
