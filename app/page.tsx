@@ -1,8 +1,11 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react"
 import {
   Heart,
   MapPin,
@@ -20,46 +23,48 @@ import {
 import Image from "next/image"
 
 export default function IVYHomePage() {
+  const [searchFilters, setSearchFilters] = useState({
+    location: "",
+    theme: "",
+    duration: "",
+    type: "",
+  })
+
+  const handleSearch = () => {
+    const params = new URLSearchParams()
+    Object.entries(searchFilters).forEach(([key, value]) => {
+      if (value) params.set(key, value)
+    })
+
+    const queryString = params.toString()
+    window.location.href = `/search${queryString ? `?${queryString}` : ""}`
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#573280] backdrop-blur-sm border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo and Title */}
-            <div className="flex items-center space-x-3">
-              <Image
-                src="/logo12.png"
-                alt="Grace Kennett Foundation Logo"
-                width={40}
-                height={40}
-                className="object-contain"
-                priority
-              />
-              <span
-                className="font-playfair font-bold text-xl"
-                style={{ color: "#FF5C00" }}
-              >
-                Grace Kennett Foundation
-              </span>
+            <div className="flex items-center space-x-2">
+              <Heart className="h-8 w-8 text-primary" />
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
             </div>
-            <div className="flex items-center space-x-8">
-              <div className="hidden md:flex items-center space-x-8">
-                <a href="#search" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
-                  Find Opportunities
-                </a>
-                <a href="#about" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
-                  About Us
-                </a>
-                <a href="#impact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
-                  Impact Stories
-                </a>
-                <a href="#contact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
-                  Contact
-                </a>
-              </div>
-              <Button className="bg-[#131214] hover:bg-[#131214]/90 text-[#f1edf5]">Join IVY</Button>
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#search" className="text-foreground hover:text-primary transition-colors">
+                Find Opportunities
+              </a>
+              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+                About Us
+              </a>
+              <a href="#impact" className="text-foreground hover:text-primary transition-colors">
+                Impact Stories
+              </a>
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+                Contact
+              </a>
             </div>
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Join IVY</Button>
           </div>
         </div>
       </nav>
@@ -67,24 +72,14 @@ export default function IVYHomePage() {
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* FIX 1: Add IVY Program heading above main hero heading */}
-          <div className="text-left mb-4">
-            <span 
-              className="font-playfair font-bold text-2xl md:text-3xl"
-              style={{ color: "#9c1c62" }}
-            >
-              Internship and Volunteer Youth Programs
-            </span>
-          </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  <span style={{ color: '#ac7ce6' }}>Find Your Perfect</span>
-                  <span style={{ color: '#a60be6' }}> Volunteering</span>
-                  <span style={{ color: '#ac7ce6' }}> Match</span>
+                  Find Your Perfect
+                  <span className="text-primary"> Volunteering</span> Match
                 </h1>
-                <p className="text-xl text-muted-foreground text-pretty/relaxed">
+                <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
                   match for your skills and passion.
                 </p>
@@ -107,10 +102,10 @@ export default function IVYHomePage() {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
                 <Image
-                  src="/bg6.png"
+                  src="/volunteers-working-together-in-south-india-communi.png"
                   alt="Volunteers working together in community project"
-                  width={802}
-                  height={439}
+                  width={600}
+                  height={600}
                   className="object-cover w-full h-full"
                 />
               </div>
@@ -126,21 +121,13 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* Search Section */}
       <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                {/* 7. Find Your Perfect Opportunity must be in #573280 */}
-                <h2
-                  className="font-playfair font-bold text-2xl"
-                  style={{ color: "#573280" }}
-                >
-                  Find Your Perfect Opportunity
-                </h2>
-                {/* 8. Search and filter volunteering opportunities... #915ccc */}
-                <p style={{ color: "#915ccc" }}>
+                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
+                <p className="text-muted-foreground">
                   Search and filter volunteering opportunities that match your interests
                 </p>
               </div>
@@ -156,7 +143,10 @@ export default function IVYHomePage() {
 
               {/* Filters */}
               <div className="grid md:grid-cols-4 gap-4">
-                <Select>
+                <Select
+                  value={searchFilters.location}
+                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, location: value }))}
+                >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
@@ -169,7 +159,10 @@ export default function IVYHomePage() {
                   </SelectContent>
                 </Select>
 
-                <Select>
+                <Select
+                  value={searchFilters.theme}
+                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, theme: value }))}
+                >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Theme" />
                   </SelectTrigger>
@@ -184,7 +177,10 @@ export default function IVYHomePage() {
                   </SelectContent>
                 </Select>
 
-                <Select>
+                <Select
+                  value={searchFilters.duration}
+                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, duration: value }))}
+                >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Duration" />
                   </SelectTrigger>
@@ -197,19 +193,25 @@ export default function IVYHomePage() {
                   </SelectContent>
                 </Select>
 
-                <Select>
+                <Select
+                  value={searchFilters.type}
+                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, type: value }))}
+                >
                   <SelectTrigger className="h-12">
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="volunteer">Volunteer</SelectItem>
                     <SelectItem value="intern">Internship</SelectItem>
-                    <SelectItem value="both">Others</SelectItem>
+                    <SelectItem value="both">Both</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <Button className="w-full h-12 bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground text-lg">
+              <Button
+                onClick={handleSearch}
+                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-lg"
+              >
                 <Search className="mr-2 h-5 w-5" />
                 Search Opportunities
               </Button>
@@ -218,7 +220,6 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* Available Opportunities */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
@@ -228,7 +229,7 @@ export default function IVYHomePage() {
             </div>
             <Button
               variant="outline"
-              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               <Filter className="mr-2 h-4 w-4" />
               More Filters
@@ -245,7 +246,7 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "smiling indian woman host profile photo",
-                image: "Child.png",
+                image: "children learning in classroom with volunteer teacher",
                 rating: 4.8,
                 reviews: 24,
                 price: "₹2,500/week",
@@ -261,7 +262,7 @@ export default function IVYHomePage() {
                 type: "Volunteer",
                 hostName: "Western Ghats Conservation Trust",
                 hostImage: "indian male conservationist profile photo",
-                image: "wildlife.png",
+                image: "volunteers working on wildlife conservation project",
                 rating: 4.9,
                 reviews: 18,
                 price: "₹3,200/week",
@@ -341,13 +342,7 @@ export default function IVYHomePage() {
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={
-                        index === 0
-                          ? "/Child Education Support.png"
-                          : index === 1
-                          ? "/wildlife.png"
-                          : `/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`
-                      }
+                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
                       alt={opportunity.title}
                       width={400}
                       height={240}
@@ -419,7 +414,7 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size="sm" className="bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                       Apply Now
                     </Button>
                   </div>
@@ -432,7 +427,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               Load More Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -458,7 +453,7 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                image: "Child Education Support.png",
+                image: "children learning in classroom with volunteer teacher",
                 rating: 4.8,
                 reviews: 24,
               },
@@ -467,7 +462,7 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                image: "wildlife.png",
+                image: "volunteers working on wildlife conservation project",
                 rating: 4.9,
                 reviews: 18,
               },
@@ -476,7 +471,7 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "Medical.png",
+                image: "medical volunteers helping in rural healthcare clinic",
                 rating: 4.7,
                 reviews: 31,
               },
@@ -484,15 +479,7 @@ export default function IVYHomePage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={
-                      index === 0
-                        ? "/Child Education Support.png"
-                        : index === 1
-                        ? "/wildlife.png"
-                        : index === 2
-                        ? "/Medical.png"
-                        : `/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`
-                    }
+                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
                     alt={opportunity.title}
                     width={400}
                     height={240}
@@ -523,7 +510,7 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">Learn More</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Learn More</Button>
                 </CardContent>
               </Card>
             ))}
@@ -533,7 +520,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               View All Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -546,18 +533,8 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            {/* 2. Fix Impact Stories color - #573280 */}
-            <h2
-              className="font-playfair font-bold text-3xl md:text-4xl"
-              style={{ color: "#573280" }}
-            >
-              Impact Stories
-            </h2>
-            {/* 3. Real stories from volunteers... #915ccc */}
-            <p
-              className="text-xl max-w-2xl mx-auto"
-              style={{ color: "#915ccc" }}
-            >
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Real stories from volunteers who made a difference
             </p>
           </div>
@@ -626,26 +603,9 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              {/* 4. About IVY Platform must changed in to About Us */}
-              {/* 5. About Us colour must be in #573280 */}
-              <h2
-                className="font-playfair font-bold text-3xl md:text-4xl"
-                style={{ color: "#573280" }}
-              >
-                About Us
-              </h2>
-              {/* 6. About Us content must be in justify */}
-              <div
-                className="space-y-4 text-muted-foreground leading-relaxed"
-                style={{ textAlign: "justify" }}
-              >
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY Platform</h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
-                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
-
-                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
-                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
-                  
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
                   South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
                   in volunteer work.
@@ -680,20 +640,20 @@ export default function IVYHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#573280] text-primary-foreground">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
           <p className="text-xl opacity-90 text-pretty">
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-[#573280] hover:bg-[#573280]/90 text-accent-foreground">
+            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
               Find Opportunities
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-[#573280] hover:text-primary-foreground bg-transparent"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
             >
               Become a Host
             </Button>
@@ -744,15 +704,15 @@ export default function IVYHomePage() {
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>gkfit2025@gmail.com</span>
+                  <span>hello@ivyplatform.org</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>+91 96268 40401</span>
+                  <span>+91 98765 43210</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
-                  <span>8, Kennett Road, Madurai - 625016,Tamil Nadu</span>
+                  <span>Madurai, Tamil Nadu</span>
                 </div>
               </div>
             </div>
