@@ -31,7 +31,7 @@ export default function IVYHomePage() {
       {/* Navigation */}
       <nav
         className="fixed top-0 w-full border-b border-border z-50"
-        style={{ background: "#E65A15" }}
+        style={{ background: "#000000" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -84,7 +84,7 @@ export default function IVYHomePage() {
                 className="transition-colors"
                 style={{
                   background: "#FFFFFF",
-                  color: "#E65A15",
+                  color: "#FFFFFF",
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
@@ -93,7 +93,7 @@ export default function IVYHomePage() {
                 }}
                 onMouseOut={(e) => {
                   (e.target as HTMLButtonElement).style.background = "#FFFFFF"
-                  (e.target as HTMLButtonElement).style.color = "#E65A15"
+                  (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
               >
                 Join IVY
@@ -407,7 +407,8 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">
+                    <Badge className="absolute top-3 left-3 bg-green    	    
+                    green-500 hover:bg-green-600 text-white">
                       Verified
                     </Badge>
                   )}
