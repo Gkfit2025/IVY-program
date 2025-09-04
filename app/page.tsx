@@ -319,9 +319,9 @@ export default function IVYHomePage() {
                 verified: true,
               },
                 {
-                title: "Grace Kennett Foundation",
+                title: "Elderly Care Program",
                 location: "Madurai, Tamil Nadu",
-                duration: "3-6 weeks",
+                duration: "3-4 weeks",
                 category: "Elderly Care",
                 type: "Intern",
                 hostName: "Grace Kennett Foundation",
