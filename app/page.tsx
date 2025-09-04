@@ -1,14 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Heart,
   MapPin,
@@ -22,40 +16,10 @@ import {
   Facebook,
   Search,
   Filter,
-} from "lucide-react";
-import Image from "next/image";
-import { useEffect } from "react";
+} from "lucide-react"
+import Image from "next/image"
 
 export default function IVYHomePage() {
-  useEffect(() => {
-    let typed: any = null; // Track instance for cleanup
-    // Ensure Typed.js only runs on the client side
-    if (typeof window !== "undefined") {
-      import("typed.js").then((TypedModule) => {
-        const Typed = TypedModule.default;
-        const options = {
-          strings: ["Internship and Volunteer Youth Programs"],
-          typeSpeed: 50,
-          backSpeed: 30,
-          backDelay: 2000,
-          loop: false,
-          showCursor: true,
-          cursorChar: "|",
-        };
-
-        typed = new Typed("#typed-text", options);
-      });
-
-      // Cleanup function to destroy instance on unmount
-      return () => {
-        if (typed) {
-          typed.destroy();
-        }
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -81,34 +45,20 @@ export default function IVYHomePage() {
             </div>
             <div className="flex items-center space-x-8">
               <div className="hidden md:flex items-center space-x-8">
-                <a
-                  href="#search"
-                  className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold"
-                >
+                <a href="#search" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Find Opportunities
                 </a>
-                <a
-                  href="#about"
-                  className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold"
-                >
+                <a href="#about" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   About Us
                 </a>
-                <a
-                  href="#impact"
-                  className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold"
-                >
+                <a href="#impact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Impact Stories
                 </a>
-                <a
-                  href="#contact"
-                  className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold"
-                >
+                <a href="#contact" className="text-[#FFC107] hover:text-[#f1edf5] transition-colors font-bold">
                   Contact
                 </a>
               </div>
-              <Button className="bg-[#131214] hover:bg-[#131214]/90 text-[#f1edf5]">
-                Join IVY
-              </Button>
+              <Button className="bg-[#131214] hover:bg-[#131214]/90 text-[#f1edf5]">Join IVY</Button>
             </div>
           </div>
         </div>
@@ -117,26 +67,26 @@ export default function IVYHomePage() {
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* FIX 1: Add IVY Program heading above main hero heading */}
+          <div className="text-left mb-4">
+            <span 
+              className="font-playfair font-bold text-2xl md:text-3xl"
+              style={{ color: "#9c1c62" }}
+            >
+              Internship and Volunteer Youth Programs
+            </span>
+          </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  <span style={{ color: "#ac7ce6" }}>Find Your Perfect</span>
-                  <span style={{ color: "#a60be6" }}> Volunteering</span>
-                  <span style={{ color: "#ac7ce6" }}> Match</span>
+                  <span style={{ color: '#ac7ce6' }}>Find Your Perfect</span>
+                  <span style={{ color: '#a60be6' }}> Volunteering</span>
+                  <span style={{ color: '#ac7ce6' }}> Match</span>
                 </h1>
-                {/* Typing Effect for IVY Program Heading */}
-                <div className="text-left mb-4">
-                  <span
-                    id="typed-text"
-                    className="font-playfair font-bold text-2xl md:text-3xl"
-                    style={{ color: "#9c1c62" }}
-                  ></span>
-                </div>
                 <p className="text-xl text-muted-foreground text-pretty/relaxed">
-                  Discover meaningful opportunities across South India. Search by
-                  location, theme, and find the perfect match for your skills and
-                  passion.
+                  Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
+                  match for your skills and passion.
                 </p>
               </div>
               <div className="flex items-center space-x-8 text-sm text-muted-foreground">
@@ -177,23 +127,21 @@ export default function IVYHomePage() {
       </section>
 
       {/* Search Section */}
-      <section
-        id="search"
-        className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30"
-      >
+      <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
+                {/* 7. Find Your Perfect Opportunity must be in #573280 */}
                 <h2
                   className="font-playfair font-bold text-2xl"
                   style={{ color: "#573280" }}
                 >
                   Find Your Perfect Opportunity
                 </h2>
+                {/* 8. Search and filter volunteering opportunities... #915ccc */}
                 <p style={{ color: "#915ccc" }}>
-                  Search and filter volunteering opportunities that match your
-                  interests
+                  Search and filter volunteering opportunities that match your interests
                 </p>
               </div>
 
@@ -216,9 +164,7 @@ export default function IVYHomePage() {
                     <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
                     <SelectItem value="kerala">Kerala</SelectItem>
                     <SelectItem value="karnataka">Karnataka</SelectItem>
-                    <SelectItem value="andhra-pradesh">
-                      Andhra Pradesh
-                    </SelectItem>
+                    <SelectItem value="andhra-pradesh">Andhra Pradesh</SelectItem>
                     <SelectItem value="telangana">Telangana</SelectItem>
                   </SelectContent>
                 </Select>
@@ -228,25 +174,13 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Theme" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="childcare">
-                      Childcare & Education
-                    </SelectItem>
-                    <SelectItem value="healthcare">
-                      Healthcare & Medical
-                    </SelectItem>
-                    <SelectItem value="wildlife">
-                      Wildlife & Environment
-                    </SelectItem>
-                    <SelectItem value="heritage">
-                      Heritage & Culture
-                    </SelectItem>
-                    <SelectItem value="community">
-                      Community Development
-                    </SelectItem>
+                    <SelectItem value="childcare">Childcare & Education</SelectItem>
+                    <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
+                    <SelectItem value="wildlife">Wildlife & Environment</SelectItem>
+                    <SelectItem value="heritage">Heritage & Culture</SelectItem>
+                    <SelectItem value="community">Community Development</SelectItem>
                     <SelectItem value="elderly">Elderly Care</SelectItem>
-                    <SelectItem value="disability">
-                      Disability Support
-                    </SelectItem>
+                    <SelectItem value="disability">Disability Support</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -289,12 +223,8 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="font-playfair font-bold text-3xl text-foreground">
-                Available Opportunities
-              </h2>
-              <p className="text-muted-foreground">
-                147 opportunities found
-              </p>
+              <h2 className="font-playfair font-bold text-3xl text-foreground">Available Opportunities</h2>
+              <p className="text-muted-foreground">147 opportunities found</p>
             </div>
             <Button
               variant="outline"
@@ -425,9 +355,7 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">
-                      Verified
-                    </Badge>
+                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
                   )}
                   <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
                     <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
@@ -436,25 +364,18 @@ export default function IVYHomePage() {
 
                 <CardContent className="p-4 space-y-3">
                   <div className="flex items-center justify-between">
-                    <Badge
-                      variant="secondary"
-                      className="bg-accent/10 text-accent hover:bg-accent/20 text-xs"
-                    >
+                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20 text-xs">
                       {opportunity.category}
                     </Badge>
                     <div className="flex items-center space-x-1 text-sm">
                       <Star className="h-4 w-4 fill-current text-yellow-500" />
                       <span className="font-medium">{opportunity.rating}</span>
-                      <span className="text-muted-foreground">
-                        ({opportunity.reviews})
-                      </span>
+                      <span className="text-muted-foreground">({opportunity.reviews})</span>
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-lg text-foreground line-clamp-1">
-                      {opportunity.title}
-                    </h3>
+                    <h3 className="font-semibold text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
                     <div className="flex items-center space-x-1 text-sm text-muted-foreground mt-1">
                       <MapPin className="h-3 w-3" />
                       <span>{opportunity.location}</span>
@@ -473,21 +394,15 @@ export default function IVYHomePage() {
                       />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-foreground">
-                        {opportunity.hostName}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Host organization
-                      </p>
+                      <p className="text-sm font-medium text-foreground">{opportunity.hostName}</p>
+                      <p className="text-xs text-muted-foreground">Host organization</p>
                     </div>
                   </div>
 
                   <div className="space-y-2 text-sm text-muted-foreground">
                     <div className="flex items-center justify-between">
                       <span>Duration:</span>
-                      <span className="text-foreground">
-                        {opportunity.duration}
-                      </span>
+                      <span className="text-foreground">{opportunity.duration}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span>Type:</span>
@@ -495,25 +410,16 @@ export default function IVYHomePage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span>Accommodation:</span>
-                      <span className="text-foreground">
-                        {opportunity.accommodation}
-                      </span>
+                      <span className="text-foreground">{opportunity.accommodation}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between pt-2 border-t border-border">
                     <div>
-                      <span className="text-lg font-bold text-foreground">
-                        {opportunity.price}
-                      </span>
-                      <p className="text-xs text-muted-foreground">
-                        {opportunity.meals}
-                      </p>
+                      <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
+                      <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button
-                      size="sm"
-                      className="bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground"
-                    >
+                    <Button size="sm" className="bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">
                       Apply Now
                     </Button>
                   </div>
@@ -536,18 +442,12 @@ export default function IVYHomePage() {
       </section>
 
       {/* Featured Opportunities */}
-      <section
-        id="opportunities"
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30"
-      >
+      <section id="opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
-              Featured Opportunities
-            </h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Featured Opportunities</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover meaningful ways to contribute to communities across South
-              India
+              Discover meaningful ways to contribute to communities across South India
             </p>
           </div>
 
@@ -581,10 +481,7 @@ export default function IVYHomePage() {
                 reviews: 31,
               },
             ].map((opportunity, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-lg transition-all duration-300 border-border"
-              >
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
                     src={
@@ -604,10 +501,7 @@ export default function IVYHomePage() {
                 </div>
                 <CardHeader className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <Badge
-                      variant="secondary"
-                      className="bg-accent/10 text-accent hover:bg-accent/20"
-                    >
+                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
                       {opportunity.category}
                     </Badge>
                     <div className="flex items-center space-x-1 text-sm text-muted-foreground">
@@ -616,9 +510,7 @@ export default function IVYHomePage() {
                       <span>({opportunity.reviews})</span>
                     </div>
                   </div>
-                  <CardTitle className="text-xl font-playfair">
-                    {opportunity.title}
-                  </CardTitle>
+                  <CardTitle className="text-xl font-playfair">{opportunity.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2 text-sm text-muted-foreground">
@@ -631,9 +523,7 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">
-                    Learn More
-                  </Button>
+                  <Button className="w-full bg-[#573280] hover:bg-[#573280]/90 text-primary-foreground">Learn More</Button>
                 </CardContent>
               </Card>
             ))}
@@ -656,12 +546,14 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
+            {/* 2. Fix Impact Stories color - #573280 */}
             <h2
               className="font-playfair font-bold text-3xl md:text-4xl"
               style={{ color: "#573280" }}
             >
               Impact Stories
             </h2>
+            {/* 3. Real stories from volunteers... #915ccc */}
             <p
               className="text-xl max-w-2xl mx-auto"
               style={{ color: "#915ccc" }}
@@ -710,17 +602,13 @@ export default function IVYHomePage() {
                       />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground">
-                        {story.name}
-                      </h4>
+                      <h4 className="font-semibold text-foreground">{story.name}</h4>
                       <p className="text-sm text-muted-foreground">
                         {story.role} • {story.location}
                       </p>
                     </div>
                   </div>
-                  <blockquote className="text-muted-foreground italic">
-                    "{story.quote}"
-                  </blockquote>
+                  <blockquote className="text-muted-foreground italic">"{story.quote}"</blockquote>
                   <div className="flex text-yellow-500">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-current" />
@@ -734,58 +622,47 @@ export default function IVYHomePage() {
       </section>
 
       {/* About Section */}
-      <section
-        id="about"
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30"
-      >
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
+              {/* 4. About IVY Platform must changed in to About Us */}
+              {/* 5. About Us colour must be in #573280 */}
               <h2
                 className="font-playfair font-bold text-3xl md:text-4xl"
                 style={{ color: "#573280" }}
               >
                 About Us
               </h2>
+              {/* 6. About Us content must be in justify */}
               <div
                 className="space-y-4 text-muted-foreground leading-relaxed"
                 style={{ textAlign: "justify" }}
               >
                 <p>
-                  Grace Kennett Foundation is a non-governmental organization
-                  with a glorious 80-year history. Our work has saved the lives
-                  of a thousand victims of female infanticide and abandoned
-                  children.
-                  <br />
-                  A thousand happy families have been built through adoption. If
-                  you need to have a garden, dig a well first. Our well is our
-                  hospital and our allied services. We address the physical,
-                  mental, and social well being of the community and raise
-                  resources to pursue our lofty objectives.
-                  <br />
-                  IVY is an innovative platform that connects passionate
-                  volunteers with meaningful opportunities across South India.
-                  Just like Airbnb revolutionized travel, we're transforming how
-                  people discover and engage in volunteer work.
+                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+
+                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
+                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
+                  
+                  IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
+                  South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
+                  in volunteer work.
                 </p>
                 <p>
-                  Our mission is to create lasting positive impact in
-                  communities while providing volunteers with authentic cultural
-                  experiences and personal growth opportunities.
+                  Our mission is to create lasting positive impact in communities while providing volunteers with
+                  authentic cultural experiences and personal growth opportunities.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center p-4 bg-background rounded-lg border border-border">
                   <div className="text-2xl font-bold text-primary">500+</div>
-                  <div className="text-sm text-muted-foreground">
-                    Active Volunteers
-                  </div>
+                  <div className="text-sm text-muted-foreground">Active Volunteers</div>
                 </div>
                 <div className="text-center p-4 bg-background rounded-lg border border-border">
                   <div className="text-2xl font-bold text-accent">50+</div>
-                  <div className="text-sm text-muted-foreground">
-                    Partner Organizations
-                  </div>
+                  <div className="text-sm text-muted-foreground">Partner Organizations</div>
                 </div>
               </div>
             </div>
@@ -805,19 +682,12 @@ export default function IVYHomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[#573280] text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">
-            Ready to Make a Difference?
-          </h2>
+          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
           <p className="text-xl opacity-90 text-pretty">
-            Join our community of changemakers and start your volunteering
-            journey today
+            Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="bg-[#573280] hover:bg-[#573280]/90 text-accent-foreground"
-            >
+            <Button size="lg" variant="secondary" className="bg-[#573280] hover:bg-[#573280]/90 text-accent-foreground">
               Find Opportunities
             </Button>
             <Button
@@ -832,22 +702,16 @@ export default function IVYHomePage() {
       </section>
 
       {/* Footer */}
-      <footer
-        id="contact"
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border"
-      >
+      <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">
-                  IVY
-                </span>
+                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
               </div>
               <p className="text-muted-foreground text-sm">
-                Connecting volunteers with meaningful opportunities across South
-                India.
+                Connecting volunteers with meaningful opportunities across South India.
               </p>
               <div className="flex space-x-4">
                 <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
@@ -895,13 +759,10 @@ export default function IVYHomePage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>
-              &copy; 2024 IVY Platform. All rights reserved. Spreading kindness
-              across South India.
-            </p>
+            <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
           </div>
         </div>
       </footer>
     </div>
-  );
+  )
 }
