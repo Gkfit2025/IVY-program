@@ -107,7 +107,7 @@ export default function IVYHomePage() {
       <section
         className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative"
         style={{
-          backgroundImage: "url('/bg7.png')",
+          backgroundImage: "url('/bg6.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "600px",
