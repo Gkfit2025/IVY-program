@@ -67,14 +67,16 @@ export default function IVYHomePage() {
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* FIX 1: Add IVY Program heading above main hero heading */}
-          <div className="text-left mb-4">
-            <span 
-              className="font-playfair font-bold text-2xl md:text-3xl"
-              style={{ color: "#9c1c62" }}
-            >
-              Internship and Volunteer Youth Programs
-            </span>
+          {/* Marquee effect for IVY Program heading */}
+          <div className="text-left mb-4 overflow-hidden">
+            <div className="animate-marquee whitespace-nowrap">
+              <span 
+                className="font-playfair font-bold text-2xl md:text-3xl inline-block"
+                style={{ color: "#9c1c62" }}
+              >
+                Internship and Volunteer Youth Programs &nbsp;•&nbsp; Internship and Volunteer Youth Programs &nbsp;•&nbsp; Internship and Volunteer Youth Programs &nbsp;•&nbsp;
+              </span>
+            </div>
           </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -107,7 +109,7 @@ export default function IVYHomePage() {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
                 <Image
-                  src="/volunteers-working-together-in-south-india-communi.png"
+                  src="/bgd6.png"
                   alt="Volunteers working together in community project"
                   width={600}
                   height={600}
@@ -763,6 +765,21 @@ export default function IVYHomePage() {
           </div>
         </div>
       </footer>
+
+      {/* Add CSS for marquee animation */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 30s linear infinite;
+          display: inline-block;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </div>
   )
 }
