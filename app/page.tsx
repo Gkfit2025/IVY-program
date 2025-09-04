@@ -18,8 +18,28 @@ import {
   Filter,
 } from "lucide-react"
 import Image from "next/image"
+import { useEffect } from "react"
+import Typed from "typed.js"
 
 export default function IVYHomePage() {
+  useEffect(() => {
+    const options = {
+      strings: ["Internship and Volunteer Youth Programs"],
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      loop: false,
+      showCursor: true,
+      cursorChar: "|",
+    }
+
+    const typed = new Typed("#typed-text", options)
+
+    return () => {
+      typed.destroy()
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -67,15 +87,6 @@ export default function IVYHomePage() {
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* FIX 1: Add IVY Program heading above main hero heading */}
-          <div className="text-left mb-4">
-            <span 
-              className="font-playfair font-bold text-2xl md:text-3xl"
-              style={{ color: "#9c1c62" }}
-            >
-              Internship and Volunteer Youth Programs
-            </span>
-          </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
@@ -84,6 +95,14 @@ export default function IVYHomePage() {
                   <span style={{ color: '#a60be6' }}> Volunteering</span>
                   <span style={{ color: '#ac7ce6' }}> Match</span>
                 </h1>
+                {/* Typing Effect for IVY Program Heading */}
+                <div className="text-left mb-4">
+                  <span 
+                    id="typed-text"
+                    className="font-playfair font-bold text-2xl md:text-3xl"
+                    style={{ color: "#9c1c62" }}
+                  ></span>
+                </div>
                 <p className="text-xl text-muted-foreground text-pretty/relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
                   match for your skills and passion.
@@ -132,14 +151,12 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                {/* 7. Find Your Perfect Opportunity must be in #573280 */}
                 <h2
                   className="font-playfair font-bold text-2xl"
                   style={{ color: "#573280" }}
                 >
                   Find Your Perfect Opportunity
                 </h2>
-                {/* 8. Search and filter volunteering opportunities... #915ccc */}
                 <p style={{ color: "#915ccc" }}>
                   Search and filter volunteering opportunities that match your interests
                 </p>
@@ -546,14 +563,12 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            {/* 2. Fix Impact Stories color - #573280 */}
             <h2
               className="font-playfair font-bold text-3xl md:text-4xl"
               style={{ color: "#573280" }}
             >
               Impact Stories
             </h2>
-            {/* 3. Real stories from volunteers... #915ccc */}
             <p
               className="text-xl max-w-2xl mx-auto"
               style={{ color: "#915ccc" }}
@@ -626,15 +641,12 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              {/* 4. About IVY Platform must changed in to About Us */}
-              {/* 5. About Us colour must be in #573280 */}
               <h2
                 className="font-playfair font-bold text-3xl md:text-4xl"
                 style={{ color: "#573280" }}
               >
                 About Us
               </h2>
-              {/* 6. About Us content must be in justify */}
               <div
                 className="space-y-4 text-muted-foreground leading-relaxed"
                 style={{ textAlign: "justify" }}
