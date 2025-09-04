@@ -133,6 +133,11 @@ export default function IVYHomePage() {
                   </span>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
+                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
+                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
+                 
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
                   match for your skills and passion.
                 </p>
