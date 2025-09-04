@@ -323,7 +323,7 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "3-4 weeks",
                 category: "Elderly Care",
-                type: "Intern",
+                type: "Internship",
                 hostName: "Grace Kennett Foundation",
                 hostImage: "indian female doctor profile photo",
                 image: "medical volunteers helping in rural healthcare clinic",
