@@ -19,24 +19,29 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { useEffect } from "react"
-import Typed from "typed.js"
 
 export default function IVYHomePage() {
   useEffect(() => {
-    const options = {
-      strings: ["Internship and Volunteer Youth Programs"],
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 2000,
-      loop: false,
-      showCursor: true,
-      cursorChar: "|",
-    }
+    // Ensure Typed.js only runs on the client side
+    if (typeof window !== "undefined") {
+      import("typed.js").then((TypedModule) => {
+        const Typed = TypedModule.default
+        const options = {
+          strings: ["Internship and Volunteer Youth Programs"],
+          typeSpeed: 50,
+          backSpeed: 30,
+          backDelay: 2000,
+          loop: false,
+          showCursor: true,
+          cursorChar: "|",
+        }
 
-    const typed = new Typed("#typed-text", options)
+        const typed = new Typed("#typed-text", options)
 
-    return () => {
-      typed.destroy()
+        return () => {
+          typed.destroy()
+        }
+      })
     }
   }, [])
 
