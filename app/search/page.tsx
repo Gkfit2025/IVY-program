@@ -165,6 +165,26 @@ const allOpportunities = [
     meals: "Seafood included",
     verified: true,
   },
+    {
+    id: 9,
+     title: "Elderly Care Program",
+    location: "Madurai",
+    state: "tamil-nadu",
+    duration: "3-4weeks",
+    theme: "elderly",
+    type: "both",
+    category: "Elderly Care",
+    hostName: "Grace Kennett Foundation",
+    hostImage: "indian female social worker profile photo",
+    image: "volunteers spending time with elderly residents",
+    rating: 4.9,
+    reviews: 51,
+    price: "₹2,000/week",
+    accommodation: "Nearby hostel",
+    meals: "South Indian meals",
+    verified: true,
+  },
+
 ]
 
 function SearchResults() {
