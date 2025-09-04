@@ -876,15 +876,15 @@ export default function IVYHomePage() {
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>hello@ivyplatform.org</span>
+                  <span>gkfit2025@gmail.com</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>+91 98765 43210</span>
+                  <span>+91 96268 40401</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
-                  <span>Madurai, Tamil Nadu</span>
+                  <span>8,Kennet Road, Madurai - 16, Tamil Nadu</span>
                 </div>
               </div>
             </div>
