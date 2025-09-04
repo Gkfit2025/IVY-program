@@ -68,6 +68,29 @@ export const opportunitiesDatabase: Opportunity[] = [
     requirements: ["Physical fitness", "Interest in wildlife", "Basic research skills"],
     included: ["Private accommodation", "Vegetarian meals", "Research training", "Field equipment"],
   },
+  {
+    id: 3,
+    title: "Elderly Care Program",
+    location: "Madurai",
+    state: "tamil-nadu",
+    duration: "3-4weeks",
+    theme: "elderly",
+    type: "intern",
+    category: "Elderly Care",
+    hostName: "Grace Kennett Foundation",
+    hostImage: "indian female doctor profile photo",
+    image: "medical volunteers helping in rural healthcare clinic",
+    rating: 4.8,
+    reviews: 51,
+    price: "₹2,800/week",
+    accommodation: "Host family",
+    meals: "Local cuisine",
+    verified: true,
+    description:
+      "Provide compassionate care and support to elderly residents while gaining valuable healthcare experience.",
+    requirements: ["Basic healthcare knowledge", "Compassionate nature", "Physical stamina"],
+    included: ["Host family accommodation", "Local cuisine meals", "Healthcare training", "Certificate"],
+  },
   // Add more opportunities here...
 ]
 
