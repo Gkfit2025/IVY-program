@@ -43,28 +43,76 @@ export default function IVYHomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+      <nav
+        className="fixed top-0 w-full border-b border-border z-50"
+        style={{ background: "#000000" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
+              <Image
+                src="/logo12.png"
+                alt="Grace Kennett Foundation Logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+                priority
+              />
+              <span
+                className="font-playfair font-bold text-2xl"
+                style={{ color: "#F53D02" }}
+              >
+                Grace Kennett Foundation
+              </span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#search" className="text-foreground hover:text-primary transition-colors">
+              <a
+                href="#search"
+                className="text-lg font-semibold transition-colors"
+                style={{ color: "#F53D02" }}
+              >
                 Find Opportunities
               </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              <a
+                href="#about"
+                className="text-lg font-semibold transition-colors"
+                style={{ color: "#F53D02" }}
+              >
                 About Us
               </a>
-              <a href="#impact" className="text-foreground hover:text-primary transition-colors">
+              <a
+                href="#impact"
+                className="text-lg font-semibold transition-colors"
+                style={{ color: "#F53D02" }}
+              >
                 Impact Stories
               </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+              <a
+                href="#contact"
+                className="text-lg font-semibold transition-colors"
+                style={{ color: "#F53D02" }}
+              >
                 Contact
               </a>
             </div>
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Join IVY</Button>
+            <Button
+              className="transition-colors"
+              style={{
+                background: "#91381C",
+                color: "#000000",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#91381C"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "#91381C"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
+            >
+              Join IVY
+            </Button>
           </div>
         </div>
       </nav>
@@ -75,9 +123,14 @@ export default function IVYHomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  Find Your Perfect
-                  <span className="text-primary"> Volunteering</span> Match
+                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
+                  <span style={{ color: "#EB7552" }}>Find Your Perfect</span>
+                  <span className="pl-2" style={{ color: "#F53600" }}>
+                    Volunteering
+                  </span>
+                  <span className="pl-2" style={{ color: "#EB7552" }}>
+                    Match
+                  </span>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
@@ -210,7 +263,20 @@ export default function IVYHomePage() {
 
               <Button
                 onClick={handleSearch}
-                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-lg"
+                className="w-full h-12 text-lg"
+                style={{
+                  background: "#E65A15",
+                  color: "#000000",
+                  fontWeight: 700,
+                }}
+                onMouseOver={e => {
+                  (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                  ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                }}
+                onMouseOut={e => {
+                  (e.target as HTMLButtonElement).style.background = "#E65A15"
+                  ;(e.target as HTMLButtonElement).style.color = "#000000"
+                }}
               >
                 <Search className="mr-2 h-5 w-5" />
                 Search Opportunities
@@ -229,7 +295,21 @@ export default function IVYHomePage() {
             </div>
             <Button
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary bg-transparent"
+              style={{
+                borderColor: "#E65A15",
+                color: "#000000",
+                background: "transparent",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
             >
               <Filter className="mr-2 h-4 w-4" />
               More Filters
@@ -414,7 +494,22 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button
+                      size="sm"
+                      style={{
+                        background: "#E65A15",
+                        color: "#000000",
+                        fontWeight: 700,
+                      }}
+                      onMouseOver={e => {
+                        (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                        ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                      }}
+                      onMouseOut={e => {
+                        (e.target as HTMLButtonElement).style.background = "#E65A15"
+                        ;(e.target as HTMLButtonElement).style.color = "#000000"
+                      }}
+                    >
                       Apply Now
                     </Button>
                   </div>
@@ -427,7 +522,20 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary bg-transparent"
+              style={{
+                borderColor: "#E65A15",
+                color: "#000000",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
             >
               Load More Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -510,7 +618,24 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Learn More</Button>
+                  <Button
+                    className="w-full"
+                    style={{
+                      background: "#E65A15",
+                      color: "#000000",
+                      fontWeight: 700,
+                    }}
+                    onMouseOver={e => {
+                      (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                      ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+                    }}
+                    onMouseOut={e => {
+                      (e.target as HTMLButtonElement).style.background = "#E65A15"
+                      ;(e.target as HTMLButtonElement).style.color = "#000000"
+                    }}
+                  >
+                    Learn More
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -520,7 +645,20 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="border-primary bg-transparent"
+              style={{
+                borderColor: "#E65A15",
+                color: "#000000",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
             >
               View All Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -647,13 +785,42 @@ export default function IVYHomePage() {
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+            <Button
+              size="lg"
+              variant="secondary"
+              style={{
+                background: "#E65A15",
+                color: "#000000",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
+            >
               Find Opportunities
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
+              style={{
+                borderColor: "#E65A15",
+                color: "#000000",
+                background: "transparent",
+                fontWeight: 700,
+              }}
+              onMouseOver={e => {
+                (e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
+              }}
+              onMouseOut={e => {
+                (e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#000000"
+              }}
             >
               Become a Host
             </Button>
