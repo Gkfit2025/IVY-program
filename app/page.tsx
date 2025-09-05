@@ -55,7 +55,7 @@ export default function IVYHomePage() {
               <a
                 href="#search"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#FFFFFF" }}
+                style={{ color:"#FFFFFF" }}
               >
                 Find Opportunities
               </a>
