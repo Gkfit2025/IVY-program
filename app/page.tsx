@@ -100,8 +100,8 @@ export default function IVYHomePage() {
                   (e.target as HTMLButtonElement).style.color = "#E65A15"
                 }}
                 onMouseOut={(e) => {
-                  (e.target as HTMLButtonElement).style.background = "#FFFFFF"
-                  (e.target as HTMLButtonElement).style.color = "#E65A15"
+                  (e.target as HTMLButtonElement).style.background = "#E65A15"
+                  (e.target as HTMLButtonElement).style.color = "#141413"
                 }}
               >
                 Join IVY
