@@ -92,7 +92,7 @@ export default function IVYHomePage() {
                 className="transition-colors"
                 style={{
                   background: "#F76005",
-                  color: "#F76005",
+                  color: "#080707",
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
