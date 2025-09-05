@@ -352,7 +352,7 @@ export default function IVYHomePage() {
                 verified: true,
               },
               {
-                title: "Rural Healthcare Support",
+                title: "Healthcare Assistance",
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare & Medical",
