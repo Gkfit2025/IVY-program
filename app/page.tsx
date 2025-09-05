@@ -37,7 +37,7 @@ export default function IVYHomePage() {
 
   const [showHealthcareContent, setShowHealthcareContent] = useState(false)
 
-  const opportunities = [
+  const allOpportunities = [
     {
       title: "Child Education Support",
       location: "Madurai, Tamil Nadu",
@@ -79,7 +79,7 @@ export default function IVYHomePage() {
     },
   ]
 
-  const filteredOpportunities = opportunities.filter((opportunity) => {
+  const filteredOpportunities = allOpportunities.filter((opportunity) => {
     return (
       (!searchFilters.location || opportunity.filterLocation === searchFilters.location) &&
       (!searchFilters.theme || opportunity.filterTheme === searchFilters.theme) &&
@@ -837,9 +837,9 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
+                    ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
                       e.target as HTMLButtonElement,
-                    ).style.color = "#FFFFFF"
+                    ).style.color = "#E65A15"
                   }}
                   onMouseOut={(e) => {
                     ;(e.target as HTMLButtonElement).style.background = "transparent"(
