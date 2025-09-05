@@ -713,10 +713,15 @@ export default function IVYHomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
-                About IVY Platform
+                About Us
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
+                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
+                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
+                  
                   IVY is an innovative platform that connects passionate volunteers with meaningful opportunities across
                   South India. Just like Airbnb revolutionized travel, we're transforming how people discover and engage
                   in volunteer work.
