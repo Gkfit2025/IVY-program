@@ -17,6 +17,43 @@ export default function IVYHomePage() {
     type: "",
   })
 
+  // Blink effect for "Join IVY" button
+  const [blink, setBlink] = useState(false)
+  const blinkInterval = 400 // ms
+
+  // Start blinking on hover
+  const handleJoinMouseOver = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setBlink(true)
+  }
+
+  // Stop blinking on mouse out and reset color
+  const handleJoinMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setBlink(false)
+    e.currentTarget.style.background = "#FA6916"
+    e.currentTarget.style.color = "#030303"
+  }
+
+  // Blink color alternation
+  const joinButtonStyle = {
+    background: blink ? "#FCF5F5" : "#FA6916",
+    color: blink ? "#030303" : "#030303",
+    fontWeight: 700,
+    transition: "background 0.2s, color 0.2s"
+  }
+
+  // Timer for blink effect
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout
+    if (blink) {
+      timer = setInterval(() => {
+        setBlink((prev) => !prev)
+      }, blinkInterval)
+    }
+    return () => {
+      if (timer) clearInterval(timer)
+    }
+  }, [blink])
+
   const handleSearch = () => {
     const params = new URLSearchParams()
     Object.entries(searchFilters).forEach(([key, value]) => {
@@ -90,19 +127,9 @@ export default function IVYHomePage() {
               </a>
               <Button
                 className="transition-colors"
-                style={{
-                  background: "#FFFFFF",
-                  color: "#FFFFFF",
-                  fontWeight: 700,
-                }}
-                onMouseOver={(e) => {
-                  (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                  (e.target as HTMLButtonElement).style.color = "#E65A15"
-                }}
-                onMouseOut={(e) => {
-                  (e.target as HTMLButtonElement).style.background = "#E65A15"
-                  (e.target as HTMLButtonElement).style.color = "#141413"
-                }}
+                style={joinButtonStyle}
+                onMouseOver={handleJoinMouseOver}
+                onMouseOut={handleJoinMouseOut}
               >
                 Join IVY
               </Button>
@@ -115,13 +142,14 @@ export default function IVYHomePage() {
       <section
         className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative"
         style={{
-          backgroundImage: "url('/bg6.png')",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url('/bg6.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "600px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          filter: "brightness(1.09) contrast(1.12) saturate(1.15)", // improve clarity
         }}
       >
         <div
@@ -724,7 +752,7 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl md:text-4xl" style={{ color: "#F55900" }}>
                 About Us
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-muted-foreground leading-relaxed" style={{ textAlign: "justify" }}>
                 <p>
                   Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
                   Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
