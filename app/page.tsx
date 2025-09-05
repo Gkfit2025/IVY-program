@@ -46,7 +46,7 @@ export default function IVYHomePage() {
               />
               <span
                 className="font-playfair font-bold text-2xl"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#F06105" }}
               >
                 Grace Kennett Foundation
               </span>
@@ -125,9 +125,7 @@ export default function IVYHomePage() {
             Find Your Perfect Volunteering Match
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4">
-            Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
-            Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
-            A thousand happy families have been built through adoption. Discover meaningful opportunities across South India.
+            Connect with meaningful causes and choose the volunteering role that best suits your interests and strengths.
           </p>
           <div className="flex justify-center items-center space-x-8 text-sm text-white/80 mt-8">
             <div className="flex items-center space-x-2">
