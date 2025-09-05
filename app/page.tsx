@@ -91,7 +91,7 @@ export default function IVYHomePage() {
               <Button
                 className="transition-colors"
                 style={{
-                  background: "#FFFFFF",
+                  background: "#F76005",
                   color: "#F76005",
                   fontWeight: 700,
                 }}
@@ -100,8 +100,8 @@ export default function IVYHomePage() {
                   (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
                 onMouseOut={(e) => {
-                  (e.target as HTMLButtonElement).style.background = "#E65A15"
-                  (e.target as HTMLButtonElement).style.color = "#141413"
+                  (e.target as HTMLButtonElement).style.background = "#F76005"
+                  (e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
               >
                 Join IVY
