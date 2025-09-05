@@ -37,59 +37,13 @@ export default function IVYHomePage() {
 
   const [showHealthcareContent, setShowHealthcareContent] = useState(false)
 
-  const allOpportunities = [
-    {
-      title: "Child Education Support",
-      location: "Madurai, Tamil Nadu",
-      duration: "2-4 weeks",
-      category: "Education",
-      image: "Child.png",
-      rating: 4.8,
-      reviews: 24,
-      filterLocation: "tamil-nadu",
-      filterTheme: "childcare",
-      filterDuration: "1-2weeks",
-      filterType: "volunteer",
-    },
-    {
-      title: "Wildlife Conservation",
-      location: "Coimbatore, Tamil Nadu",
-      duration: "1-3 months",
-      category: "Environment",
-      image: "wildlife.png",
-      rating: 4.9,
-      reviews: 18,
-      filterLocation: "tamil-nadu",
-      filterTheme: "wildlife",
-      filterDuration: "1-2months",
-      filterType: "volunteer",
-    },
-    {
-      title: "Healthcare Assistance",
-      location: "Kochi, Kerala",
-      duration: "3-6 weeks",
-      category: "Healthcare",
-      image: "Medical.png",
-      rating: 4.7,
-      reviews: 31,
-      filterLocation: "kerala",
-      filterTheme: "healthcare",
-      filterDuration: "3-6weeks",
-      filterType: "intern",
-    },
-  ]
-
-  const filteredOpportunities = allOpportunities.filter((opportunity) => {
-    return (
-      (!searchFilters.location || opportunity.filterLocation === searchFilters.location) &&
-      (!searchFilters.theme || opportunity.filterTheme === searchFilters.theme) &&
-      (!searchFilters.duration || opportunity.filterDuration === searchFilters.duration) &&
-      (!searchFilters.type || opportunity.filterType === searchFilters.type)
-    )
-  })
-
   const handleSearch = () => {
-    console.log("[v0] Filtering opportunities with:", searchFilters)
+    const params = new URLSearchParams()
+    Object.entries(searchFilters).forEach(([key, value]) => {
+      if (value) params.set(key, value)
+    })
+    const queryString = params.toString()
+    window.location.href = `/search${queryString ? `?${queryString}` : ""}`
   }
 
   const handleLearnMore = (opportunityTitle: string) => {
@@ -282,6 +236,7 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
+                    <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
                     <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
                     <SelectItem value="1-2months">1-2 months</SelectItem>
                     <SelectItem value="3-6months">3-6 months</SelectItem>
@@ -298,6 +253,7 @@ export default function IVYHomePage() {
                   <SelectContent>
                     <SelectItem value="volunteer">Volunteer</SelectItem>
                     <SelectItem value="intern">Internship</SelectItem>
+                    <SelectItem value="both">Both</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -397,7 +353,7 @@ export default function IVYHomePage() {
                 verified: true,
               },
               {
-                title: "Rural Healthcare Support",
+                title: "Healthcare Assistance",
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare & Medical",
@@ -602,72 +558,93 @@ export default function IVYHomePage() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredOpportunities.length > 0 ? (
-              filteredOpportunities.map((opportunity, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
-                  <div className="aspect-video overflow-hidden rounded-t-lg">
-                    <Image
-                      src={`/${opportunity.image}`}
-                      alt={opportunity.title}
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                    />
+            {[
+              {
+                title: "Child Education Support",
+                location: "Madurai, Tamil Nadu",
+                duration: "2-4 weeks",
+                category: "Education",
+                image: "Child.png",
+                rating: 4.8,
+                reviews: 24,
+              },
+              {
+                title: "Wildlife Conservation",
+                location: "Coimbatore, Tamil Nadu",
+                duration: "1-3 months",
+                category: "Environment",
+                image: "wildlife.png",
+                rating: 4.9,
+                reviews: 18,
+              },
+              {
+                title: "Healthcare Assistance",
+                location: "Kochi, Kerala",
+                duration: "3-6 weeks",
+                category: "Healthcare",
+                image: "Medical.png",
+                rating: 4.7,
+                reviews: 31,
+              },
+            ].map((opportunity, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
+                <div className="aspect-video overflow-hidden rounded-t-lg">
+                  <Image
+                    src={`/${opportunity.image}`}
+                    alt={opportunity.title}
+                    width={400}
+                    height={240}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardHeader className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
+                      {opportunity.category}
+                    </Badge>
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                      <Star className="h-4 w-4 fill-current text-yellow-500" />
+                      <span>{opportunity.rating}</span>
+                      <span>({opportunity.reviews})</span>
+                    </div>
                   </div>
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
-                        {opportunity.category}
-                      </Badge>
-                      <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                        <Star className="h-4 w-4 fill-current text-yellow-500" />
-                        <span>{opportunity.rating}</span>
-                        <span>({opportunity.reviews})</span>
-                      </div>
+                  <CardTitle className="text-xl font-playfair">{opportunity.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="h-4 w-4 text-primary" />
+                      <span>{opportunity.location}</span>
                     </div>
-                    <CardTitle className="text-xl font-playfair">{opportunity.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2 text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-2">
-                        <MapPin className="h-4 w-4 text-primary" />
-                        <span>{opportunity.location}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="h-4 w-4 text-primary" />
-                        <span>{opportunity.duration}</span>
-                      </div>
+                    <div className="flex items-center space-x-2">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <span>{opportunity.duration}</span>
                     </div>
-                    <Button
-                      className="w-full"
-                      style={{
-                        background: "#E65A15",
-                        color: "#FFFFFF",
-                        fontWeight: 700,
-                      }}
-                      onMouseOver={(e) => {
-                        ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                          e.target as HTMLButtonElement,
-                        ).style.color = "#E65A15"
-                      }}
-                      onMouseOut={(e) => {
-                        ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                          e.target as HTMLButtonElement,
-                        ).style.color = "#FFFFFF"
-                      }}
-                      onClick={() => handleLearnMore(opportunity.title)}
-                    >
-                      Learn More
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <p className="text-muted-foreground text-lg">No opportunities found matching your criteria.</p>
-                <p className="text-sm text-muted-foreground mt-2">Try adjusting your filters to see more results.</p>
-              </div>
-            )}
+                  </div>
+                  <Button
+                    className="w-full"
+                    style={{
+                      background: "#E65A15",
+                      color: "#FFFFFF",
+                      fontWeight: 700,
+                    }}
+                    onMouseOver={(e) => {
+                      ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
+                        e.target as HTMLButtonElement,
+                      ).style.color = "#E65A15"
+                    }}
+                    onMouseOut={(e) => {
+                      ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
+                        e.target as HTMLButtonElement,
+                      ).style.color = "#FFFFFF"
+                    }}
+                    onClick={() => handleLearnMore(opportunity.title)}
+                  >
+                    Learn More
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
           <div className="text-center mt-12">
             <Button
@@ -837,9 +814,9 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
+                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
                       e.target as HTMLButtonElement,
-                    ).style.color = "#E65A15"
+                    ).style.color = "#FFFFFF"
                   }}
                   onMouseOut={(e) => {
                     ;(e.target as HTMLButtonElement).style.background = "transparent"(
