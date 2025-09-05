@@ -26,6 +26,7 @@ import {
   HeartHandshake,
 } from "lucide-react"
 import Image from "next/image"
+import { ApplicationForm } from "@/components/application-form"
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -36,6 +37,7 @@ export default function IVYHomePage() {
   })
 
   const [showHealthcareContent, setShowHealthcareContent] = useState(false)
+  const [showApplicationForm, setShowApplicationForm] = useState(false)
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -116,14 +118,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  ;(e.target as HTMLButtonElement).style.background = "#F76005"(
-                    e.target as HTMLButtonElement,
-                  ).style.color = "#FFFFFF"
+                  ;(e.target as HTMLButtonElement).style.background = "#F76005"
+                  ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
                 onMouseOut={(e) => {
-                  ;(e.target as HTMLButtonElement).style.background = "#F76005"(
-                    e.target as HTMLButtonElement,
-                  ).style.color = "#FFFFFF"
+                  ;(e.target as HTMLButtonElement).style.background = "#F76005"
+                  ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
               >
                 Join IVY
@@ -266,14 +266,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                    e.target as HTMLButtonElement,
-                  ).style.color = "#E65A15"
+                  ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                  ;(e.target as HTMLButtonElement).style.color = "#E65A15"
                 }}
                 onMouseOut={(e) => {
-                  ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                    e.target as HTMLButtonElement,
-                  ).style.color = "#FFFFFF"
+                  ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                  ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                 }}
               >
                 <Search className="mr-2 h-5 w-5" />
@@ -304,14 +302,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#FFFFFF"
+                ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "transparent"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               <Filter className="mr-2 h-4 w-4" />
@@ -500,14 +496,12 @@ export default function IVYHomePage() {
                         fontWeight: 700,
                       }}
                       onMouseOver={(e) => {
-                        ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                          e.target as HTMLButtonElement,
-                        ).style.color = "#E65A15"
+                        ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                        ;(e.target as HTMLButtonElement).style.color = "#E65A15"
                       }}
                       onMouseOut={(e) => {
-                        ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                          e.target as HTMLButtonElement,
-                        ).style.color = "#FFFFFF"
+                        ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                        ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                       }}
                     >
                       Apply Now
@@ -529,14 +523,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#FFFFFF"
+                ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "transparent"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               Load More Opportunities
@@ -629,14 +621,12 @@ export default function IVYHomePage() {
                       fontWeight: 700,
                     }}
                     onMouseOver={(e) => {
-                      ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                        e.target as HTMLButtonElement,
-                      ).style.color = "#E65A15"
+                      ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                      ;(e.target as HTMLButtonElement).style.color = "#E65A15"
                     }}
                     onMouseOut={(e) => {
-                      ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                        e.target as HTMLButtonElement,
-                      ).style.color = "#FFFFFF"
+                      ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                      ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                     }}
                     onClick={() => handleLearnMore(opportunity.title)}
                   >
@@ -658,14 +648,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#FFFFFF"
+                ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
               onMouseOut={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "transparent"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               View All Opportunities
@@ -791,15 +779,17 @@ export default function IVYHomePage() {
                     color: "#FFFFFF",
                     fontWeight: 700,
                   }}
+                  onClick={() => {
+                    setShowHealthcareContent(false)
+                    setShowApplicationForm(true)
+                  }}
                   onMouseOver={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                      e.target as HTMLButtonElement,
-                    ).style.color = "#E65A15"
+                    ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                    ;(e.target as HTMLButtonElement).style.color = "#E65A15"
                   }}
                   onMouseOut={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                      e.target as HTMLButtonElement,
-                    ).style.color = "#FFFFFF"
+                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                    ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                   }}
                 >
                   Apply Now
@@ -814,14 +804,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                      e.target as HTMLButtonElement,
-                    ).style.color = "#FFFFFF"
+                    ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                    ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
                   }}
                   onMouseOut={(e) => {
-                    ;(e.target as HTMLButtonElement).style.background = "transparent"(
-                      e.target as HTMLButtonElement,
-                    ).style.color = "#E65A15"
+                    ;(e.target as HTMLButtonElement).style.background = "transparent"
+                    ;(e.target as HTMLButtonElement).style.color = "#E65A15"
                   }}
                 >
                   Contact for More Info
@@ -831,6 +819,8 @@ export default function IVYHomePage() {
           </div>
         </div>
       )}
+
+      {showApplicationForm && <ApplicationForm onClose={() => setShowApplicationForm(false)} />}
 
       {/* Impact Stories */}
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
@@ -966,14 +956,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
               onMouseOut={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#E65A15"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#FFFFFF"
+                ;(e.target as HTMLButtonElement).style.background = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.color = "#FFFFFF"
               }}
             >
               Find Opportunities
@@ -988,14 +976,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "#F5E4DF"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
               onMouseOut={(e) => {
-                ;(e.target as HTMLButtonElement).style.background = "transparent"(
-                  e.target as HTMLButtonElement,
-                ).style.color = "#E65A15"
+                ;(e.target as HTMLButtonElement).style.background = "transparent"
+                ;(e.target as HTMLButtonElement).style.color = "#E65A15"
               }}
             >
               Become a Host
