@@ -96,8 +96,8 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  (e.target as HTMLButtonElement).style.background = "#F5E4DF"
-                  (e.target as HTMLButtonElement).style.color = "#E65A15"
+                  (e.target as HTMLButtonElement).style.background = "#FFFFFF"
+                  (e.target as HTMLButtonElement).style.color = "#F76005"
                 }}
                 onMouseOut={(e) => {
                   (e.target as HTMLButtonElement).style.background = "#E65A15"
