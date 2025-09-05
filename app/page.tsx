@@ -55,28 +55,36 @@ export default function IVYHomePage() {
               <a
                 href="#search"
                 className="text-lg font-semibold transition-colors"
-                style={{ color:"#FFFFFF" }}
+                style={{ color:"#F76005" }}
+                onMouseOver={e => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseOut={e => (e.currentTarget.style.color = "#F76005")}
               >
                 Find Opportunities
               </a>
               <a
                 href="#about"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#F76005" }}
+                onMouseOver={e => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseOut={e => (e.currentTarget.style.color = "#F76005")}
               >
                 About Us
               </a>
               <a
                 href="#impact"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#F76005" }}
+                onMouseOver={e => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseOut={e => (e.currentTarget.style.color = "#F76005")}
               >
                 Impact Stories
               </a>
               <a
                 href="#contact"
                 className="text-lg font-semibold transition-colors"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: "#F76005" }}
+                onMouseOver={e => (e.currentTarget.style.color = "#FFFFFF")}
+                onMouseOut={e => (e.currentTarget.style.color = "#F76005")}
               >
                 Contact
               </a>
@@ -121,8 +129,10 @@ export default function IVYHomePage() {
           style={{ background: "rgba(0, 0, 0, 0.5)" }}
         ></div>
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-white text-balance">
-            Find Your Perfect Volunteering Match
+          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
+            <span style={{ color: "#D17038" }}>Find Your Perfect </span>
+            <span style={{ color: "#F55900" }}>Volunteering </span>
+            <span style={{ color: "#D17038" }}>Match</span>
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mx-auto mt-4">
             Connect with meaningful causes and choose the volunteering role that best suits your interests and strengths.
@@ -150,7 +160,7 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">
+                <h2 className="font-playfair font-bold text-2xl" style={{ color: "#F55900" }}>
                   Find Your Perfect Opportunity
                 </h2>
                 <p className="text-muted-foreground">
@@ -264,7 +274,7 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="font-playfair font-bold text-3xl text-foreground">
+              <h2 className="font-playfair font-bold text-3xl" style={{ color: "#F55900" }}>
                 Available Opportunities
               </h2>
               <p className="text-muted-foreground">147 opportunities found</p>
@@ -405,8 +415,7 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green    	    
-                    green-500 hover:bg-green-600 text-white">
+                    <Badge className="absolute top-3 left-3 bg-green green-500 hover:bg-green-600 text-white">
                       Verified
                     </Badge>
                   )}
@@ -520,7 +529,7 @@ export default function IVYHomePage() {
       <section id="opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl" style={{ color: "#F55900" }}>
               Featured Opportunities
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -644,7 +653,7 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl" style={{ color: "#F55900" }}>
               Impact Stories
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -712,7 +721,7 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl" style={{ color: "#F55900" }}>
                 About Us
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
