@@ -740,6 +740,28 @@ export default function IVYHomePage() {
                       <label className="block text-sm font-medium text-muted-foreground mb-1">CVV</label>
                       <Input placeholder="123" className="h-12" />
                     </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Billing Address</label>
+                      <Input placeholder="Enter billing address" className="h-12" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Payment Method</label>
+                      <Select>
+                        <SelectTrigger className="h-12">
+                          <SelectValue placeholder="Select payment method" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="credit-card">Credit Card</SelectItem>
+                          <SelectItem value="debit-card">Debit Card</SelectItem>
+                          <SelectItem value="upi">UPI</SelectItem>
+                          <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Promo Code (Optional)</label>
+                      <Input placeholder="Enter promo code" className="h-12" />
+                    </div>
                   </div>
                 </div>
 
@@ -1023,7 +1045,7 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl md:text-4xl" style={{ color: "#F55900" }}>
                 About Us
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-muted-foreground leading-relaxed" style={{ textAlign: "justify" }}>
                 <p>
                   Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. Our work
                   has saved the lives of a thousand victims of female infanticide and abandoned children. A thousand
@@ -1063,7 +1085,7 @@ export default function IVYHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 text-primary-foreground" style={{ background: "#F06105" }}>
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
           <p className="text-xl opacity-90 text-pretty">
@@ -1075,7 +1097,7 @@ export default function IVYHomePage() {
               variant="secondary"
               style={{
                 background: "#E65A15",
-                color: "#FFFFFF",
+                color: "#000000",
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
@@ -1084,7 +1106,7 @@ export default function IVYHomePage() {
               }}
               onMouseOut={(e) => {
                 ;(e.target as HTMLButtonElement).style.background = "#E65A15";
-                ;(e.target as HTMLButtonElement).style.color = "#FFFFFF";
+                ;(e.target as HTMLButtonElement).style.color = "#000000";
               }}
             >
               Find Opportunities
@@ -1094,7 +1116,7 @@ export default function IVYHomePage() {
               variant="outline"
               style={{
                 borderColor: "#E65A15",
-                color: "#E65A15",
+                color: "#000000",
                 background: "transparent",
                 fontWeight: 700,
               }}
@@ -1104,7 +1126,7 @@ export default function IVYHomePage() {
               }}
               onMouseOut={(e) => {
                 ;(e.target as HTMLButtonElement).style.background = "transparent";
-                ;(e.target as HTMLButtonElement).style.color = "#E65A15";
+                ;(e.target as HTMLButtonElement).style.color = "#000000";
               }}
             >
               Become a Host
