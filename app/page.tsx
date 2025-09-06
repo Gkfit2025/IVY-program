@@ -148,44 +148,66 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section with Search */}
+      {/* Hero Section with Full Picture View and Cut-Off */}
       <section
-        className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 relative"
+        className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
         style={{
           backgroundImage: "url('/bg6.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "400px sm:min-h-[600px]",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          backgroundAttachment: "fixed",
         }}
       >
-        <div className="absolute inset-0" style={{ background: "rgba(0, 0, 0, 0.5)" }}></div>
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <h1 className="font-playfair font-bold text-3xl sm:text-4xl md:text-6xl text-balance">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "rgba(0, 0, 0, 0.5)",
+            clipPath: "polygon(0 0, 100% 0, 100% 85%, 0 100%)",
+          }}
+        ></div>
+        <div className="relative z-10 text-center max-w-4xl mx-auto">
+          <h1 className="font-playfair font-bold text-4xl sm:text-5xl md:text-7xl text-balance mb-6">
             <span style={{ color: "#D17038" }}>Find Your Perfect </span>
             <span style={{ color: "#F55900" }}>Volunteering </span>
             <span style={{ color: "#D17038" }}>Match</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mt-4">
-            Connect with meaningful causes and choose the volunteering role that best suits your interests and
-            strengths.
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8">
+            Connect with meaningful causes and choose the volunteering role that best suits your interests and strengths.
           </p>
-          <div className="flex flex-wrap justify-center items-center space-x-4 sm:space-x-8 text-xs sm:text-sm text-white/80 mt-6 sm:mt-8">
-            <div className="flex items-center space-x-2">
-              <Users className="h-4 sm:h-5 w-4 sm:w-5 text-white" />
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm sm:text-base text-white/80 mb-10">
+            <div className="flex items-center gap-2">
+              <Users className="h-5 sm:h-6 w-5 sm:w-6 text-white" />
               <span>500+ Volunteers</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <MapPin className="h-4 sm:h-5 w-4 sm:w-5 text-white" />
+            <div className="flex items-center gap-2">
+              <MapPin className="h-5 sm:h-6 w-5 sm:w-6 text-white" />
               <span>50+ Locations</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Heart className="h-4 sm:h-5 w-4 sm:w-5 text-white" />
+            <div className="flex items-center gap-2">
+              <Heart className="h-5 sm:h-6 w-5 sm:w-6 text-white" />
               <span>100+ Projects</span>
             </div>
           </div>
+          <Button
+            size="lg"
+            className="text-base sm:text-lg"
+            style={{
+              background: "#E65A15",
+              color: "#FFFFFF",
+              fontWeight: 700,
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#F5E4DF";
+              e.currentTarget.style.color = "#E65A15";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "#E65A15";
+              e.currentTarget.style.color = "#FFFFFF";
+            }}
+            onClick={() => router.push("#search")}
+          >
+            Explore Opportunities
+          </Button>
         </div>
       </section>
 
