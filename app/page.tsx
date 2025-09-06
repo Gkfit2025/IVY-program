@@ -41,6 +41,17 @@ export default function IVYHomePage() {
   const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null)
   const router = useRouter()
 
+  // Mapping of theme filter values to opportunity category names
+  const themeToCategoryMap = {
+    childcare: "Childcare & Education",
+    healthcare: "Healthcare & Medical",
+    wildlife: "Wildlife & Environment",
+    heritage: "Heritage & Culture",
+    community: "Community Development",
+    elderly: "Elderly Care",
+    disability: "Disability Support",
+  }
+
   const handleSearch = () => {
     const params = new URLSearchParams()
     Object.entries(searchFilters).forEach(([key, value]) => {
@@ -60,6 +71,113 @@ export default function IVYHomePage() {
     setSelectedOpportunity(opportunityTitle)
     setShowApplicationForm(true)
   }
+
+  // Opportunities data
+  const opportunities = [
+    {
+      title: "Child Education Support",
+      location: "Madurai, Tamil Nadu",
+      duration: "2-4 weeks",
+      category: "Childcare & Education",
+      type: "Volunteer & Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "smiling indian woman host profile photo",
+      image: "Child.png",
+      rating: 4.8,
+      reviews: 24,
+      price: "₹2,500/week",
+      accommodation: "Shared dormitory",
+      meals: "3 meals included",
+      verified: true,
+    },
+    {
+      title: "Wildlife Conservation Project",
+      location: "Coimbatore, Tamil Nadu",
+      duration: "1-3 months",
+      category: "Wildlife & Environment",
+      type: "Volunteer",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male conservationist profile photo",
+      image: "wildlife.png",
+      rating: 4.9,
+      reviews: 18,
+      price: "₹3,200/week",
+      accommodation: "Private room",
+      meals: "Vegetarian meals",
+      verified: true,
+    },
+    {
+      title: "Healthcare Assistance",
+      location: "Kochi, Kerala",
+      duration: "3-6 weeks",
+      category: "Healthcare & Medical",
+      type: "Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian female doctor profile photo",
+      image: "Medical.png",
+      rating: 4.7,
+      reviews: 31,
+      price: "₹2,800/week",
+      accommodation: "Host family",
+      meals: "Local cuisine",
+      verified: true,
+    },
+    {
+      title: "Heritage Site Restoration",
+      location: "Hampi, Karnataka",
+      duration: "2-8 weeks",
+      category: "Heritage & Culture",
+      type: "Volunteer",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male archaeologist profile photo",
+      image: "volunteers restoring ancient temple structures",
+      rating: 4.6,
+      reviews: 15,
+      price: "₹2,200/week",
+      accommodation: "Guesthouse",
+      meals: "Traditional meals",
+      verified: true,
+    },
+    {
+      title: "Elderly Care Program",
+      location: "Chennai, Tamil Nadu",
+      duration: "1-4 weeks",
+      category: "Elderly Care",
+      type: "Volunteer & Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian female social worker profile photo",
+      image: "volunteers spending time with elderly residents",
+      rating: 4.8,
+      reviews: 28,
+      price: "₹2,000/week",
+      accommodation: "Nearby hostel",
+      meals: "South Indian meals",
+      verified: true,
+    },
+    {
+      title: "Special Needs Education",
+      location: "Bangalore, Karnataka",
+      duration: "2-12 weeks",
+      category: "Disability Support",
+      type: "Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male special educator profile photo",
+      image: "volunteers working with children with special needs",
+      rating: 4.9,
+      reviews: 22,
+      price: "₹3,000/week",
+      accommodation: "Shared apartment",
+      meals: "Flexible dining",
+      verified: true,
+    },
+  ]
+
+  // Filter opportunities based on selected theme
+  const filteredOpportunities = searchFilters.theme
+    ? opportunities.filter(
+        (opportunity) => opportunity.category === themeToCategoryMap[searchFilters.theme]
+      )
+    : opportunities
 
   return (
     <div className="min-h-screen bg-background">
@@ -297,7 +415,7 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl" style={{ color: "#F55900" }}>
                 Available Opportunities
               </h2>
-              <p className="text-muted-foreground">147 opportunities found</p>
+              <p className="text-muted-foreground">{filteredOpportunities.length} opportunities found</p>
             </div>
             <Button
               variant="outline"
@@ -322,104 +440,7 @@ export default function IVYHomePage() {
             </Button>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Child Education Support",
-                location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
-                category: "Childcare & Education",
-                type: "Volunteer & Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "smiling indian woman host profile photo",
-                image: "Child.png",
-                rating: 4.8,
-                reviews: 24,
-                price: "₹2,500/week",
-                accommodation: "Shared dormitory",
-                meals: "3 meals included",
-                verified: true,
-              },
-              {
-                title: "Wildlife Conservation Project",
-                location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
-                category: "Wildlife & Environment",
-                type: "Volunteer",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male conservationist profile photo",
-                image: "wildlife.png",
-                rating: 4.9,
-                reviews: 18,
-                price: "₹3,200/week",
-                accommodation: "Private room",
-                meals: "Vegetarian meals",
-                verified: true,
-              },
-              {
-                title: "Healthcare Assistance",
-                location: "Kochi, Kerala",
-                duration: "3-6 weeks",
-                category: "Healthcare & Medical",
-                type: "Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian female doctor profile photo",
-                image: "Medical.png",
-                rating: 4.7,
-                reviews: 31,
-                price: "₹2,800/week",
-                accommodation: "Host family",
-                meals: "Local cuisine",
-                verified: true,
-              },
-              {
-                title: "Heritage Site Restoration",
-                location: "Hampi, Karnataka",
-                duration: "2-8 weeks",
-                category: "Heritage & Culture",
-                type: "Volunteer",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male archaeologist profile photo",
-                image: "volunteers restoring ancient temple structures",
-                rating: 4.6,
-                reviews: 15,
-                price: "₹2,200/week",
-                accommodation: "Guesthouse",
-                meals: "Traditional meals",
-                verified: true,
-              },
-              {
-                title: "Elderly Care Program",
-                location: "Chennai, Tamil Nadu",
-                duration: "1-4 weeks",
-                category: "Elderly Care",
-                type: "Volunteer & Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian female social worker profile photo",
-                image: "volunteers spending time with elderly residents",
-                rating: 4.8,
-                reviews: 28,
-                price: "₹2,000/week",
-                accommodation: "Nearby hostel",
-                meals: "South Indian meals",
-                verified: true,
-              },
-              {
-                title: "Special Needs Education",
-                location: "Bangalore, Karnataka",
-                duration: "2-12 weeks",
-                category: "Disability Support",
-                type: "Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male special educator profile photo",
-                image: "volunteers working with children with special needs",
-                rating: 4.9,
-                reviews: 22,
-                price: "₹3,000/week",
-                accommodation: "Shared apartment",
-                meals: "Flexible dining",
-                verified: true,
-              },
-            ].map((opportunity, index) => (
+            {filteredOpportunities.map((opportunity, index) => (
               <Card
                 key={index}
                 className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
