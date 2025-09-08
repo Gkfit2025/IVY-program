@@ -1407,7 +1407,7 @@ export default function IVYHomePage() {
             </div>
             <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
               <Image
-                src="/diverse-group-of-volunteers-working-together-in-so.png"
+                src="/pro.png"
                 alt="IVY volunteers working together"
                 width={500}
                 height={500}
