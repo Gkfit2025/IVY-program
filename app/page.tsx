@@ -6,27 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
-import {
-  Heart,
-  MapPin,
-  Users,
-  Calendar,
-  Star,
-  ArrowRight,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Search,
-  Filter,
-  X,
-  Stethoscope,
-  Armchair as Wheelchair,
-  UserCheck,
-  HeartHandshake,
-  Leaf,
-  BookOpen,
-} from "lucide-react"
+import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Search, Filter } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 
@@ -42,8 +22,20 @@ export default function IVYHomePage() {
   const [showWildlifeContent, setShowWildlifeContent] = useState(false)
   const [showChildEducationContent, setShowChildEducationContent] = useState(false)
   const [showApplicationForm, setShowApplicationForm] = useState(false)
-  const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null)
+  const [selectedOpportunity, setSelectedOpportunity] = useState<any | null>(null)
   const router = useRouter()
+  const [showPaymentDialog, setShowPaymentDialog] = useState(false)
+  const [paymentForm, setPaymentForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  })
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false)
+  const [paymentStatus, setPaymentStatus] = useState<"idle" | "success" | "failed">("idle")
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -64,9 +56,74 @@ export default function IVYHomePage() {
     }
   }
 
-  const handleApply = (opportunityTitle: string) => {
-    setSelectedOpportunity(opportunityTitle)
-    setShowApplicationForm(true)
+  const handleApply = (opportunity: any) => {
+    setSelectedOpportunity(opportunity)
+    setShowPaymentDialog(true)
+  }
+
+  const handlePayment = async (formData: any) => {
+    try {
+      setIsProcessingPayment(true)
+
+      // Simulate payment processing
+      // const response = await fetch('/api/process-payment', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     ...formData,
+      //     amount: selectedOpportunity?.price,
+      //     opportunityId: selectedOpportunity?.id,
+      //   }),
+      // });
+
+      // const result = await response.json();
+      const result = { success: true, transactionId: "123" }
+
+      if (result.success) {
+        setPaymentStatus("success")
+        // Update transaction status in system
+        // await fetch('/api/update-transaction', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     transactionId: result.transactionId,
+        //     status: 'completed',
+        //     userDetails: formData,
+        //   }),
+        // });
+      } else {
+        setPaymentStatus("failed")
+      }
+    } catch (error) {
+      console.error("Payment processing error:", error)
+      setPaymentStatus("failed")
+    } finally {
+      setIsProcessingPayment(false)
+    }
+  }
+
+  const openWhatsAppChat = (type: "support" | "query" | "confirmation", message?: string) => {
+    const phoneNumber = "+919876543210" // Replace with actual WhatsApp business number
+    let defaultMessage = ""
+
+    switch (type) {
+      case "support":
+        defaultMessage = "Hi! I need support with my volunteering application."
+        break
+      case "query":
+        defaultMessage = "Hi! I have a question about the volunteering opportunities."
+        break
+      case "confirmation":
+        defaultMessage = message || "Hi! I would like to confirm my booking."
+        break
+    }
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`
+    window.open(whatsappUrl, "_blank")
   }
 
   return (
@@ -133,12 +190,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.background = "#F76005";
-                  e.currentTarget.style.color = "#FFFFFF";
+                  e.currentTarget.style.background = "#F76005"
+                  e.currentTarget.style.color = "#FFFFFF"
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.background = "#F76005";
-                  e.currentTarget.style.color = "#080707";
+                  e.currentTarget.style.background = "#F76005"
+                  e.currentTarget.style.color = "#080707"
                 }}
               >
                 Join IVY
@@ -172,7 +229,8 @@ export default function IVYHomePage() {
             <span style={{ color: "#D17038" }}>Match</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8">
-            Connect with meaningful causes and choose the volunteering role that best suits your interests and strengths.
+            Connect with meaningful causes and choose the volunteering role that best suits your interests and
+            strengths.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm sm:text-base text-white/80 mb-10">
             <div className="flex items-center gap-2">
@@ -197,12 +255,12 @@ export default function IVYHomePage() {
               fontWeight: 700,
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = "#F5E4DF";
-              e.currentTarget.style.color = "#E65A15";
+              e.currentTarget.style.background = "#F5E4DF"
+              e.currentTarget.style.color = "#E65A15"
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = "#E65A15";
-              e.currentTarget.style.color = "#FFFFFF";
+              e.currentTarget.style.background = "#E65A15"
+              e.currentTarget.style.color = "#FFFFFF"
             }}
             onClick={() => router.push("#search")}
           >
@@ -231,6 +289,7 @@ export default function IVYHomePage() {
                   className="pl-10 h-10 sm:h-12 text-base sm:text-lg"
                 />
               </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <Select
                   value={searchFilters.location}
@@ -240,11 +299,12 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
-                    <SelectItem value="kerala">Kerala</SelectItem>
-                    <SelectItem value="karnataka">Karnataka</SelectItem>
-                    <SelectItem value="andhra-pradesh">Andhra Pradesh</SelectItem>
-                    <SelectItem value="telangana">Telangana</SelectItem>
+                    <SelectItem value="madurai">Madurai, Tamil Nadu</SelectItem>
+                    <SelectItem value="coimbatore">Coimbatore, Tamil Nadu</SelectItem>
+                    <SelectItem value="kochi">Kochi, Kerala</SelectItem>
+                    <SelectItem value="hampi">Hampi, Karnataka</SelectItem>
+                    <SelectItem value="chennai">Chennai, Tamil Nadu</SelectItem>
+                    <SelectItem value="bangalore">Bangalore, Karnataka</SelectItem>
                   </SelectContent>
                 </Select>
                 <Select
@@ -256,10 +316,9 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="childcare">Childcare & Education</SelectItem>
-                    <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
                     <SelectItem value="wildlife">Wildlife & Environment</SelectItem>
+                    <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
                     <SelectItem value="heritage">Heritage & Culture</SelectItem>
-                    <SelectItem value="community">Community Development</SelectItem>
                     <SelectItem value="elderly">Elderly Care</SelectItem>
                     <SelectItem value="disability">Disability Support</SelectItem>
                   </SelectContent>
@@ -272,12 +331,12 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Duration" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
-                    <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
+                    <SelectItem value="1-4weeks">1-4 weeks</SelectItem>
+                    <SelectItem value="2-4weeks">2-4 weeks</SelectItem>
+                    <SelectItem value="2-8weeks">2-8 weeks</SelectItem>
                     <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
-                    <SelectItem value="1-2months">1-2 months</SelectItem>
-                    <SelectItem value="3-6months">3-6 months</SelectItem>
-                    <SelectItem value="6months+">6+ months</SelectItem>
+                    <SelectItem value="2-12weeks">2-12 weeks</SelectItem>
+                    <SelectItem value="1-3months">1-3 months</SelectItem>
                   </SelectContent>
                 </Select>
                 <Select
@@ -289,11 +348,12 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="volunteer">Volunteer</SelectItem>
-                    <SelectItem value="intern">Internship</SelectItem>
-                    <SelectItem value="both">Both</SelectItem>
+                    <SelectItem value="intern">Intern</SelectItem>
+                    <SelectItem value="both">Volunteer & Intern</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
+
               <Button
                 onClick={handleSearch}
                 className="w-full h-10 sm:h-12 text-base sm:text-lg"
@@ -303,12 +363,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.background = "#F5E4DF";
-                  e.currentTarget.style.color = "#E65A15";
+                  e.currentTarget.style.background = "#F5E4DF"
+                  e.currentTarget.style.color = "#E65A15"
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.background = "#E65A15";
-                  e.currentTarget.style.color = "#FFFFFF";
+                  e.currentTarget.style.background = "#E65A15"
+                  e.currentTarget.style.color = "#FFFFFF"
                 }}
               >
                 <Search className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
@@ -339,12 +399,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               <Filter className="mr-2 h-4 w-4" />
@@ -368,6 +428,7 @@ export default function IVYHomePage() {
                 accommodation: "Shared dormitory",
                 meals: "3 meals included",
                 verified: true,
+                id: "1",
               },
               {
                 title: "Wildlife Conservation Project",
@@ -384,6 +445,7 @@ export default function IVYHomePage() {
                 accommodation: "Private room",
                 meals: "Vegetarian meals",
                 verified: true,
+                id: "2",
               },
               {
                 title: "Healthcare Assistance",
@@ -400,6 +462,7 @@ export default function IVYHomePage() {
                 accommodation: "Host family",
                 meals: "Local cuisine",
                 verified: true,
+                id: "3",
               },
               {
                 title: "Heritage Site Restoration",
@@ -416,6 +479,7 @@ export default function IVYHomePage() {
                 accommodation: "Guesthouse",
                 meals: "Traditional meals",
                 verified: true,
+                id: "4",
               },
               {
                 title: "Elderly Care Program",
@@ -432,6 +496,7 @@ export default function IVYHomePage() {
                 accommodation: "Nearby hostel",
                 meals: "South Indian meals",
                 verified: true,
+                id: "5",
               },
               {
                 title: "Special Needs Education",
@@ -448,6 +513,7 @@ export default function IVYHomePage() {
                 accommodation: "Shared apartment",
                 meals: "Flexible dining",
                 verified: true,
+                id: "6",
               },
             ].map((opportunity, index) => (
               <Card
@@ -465,9 +531,7 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">
-                      Verified
-                    </Badge>
+                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
                   )}
                   <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
                     <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
@@ -485,7 +549,9 @@ export default function IVYHomePage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-base sm:text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
+                    <h3 className="font-semibold text-base sm:text-lg text-foreground line-clamp-1">
+                      {opportunity.title}
+                    </h3>
                     <div className="flex items-center space-x-1 text-xs sm:text-sm text-muted-foreground mt-1">
                       <MapPin className="h-3 w-3" />
                       <span>{opportunity.location}</span>
@@ -533,14 +599,14 @@ export default function IVYHomePage() {
                         fontWeight: 700,
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.background = "#F5E4DF";
-                        e.currentTarget.style.color = "#E65A15";
+                        e.currentTarget.style.background = "#F5E4DF"
+                        e.currentTarget.style.color = "#E65A15"
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.background = "#E65A15";
-                        e.currentTarget.style.color = "#FFFFFF";
+                        e.currentTarget.style.background = "#E65A15"
+                        e.currentTarget.style.color = "#FFFFFF"
                       }}
-                      onClick={() => handleApply(opportunity.title)}
+                      onClick={() => handleApply(opportunity)}
                     >
                       Apply Now
                     </Button>
@@ -561,12 +627,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               Load More Opportunities
@@ -659,12 +725,12 @@ export default function IVYHomePage() {
                       fontWeight: 700,
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#F5E4DF";
-                      e.currentTarget.style.color = "#E65A15";
+                      e.currentTarget.style.background = "#F5E4DF"
+                      e.currentTarget.style.color = "#E65A15"
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
+                      e.currentTarget.style.background = "#E65A15"
+                      e.currentTarget.style.color = "#FFFFFF"
                     }}
                     onClick={() => handleLearnMore(opportunity.title)}
                   >
@@ -686,12 +752,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               View All Opportunities
@@ -702,831 +768,18 @@ export default function IVYHomePage() {
       </section>
 
       {/* Application Form Modal */}
-      {showApplicationForm && (
+      {showPaymentDialog && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 sm:p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="font-playfair font-bold text-2xl sm:text-3xl" style={{ color: "#F55900" }}>
-                  Application for {selectedOpportunity}
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowApplicationForm(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3" style={{ color: "#F55900" }}>
-                    Applicant Details
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Full Name</label>
-                      <Input placeholder="Enter your full name" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Email Address</label>
-                      <Input type="email" placeholder="Enter your email" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Phone Number</label>
-                      <Input type="tel" placeholder="Enter your phone number" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Nationality</label>
-                      <Input placeholder="Enter your nationality" className="h-10 sm:h-12" />
-                    </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Address</label>
-                      <Input placeholder="Enter your address" className="h-10 sm:h-12" />
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-semibold text-lg mb-3" style={{ color: "#F55900" }}>
-                    Payment Details
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Cardholder Name</label>
-                      <Input placeholder="Enter cardholder name" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Card Number</label>
-                      <Input placeholder="1234 5678 9012 3456" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Expiry Date</label>
-                      <Input placeholder="MM/YY" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">CVV</label>
-                      <Input placeholder="123" className="h-10 sm:h-12" />
-                    </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Billing Address</label>
-                      <Input placeholder="Enter billing address" className="h-10 sm:h-12" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Payment Method</label>
-                      <Select>
-                        <SelectTrigger className="h-10 sm:h-12">
-                          <SelectValue placeholder="Select payment method" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="credit-card">Credit Card</SelectItem>
-                          <SelectItem value="debit-card">Debit Card</SelectItem>
-                          <SelectItem value="upi">UPI</SelectItem>
-                          <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Promo Code (Optional)</label>
-                      <Input placeholder="Enter promo code" className="h-10 sm:h-12" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button
-                    className="flex-1"
-                    style={{
-                      background: "#E65A15",
-                      color: "#FFFFFF",
-                      fontWeight: 700,
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#F5E4DF";
-                      e.currentTarget.style.color = "#E65A15";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
-                    }}
-                  >
-                    Submit Application
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex-1 bg-transparent"
-                    style={{
-                      borderColor: "#E65A15",
-                      color: "#E65A15",
-                      background: "transparent",
-                      fontWeight: 700,
-                    }}
-                    onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = "#E65A15";
-                    }}
-                    onClick={() => setShowApplicationForm(false)}
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Healthcare Content Modal */}
-      {showHealthcareContent && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 sm:p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="font-playfair font-bold text-2xl sm:text-3xl" style={{ color: "#F55900" }}>
-                  Healthcare Assistance Program
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowHealthcareContent(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center mb-8">
-                <div>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                    Join our comprehensive healthcare assistance program and make a meaningful difference in the lives
-                    of patients and their families.
-                  </p>
-                  <div className="aspect-video rounded-lg overflow-hidden">
-                    <Image
-                      src="/Medical.png"
-                      alt="Healthcare volunteers assisting patients"
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Stethoscope className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Medication Reminders & Vital Monitoring</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Assist patients with medication schedules and help monitor vital signs under professional
-                        supervision.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Wheelchair className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Mobility Support</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Provide walking assistance, wheelchair handling, and support during physiotherapy exercises.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <UserCheck className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Hospital Visit Escort</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Accompany patients to hospital visits, providing support and ensuring they receive proper care.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <HeartHandshake className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Companionship & Mental Support</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Offer companionship to reduce loneliness and provide emotional support to help alleviate mental
-                        stress.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-muted/30 rounded-lg p-6 mb-6">
-                <h3 className="font-semibold text-base sm:text-lg mb-3" style={{ color: "#F55900" }}>
-                  Program Details
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">3-6 weeks</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Location:</span>
-                    <p className="text-muted-foreground">Kochi, Kerala</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Training:</span>
-                    <p className="text-muted-foreground">Provided on-site</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  className="flex-1"
-                  style={{
-                    background: "#E65A15",
-                    color: "#FFFFFF",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onClick={() => router.push("/healthcare-application")}
-                >
-                  Apply Now
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 bg-transparent"
-                  style={{
-                    borderColor: "#E65A15",
-                    color: "#E65A15",
-                    background: "transparent",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                >
-                  Contact for More Info
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Wildlife Conservation Modal */}
-      {showWildlifeContent && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 sm:p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="font-playfair font-bold text-2xl sm:text-3xl" style={{ color: "#F55900" }}>
-                  Wildlife Conservation Program
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowWildlifeContent(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center mb-8">
-                <div>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                    Join our wildlife conservation program to protect ecosystems and endangered species while contributing to sustainable environmental practices.
-                  </p>
-                  <div className="aspect-video rounded-lg overflow-hidden">
-                    <Image
-                      src="/wildlife.png"
-                      alt="Volunteers working on wildlife conservation"
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Leaf className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Ecosystem Preservation</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Understand the importance of preserving ecosystems and endangered species.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Leaf className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Fieldwork Participation</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Participate in fieldwork like tree planting, wildlife surveys, and anti-pollution drives.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Leaf className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Conservation Education</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Support conservation education programs for schools and local communities.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <Leaf className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Research & Awareness</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Assist in research, documentation, and awareness-building projects.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-muted/30 rounded-lg p-6 mb-6">
-                <h3 className="font-semibold text-base sm:text-lg mb-3" style={{ color: "#F55900" }}>
-                  Program Details
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">1-3 months</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Location:</span>
-                    <p className="text-muted-foreground">Coimbatore, Tamil Nadu</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Training:</span>
-                    <p className="text-muted-foreground">Provided on-site</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  className="flex-1"
-                  style={{
-                    background: "#E65A15",
-                    color: "#FFFFFF",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onClick={() => router.push("/wildlife-application")}
-                >
-                  Apply Now
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 bg-transparent"
-                  style={{
-                    borderColor: "#E65A15",
-                    color: "#E65A15",
-                    background: "transparent",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                >
-                  Contact for More Info
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Child Education Support Modal */}
-      {showChildEducationContent && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 sm:p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="font-playfair font-bold text-2xl sm:text-3xl" style={{ color: "#F55900" }}>
-                  Child Education Support Program
-                </h3>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowChildEducationContent(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center mb-8">
-                <div>
-                  <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                    Join our child education support program to empower young learners with knowledge and skills for a brighter future.
-                  </p>
-                  <div className="aspect-video rounded-lg overflow-hidden">
-                    <Image
-                      src="/Child.png"
-                      alt="Volunteers teaching children"
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <BookOpen className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Classroom Support</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Support classroom teaching and after-school programs.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <BookOpen className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Skill Development</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Assist children with literacy, numeracy, and life skills.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <BookOpen className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Creative Learning</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Design creative activities to make learning interactive and enjoyable.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-full">
-                      <BookOpen className="h-6 w-6" style={{ color: "#E65A15" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Education Advocacy</h3>
-                      <p className="text-muted-foreground text-sm sm:text-base">
-                        Raise awareness on the importance of education within local communities.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-muted/30 rounded-lg p-6 mb-6">
-                <h3 className="font-semibold text-base sm:text-lg mb-3" style={{ color: "#F55900" }}>
-                  Program Details
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">2-4 weeks</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Location:</span>
-                    <p className="text-muted-foreground">Madurai, Tamil Nadu</p>
-                  </div>
-                  <div>
-                    <span className="font-medium">Training:</span>
-                    <p className="text-muted-foreground">Provided on-site</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  className="flex-1"
-                  style={{
-                    background: "#E65A15",
-                    color: "#FFFFFF",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onClick={() => router.push("/child-education-application")}
-                >
-                  Apply Now
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 bg-transparent"
-                  style={{
-                    borderColor: "#E65A15",
-                    color: "#E65A15",
-                    background: "transparent",
-                    fontWeight: 700,
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
-                  }}
-                >
-                  Contact for More Info
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Impact Stories */}
-      <section id="impact" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-4 mb-12 sm:mb-16">
-            <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl" style={{ color: "#F55900" }}>
-              Impact Stories
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real stories from volunteers who made a difference
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {[
-              {
-                name: "Sarah Johnson",
-                role: "Education Volunteer",
-                location: "Madurai",
-                quote:
-                  "Working with local children was incredibly rewarding. I learned as much as I taught, and the cultural exchange was beautiful.",
-                image: "young woman volunteer with children in classroom",
-              },
-              {
-                name: "Michael Chen",
-                role: "Healthcare Volunteer",
-                location: "Kochi",
-                quote:
-                  "The experience opened my eyes to different healthcare challenges and solutions. The community welcomed me with open arms.",
-                image: "male volunteer in healthcare setting",
-              },
-              {
-                name: "Emma Rodriguez",
-                role: "Environmental Volunteer",
-                location: "Coimbatore",
-                quote:
-                  "Contributing to wildlife conservation while learning about local ecosystems was a life-changing experience.",
-                image: "female volunteer in nature conservation project",
-              },
-            ].map((story, index) => (
-              <Card key={index} className="border-border">
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
-                      <Image
-                        src={`/abstract-geometric-shapes.png?height=48&width=48&query=${story.image}`}
-                        alt={story.name}
-                        width={48}
-                        height={48}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">{story.name}</h4>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        {story.role} • {story.location}
-                      </p>
-                    </div>
-                  </div>
-                  <blockquote className="text-muted-foreground italic text-sm sm:text-base">"{story.quote}"</blockquote>
-                  <div className="flex text-yellow-500">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl" style={{ color: "#F55900" }}>
-                About Us
-              </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base" style={{ textAlign: "justify" }}>
-                <p>
-                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. Our work
-                  has saved the lives of a thousand victims of female infanticide and abandoned children. A thousand
-                  happy families have been built through adoption. If you need to have a garden, dig a well first. Our
-                  well is our hospital and our allied services. We address the physical, mental, and social well being
-                  of the community and raise resources to pursue our lofty objectives. IVY is an innovative platform
-                  that connects passionate volunteers with meaningful opportunities across South India. Just like Airbnb
-                  revolutionized travel, we're transforming how people discover and engage in volunteer work.
-                </p>
-                <p>
-                  Our mission is to create lasting positive impact in communities while providing volunteers with
-                  authentic cultural experiences and personal growth opportunities.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="text-center p-4 bg-background rounded-lg border border-border">
-                  <div className="text-xl sm:text-2xl font-bold text-primary">500+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">Active Volunteers</div>
-                </div>
-                <div className="text-center p-4 bg-background rounded-lg border border-border">
-                  <div className="text-xl sm:text-2xl font-bold text-accent">50+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">Partner Organizations</div>
-                </div>
-              </div>
-            </div>
-            <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-              <Image
-                src="/pro.png"
-                alt="IVY volunteers working together"
-                width={500}
-                height={500}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 text-primary-foreground" style={{ background: "#F06105" }}>
-        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-          <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
-          <p className="text-base sm:text-lg md:text-xl opacity-90 text-pretty">
-            Join our community of changemakers and start your volunteering journey today
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="secondary"
-              style={{
-                background: "#E65A15",
-                color: "#000000",
-                fontWeight: 700,
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = "#F5E4DF";
-                e.currentTarget.style.color = "#E65A15";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#000000";
-              }}
-            >
-              Find Opportunities
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              style={{
-                borderColor: "#E65A15",
-                color: "#000000",
-                background: "transparent",
-                fontWeight: 700,
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = "#F5E4DF";
-                e.currentTarget.style.color = "#E65A15";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#000000";
-              }}
-            >
-              Become a Host
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer id="contact" className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-lg sm:text-xl text-foreground">IVY</span>
-              </div>
-              <p className="text-muted-foreground text-xs sm:text-sm">
-                Connecting volunteers with meaningful opportunities across South India.
+          <div className="bg-background rounded-2xl w-full max-w-md">
+            <div className="p-6">
+              <h2 className="text-lg font-semibold mb-4">Payment Details</h2>
+              <p className="text-sm text-gray-500 mb-6">
+                Enter your payment information to complete your application for {selectedOpportunity?.title}.
               </p>
-              <div className="flex space-x-4">
-                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              </div>
             </div>
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground text-base sm:text-lg">For Volunteers</h4>
-              <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
-                <div>Find Opportunities</div>
-                <div>How It Works</div>
-                <div>Safety Guidelines</div>
-                <div>FAQs</div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground text-base sm:text-lg">For Hosts</h4>
-              <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
-                <div>List Your Project</div>
-                <div>Host Resources</div>
-                <div>Best Practices</div>
-                <div>Support</div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground text-base sm:text-lg">Contact</h4>
-              <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <span>gkfit2025@gmail.com</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
-                  <span>+91 96268 40401</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-4 w-4" />
-                  <span>8,Kennet Road, Madurai - 16, Tamil Nadu</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 sm:mt-12 pt-6 sm:pt-8 text-center text-xs sm:text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
           </div>
         </div>
-      </footer>
+      )}
     </div>
   )
 }
