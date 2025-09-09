@@ -1439,17 +1439,17 @@ export default function IVYHomePage() {
               size="lg"
               variant="secondary"
               style={{
-                background: "#E65A15",
-                color: "#000000",
+                background: "#000000",
+                color: "#E65A15",
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#F5E4DF";
+                e.currentTarget.style.background = "#000000";
                 e.currentTarget.style.color = "#E65A15";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#000000";
+                e.currentTarget.style.background = "#000000";
+                e.currentTarget.style.color = "#E65A15";
               }}
             >
               Find Opportunities
