@@ -184,7 +184,25 @@ const allOpportunities = [
     meals: "South Indian meals",
     verified: true,
   },
-
+      {
+    id: 10,
+    title: "Child Education Support",
+    location: "Madurai",
+    state: "tamil-nadu",
+    duration: "2-4weeks",
+    theme: "childcare",
+    type: "both",
+    category: "Childcare & Education",
+    hostName: "Grace Kennett Foundation",
+    hostImage: "smiling indian woman host profile photo",
+    image: "children learning in classroom with volunteer teacher",
+    rating: 4.9,
+    reviews: 54,
+    price: "₹2,500/week",
+    accommodation: "Shared dormitory",
+    meals: "3 meals included",
+    verified: true,
+  },
 ]
 
 function SearchResults() {
