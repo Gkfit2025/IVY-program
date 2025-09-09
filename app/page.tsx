@@ -811,6 +811,10 @@ export default function IVYHomePage() {
                       e.currentTarget.style.background = "#E65A15";
                       e.currentTarget.style.color = "#FFFFFF";
                     }}
+                    onClick={() => {
+                      setShowApplicationForm(false)
+                      router.push("/application-confirmation")
+                    }}
                   >
                     Submit Application
                   </Button>
