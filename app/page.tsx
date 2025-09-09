@@ -273,6 +273,7 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
+                    <SelectItem value="2-4weeks">2-4 weeks</SelectItem>
                     <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
                     <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
                     <SelectItem value="1-2months">1-2 months</SelectItem>
