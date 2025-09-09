@@ -294,7 +294,7 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="volunteer">Volunteer</SelectItem>
-                    <SelectItem value="intern">Internship</SelectItem>
+                    <SelectItem value="intern">Intern</SelectItem>
                     <SelectItem value="both">Both</SelectItem>
                   </SelectContent>
                 </Select>
