@@ -24,7 +24,7 @@ const allOpportunities = [
     category: "Childcare & Education",
     hostName: "Grace Kennett Foundation",
     hostImage: "child.png",
-    image: "children learning in classroom with volunteer teacher",
+    image: "child.png",
     rating: 4.8,
     reviews: 24,
     price: "₹2,500/week",
