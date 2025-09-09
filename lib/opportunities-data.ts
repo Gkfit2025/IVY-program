@@ -91,6 +91,29 @@ export const opportunitiesDatabase: Opportunity[] = [
     requirements: ["Basic healthcare knowledge", "Compassionate nature", "Physical stamina"],
     included: ["Host family accommodation", "Local cuisine meals", "Healthcare training", "Certificate"],
   },
+  {
+    id: 4,
+    title: "Child Education Support",
+    location: "Madurai",
+    state: "tamil-nadu",
+    duration: "2-4weeks",
+    theme: "childcare",
+    type: "both",
+    category: "Childcare & Education",
+    hostName: "Grace Kennett Foundation",
+    hostImage: "indian female doctor profile photo",
+    image: "medical volunteers helping in rural healthcare clinic",
+    rating: 4.9,
+    reviews: 54,
+    price: "₹2,500/week",
+    accommodation: "Shared dormitory",
+    meals: "3 meals included",
+    verified: true,
+    description:
+      "Support local children's education through teaching assistance, activity planning, and mentorship programs.",
+    requirements: ["Basic English proficiency", "Patience with children", "Teaching experience preferred"],
+    included: ["Accommodation", "All meals", "Local transport", "Orientation program"],
+  },
   // Add more opportunities here...
 ]
 
