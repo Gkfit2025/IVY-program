@@ -426,7 +426,7 @@ export default function IVYHomePage() {
                 title: "Elderly Care Program",
                 location: "Chennai, Tamil Nadu",
                 duration: "1-4 weeks",
-                category: "elder.png",
+                category: "Elderly Care Program",
                 type: "Volunteer & Intern",
                 hostName: "Grace Kennett Foundation",
                 hostImage: "indian female social worker profile photo",
