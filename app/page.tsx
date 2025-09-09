@@ -69,6 +69,10 @@ export default function IVYHomePage() {
     setShowApplicationForm(true)
   }
 
+  const handleJoinIVY = () => {
+    router.push("/application")
+  }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -140,6 +144,7 @@ export default function IVYHomePage() {
                   e.currentTarget.style.background = "#F76005";
                   e.currentTarget.style.color = "#080707";
                 }}
+                onClick={handleJoinIVY}
               >
                 Join IVY
               </Button>
@@ -750,6 +755,57 @@ export default function IVYHomePage() {
                     <div className="sm:col-span-2">
                       <label className="block text-sm font-medium text-muted-foreground mb-1">Address</label>
                       <Input placeholder="Enter your address" className="h-10 sm:h-12" />
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-lg mb-3" style={{ color: "#F55900" }}>
+                    Program Details
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Program Type</label>
+                      <Select
+                        value={selectedOpportunity || ""}
+                        onValueChange={(value) => setSelectedOpportunity(value)}
+                      >
+                        <SelectTrigger className="h-10 sm:h-12">
+                          <SelectValue placeholder="Select program type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Child Education Support">Child Education Support</SelectItem>
+                          <SelectItem value="Wildlife Conservation">Wildlife Conservation</SelectItem>
+                          <SelectItem value="Healthcare Assistance">Healthcare Assistance</SelectItem>
+                          <SelectItem value="Heritage Site Restoration">Heritage Site Restoration</SelectItem>
+                          <SelectItem value="Elderly Care Program">Elderly Care Program</SelectItem>
+                          <SelectItem value="Special Needs Education">Special Needs Education</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Duration</label>
+                      <Select
+                        value={searchFilters.duration}
+                        onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, duration: value }))}
+                      >
+                        <SelectTrigger className="h-10 sm:h-12">
+                          <SelectValue placeholder="Select duration" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
+                          <SelectItem value="2-4weeks">2-4 weeks</SelectItem>
+                          <SelectItem value="2-8weeks">2-8 weeks</SelectItem>
+                          <SelectItem value="2-12weeks">2-12 weeks</SelectItem>
+                          <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
+                          <SelectItem value="1-4weeks">1-4 weeks</SelectItem>
+                          <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
+                          <SelectItem value="1-2months">1-2 months</SelectItem>
+                          <SelectItem value="1-3months">1-3 months</SelectItem>
+                          <SelectItem value="3-6months">3-6 months</SelectItem>
+                          <SelectItem value="6months+">6+ months</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>
