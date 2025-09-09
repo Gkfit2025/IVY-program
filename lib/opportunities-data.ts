@@ -33,7 +33,7 @@ export const opportunitiesDatabase: Opportunity[] = [
     category: "Childcare & Education",
     hostName: "Sunshine Children's Foundation",
     hostImage: "smiling indian woman host profile photo",
-    image: "children learning in classroom with volunteer teacher",
+    image: "child.png",
     rating: 4.8,
     reviews: 24,
     price: "₹2,500/week",
