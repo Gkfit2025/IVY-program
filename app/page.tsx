@@ -43,7 +43,6 @@ export default function IVYHomePage() {
   const [showChildEducationContent, setShowChildEducationContent] = useState(false)
   const [showApplicationForm, setShowApplicationForm] = useState(false)
   const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleSearch = () => {
@@ -68,27 +67,6 @@ export default function IVYHomePage() {
   const handleApply = (opportunityTitle: string) => {
     setSelectedOpportunity(opportunityTitle)
     setShowApplicationForm(true)
-  }
-
-  const handlePayment = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      const res = await fetch("/api/create-checkout-session", {
-        method: "POST",
-      })
-      const data = await res.json()
-      if (data.url) {
-        window.location.href = data.url // Redirect to Stripe checkout
-      } else {
-        console.error("No URL returned from checkout session")
-        setLoading(false)
-      }
-    } catch (err) {
-      console.error("Payment error:", err)
-      setLoading(false)
-    }
   }
 
   return (
@@ -775,45 +753,67 @@ export default function IVYHomePage() {
                   <h3 className="font-semibold text-lg mb-3" style={{ color: "#F55900" }}>
                     Payment Details
                   </h3>
-                  <form onSubmit={handlePayment} className="space-y-4">
-                    <Input
-                      type="text"
-                      name="name"
-                      placeholder="Full Name"
-                      required
-                      className="h-10 sm:h-12"
-                    />
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      required
-                      className="h-10 sm:h-12"
-                    />
-                    <Button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full h-10 sm:h-12"
-                      style={{
-                        background: "#E65A15",
-                        color: "#FFFFFF",
-                        fontWeight: 700,
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.background = "#F5E4DF";
-                        e.currentTarget.style.color = "#E65A15";
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.background = "#E65A15";
-                        e.currentTarget.style.color = "#FFFFFF";
-                      }}
-                    >
-                      {loading ? "Processing..." : "Pay Now"}
-                    </Button>
-                  </form>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Cardholder Name</label>
+                      <Input placeholder="Enter cardholder name" className="h-10 sm:h-12" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Card Number</label>
+                      <Input placeholder="1234 5678 9012 3456" className="h-10 sm:h-12" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Expiry Date</label>
+                      <Input placeholder="MM/YY" className="h-10 sm:h-12" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">CVV</label>
+                      <Input placeholder="123" className="h-10 sm:h-12" />
+                    </div>
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Billing Address</label>
+                      <Input placeholder="Enter billing address" className="h-10 sm:h-12" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Payment Method</label>
+                      <Select>
+                        <SelectTrigger className="h-10 sm:h-12">
+                          <SelectValue placeholder="Select payment method" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="credit-card">Credit Card</SelectItem>
+                          <SelectItem value="debit-card">Debit Card</SelectItem>
+                          <SelectItem value="upi">UPI</SelectItem>
+                          <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Promo Code (Optional)</label>
+                      <Input placeholder="Enter promo code" className="h-10 sm:h-12" />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    className="flex-1"
+                    style={{
+                      background: "#E65A15",
+                      color: "#FFFFFF",
+                      fontWeight: 700,
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.background = "#F5E4DF";
+                      e.currentTarget.style.color = "#E65A15";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.background = "#E65A15";
+                      e.currentTarget.style.color = "#FFFFFF";
+                    }}
+                  >
+                    Submit Application
+                  </Button>
                   <Button
                     variant="outline"
                     className="flex-1 bg-transparent"
