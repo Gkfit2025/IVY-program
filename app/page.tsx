@@ -425,7 +425,7 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Grace Kennett Foundation",
                 hostImage: "indian female social worker profile photo",
-                image: "volunteers spending time with elderly residents",
+                image: "elder.png",
                 rating: 4.8,
                 reviews: 28,
                 price: "₹2,000/week",
