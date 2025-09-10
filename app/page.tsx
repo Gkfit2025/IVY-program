@@ -10,7 +10,7 @@ import {
   Heart,
   MapPin,
   Users,
-  Calendar,
+  CalendarIcon,
   Star,
   ArrowRight,
   Phone,
@@ -30,6 +30,8 @@ import {
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { format, differenceInWeeks } from "date-fns"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -170,7 +172,7 @@ export default function IVYHomePage() {
 
   const calculateTotalAmount = () => {
     if (!startDate || !endDate || !selectedOpportunity) return 0
-    const selectedOpp = opportunitiesData.find(opp => opp.title === selectedOpportunity)
+    const selectedOpp = opportunitiesData.find((opp) => opp.title === selectedOpportunity)
     if (!selectedOpp) return 0
     const weeks = Math.max(1, differenceInWeeks(endDate, startDate))
     return weeks * selectedOpp.pricePerWeek
@@ -240,12 +242,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.background = "#F76005";
-                  e.currentTarget.style.color = "#FFFFFF";
+                  e.currentTarget.style.background = "#F76005"
+                  e.currentTarget.style.color = "#FFFFFF"
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.background = "#F76005";
-                  e.currentTarget.style.color = "#080707";
+                  e.currentTarget.style.background = "#F76005"
+                  e.currentTarget.style.color = "#080707"
                 }}
                 onClick={handleJoinIVY}
               >
@@ -280,7 +282,8 @@ export default function IVYHomePage() {
             <span style={{ color: "#D17038" }}>Match</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-8">
-            Connect with meaningful causes and choose the volunteering role that best suits your interests and strengths.
+            Connect with meaningful causes and choose the volunteering role that best suits your interests and
+            strengths.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-sm sm:text-base text-white/80 mb-10">
             <div className="flex items-center gap-2">
@@ -305,12 +308,12 @@ export default function IVYHomePage() {
               fontWeight: 700,
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = "#F5E4DF";
-              e.currentTarget.style.color = "#E65A15";
+              e.currentTarget.style.background = "#F5E4DF"
+              e.currentTarget.style.color = "#E65A15"
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = "#E65A15";
-              e.currentTarget.style.color = "#FFFFFF";
+              e.currentTarget.style.background = "#E65A15"
+              e.currentTarget.style.color = "#FFFFFF"
             }}
             onClick={() => router.push("#search")}
           >
@@ -395,12 +398,12 @@ export default function IVYHomePage() {
                   fontWeight: 700,
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.background = "#F5E4DF";
-                  e.currentTarget.style.color = "#E65A15";
+                  e.currentTarget.style.background = "#F5E4DF"
+                  e.currentTarget.style.color = "#E65A15"
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.background = "#E65A15";
-                  e.currentTarget.style.color = "#FFFFFF";
+                  e.currentTarget.style.background = "#E65A15"
+                  e.currentTarget.style.color = "#FFFFFF"
                 }}
               >
                 <Search className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
@@ -431,12 +434,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               <Filter className="mr-2 h-4 w-4" />
@@ -460,9 +463,7 @@ export default function IVYHomePage() {
                     />
                   </div>
                   {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">
-                      Verified
-                    </Badge>
+                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
                   )}
                   <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
                     <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
@@ -480,7 +481,9 @@ export default function IVYHomePage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-base sm:text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
+                    <h3 className="font-semibold text-base sm:text-lg text-foreground line-clamp-1">
+                      {opportunity.title}
+                    </h3>
                     <div className="flex items-center space-x-1 text-xs sm:text-sm text-muted-foreground mt-1">
                       <MapPin className="h-3 w-3" />
                       <span>{opportunity.location}</span>
@@ -513,7 +516,9 @@ export default function IVYHomePage() {
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-border">
                     <div>
-                      <span className="text-base sm:text-lg font-bold text-foreground">₹{opportunity.pricePerWeek}/week</span>
+                      <span className="text-base sm:text-lg font-bold text-foreground">
+                        ₹{opportunity.pricePerWeek}/week
+                      </span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
                     <Button
@@ -524,12 +529,12 @@ export default function IVYHomePage() {
                         fontWeight: 700,
                       }}
                       onMouseOver={(e) => {
-                        e.currentTarget.style.background = "#F5E4DF";
-                        e.currentTarget.style.color = "#E65A15";
+                        e.currentTarget.style.background = "#F5E4DF"
+                        e.currentTarget.style.color = "#E65A15"
                       }}
                       onMouseOut={(e) => {
-                        e.currentTarget.style.background = "#E65A15";
-                        e.currentTarget.style.color = "#FFFFFF";
+                        e.currentTarget.style.background = "#E65A15"
+                        e.currentTarget.style.color = "#FFFFFF"
                       }}
                       onClick={() => handleApply(opportunity.title)}
                     >
@@ -552,12 +557,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               Load More Opportunities
@@ -643,12 +648,12 @@ export default function IVYHomePage() {
                       fontWeight: 700,
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#F5E4DF";
-                      e.currentTarget.style.color = "#E65A15";
+                      e.currentTarget.style.background = "#F5E4DF"
+                      e.currentTarget.style.color = "#E65A15"
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
+                      e.currentTarget.style.background = "#E65A15"
+                      e.currentTarget.style.color = "#FFFFFF"
                     }}
                     onClick={() => handleLearnMore(opportunity.title)}
                   >
@@ -670,12 +675,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#E65A15";
-                e.currentTarget.style.color = "#FFFFFF";
+                e.currentTarget.style.background = "#E65A15"
+                e.currentTarget.style.color = "#FFFFFF"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               View All Opportunities
@@ -761,22 +766,49 @@ export default function IVYHomePage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium text-muted-foreground mb-1">Start Date</label>
-                          <Input
-                            type="date"
-                            value={startDate ? format(startDate, "yyyy-MM-dd") : ""}
-                            onChange={(e) => setStartDate(new Date(e.target.value))}
-                            className="h-10 sm:h-12"
-                          />
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className={`h-10 sm:h-12 w-full justify-start text-left font-normal ${!startDate && "text-muted-foreground"}`}
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {startDate ? format(startDate, "PPP") : "Pick a start date"}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={startDate || undefined}
+                                onSelect={(date) => setStartDate(date || null)}
+                                disabled={(date) => date < new Date()}
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-muted-foreground mb-1">End Date</label>
-                          <Input
-                            type="date"
-                            value={endDate ? format(endDate, "yyyy-MM-dd") : ""}
-                            onChange={(e) => setEndDate(new Date(e.target.value))}
-                            className="h-10 sm:h-12"
-                            min={startDate ? format(startDate, "yyyy-MM-dd") : undefined}
-                          />
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className={`h-10 sm:h-12 w-full justify-start text-left font-normal ${!endDate && "text-muted-foreground"}`}
+                              >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {endDate ? format(endDate, "PPP") : "Pick an end date"}
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={endDate || undefined}
+                                onSelect={(date) => setEndDate(date || null)}
+                                disabled={(date) => !startDate || date <= startDate}
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
                         </div>
                       </div>
                     </div>
@@ -833,7 +865,9 @@ export default function IVYHomePage() {
                       </Select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Promo Code (Optional)</label>
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">
+                        Promo Code (Optional)
+                      </label>
                       <Input placeholder="Enter promo code" className="h-10 sm:h-12" />
                     </div>
                   </div>
@@ -848,12 +882,12 @@ export default function IVYHomePage() {
                       fontWeight: 700,
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#F5E4DF";
-                      e.currentTarget.style.color = "#E65A15";
+                      e.currentTarget.style.background = "#F5E4DF"
+                      e.currentTarget.style.color = "#E65A15"
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
+                      e.currentTarget.style.background = "#E65A15"
+                      e.currentTarget.style.color = "#FFFFFF"
                     }}
                     onClick={() => {
                       setShowApplicationForm(false)
@@ -872,12 +906,12 @@ export default function IVYHomePage() {
                       fontWeight: 700,
                     }}
                     onMouseOver={(e) => {
-                      e.currentTarget.style.background = "#E65A15";
-                      e.currentTarget.style.color = "#FFFFFF";
+                      e.currentTarget.style.background = "#E65A15"
+                      e.currentTarget.style.color = "#FFFFFF"
                     }}
                     onMouseOut={(e) => {
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = "#E65A15";
+                      e.currentTarget.style.background = "transparent"
+                      e.currentTarget.style.color = "#E65A15"
                     }}
                     onClick={() => setShowApplicationForm(false)}
                   >
@@ -932,7 +966,9 @@ export default function IVYHomePage() {
                       <Stethoscope className="h-6 w-6" style={{ color: "#E65A15" }} />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-base sm:text-lg mb-2">Medication Reminders & Vital Monitoring</h3>
+                      <h3 className="font-semibold text-base sm:text-lg mb-2">
+                        Medication Reminders & Vital Monitoring
+                      </h3>
                       <p className="text-muted-foreground text-sm sm:text-base">
                         Assist patients with medication schedules and help monitor vital signs under professional
                         supervision.
@@ -1004,12 +1040,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "#F5E4DF"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onClick={() => router.push("/healthcare-application")}
                 >
@@ -1025,12 +1061,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "transparent"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                 >
                   Contact for More Info
@@ -1063,7 +1099,8 @@ export default function IVYHomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center mb-8">
                 <div>
                   <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                    Join our wildlife conservation program to protect ecosystems and endangered species while contributing to sustainable environmental practices.
+                    Join our wildlife conservation program to protect ecosystems and endangered species while
+                    contributing to sustainable environmental practices.
                   </p>
                   <div className="aspect-video rounded-lg overflow-hidden">
                     <Image
@@ -1152,12 +1189,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "#F5E4DF"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onClick={() => router.push("/wildlife-application")}
                 >
@@ -1173,12 +1210,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "transparent"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                 >
                   Contact for More Info
@@ -1211,7 +1248,8 @@ export default function IVYHomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center mb-8">
                 <div>
                   <p className="text-base sm:text-lg text-muted-foreground mb-6">
-                    Join our child education support program to empower young learners with knowledge and skills for a brighter future.
+                    Join our child education support program to empower young learners with knowledge and skills for a
+                    brighter future.
                   </p>
                   <div className="aspect-video rounded-lg overflow-hidden">
                     <Image
@@ -1300,12 +1338,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#F5E4DF";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "#F5E4DF"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onClick={() => router.push("/child-education-application")}
                 >
@@ -1321,12 +1359,12 @@ export default function IVYHomePage() {
                     fontWeight: 700,
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#E65A15";
-                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.background = "#E65A15"
+                    e.currentTarget.style.color = "#FFFFFF"
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.background = "transparent";
-                    e.currentTarget.style.color = "#E65A15";
+                    e.currentTarget.style.background = "transparent"
+                    e.currentTarget.style.color = "#E65A15"
                   }}
                 >
                   Contact for More Info
@@ -1415,7 +1453,10 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl" style={{ color: "#F55900" }}>
                 About Us
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base" style={{ textAlign: "justify" }}>
+              <div
+                className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base"
+                style={{ textAlign: "justify" }}
+              >
                 <p>
                   Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. Our work
                   has saved the lives of a thousand victims of female infanticide and abandoned children. A thousand
@@ -1455,9 +1496,14 @@ export default function IVYHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 text-primary-foreground" style={{ background: "#F06105" }}>
+      <section
+        className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 text-primary-foreground"
+        style={{ background: "#F06105" }}
+      >
         <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
-          <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
+          <h2 className="font-playfair font-bold text-2xl sm:text-3xl md:text-4xl text-balance">
+            Ready to Make a Difference?
+          </h2>
           <p className="text-base sm:text-lg md:text-xl opacity-90 text-pretty">
             Join our community of changemakers and start your volunteering journey today
           </p>
@@ -1471,12 +1517,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#000000";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "#000000"
+                e.currentTarget.style.color = "#E65A15"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "#000000";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "#000000"
+                e.currentTarget.style.color = "#E65A15"
               }}
             >
               Find Opportunities
@@ -1491,12 +1537,12 @@ export default function IVYHomePage() {
                 fontWeight: 700,
               }}
               onMouseOver={(e) => {
-                e.currentTarget.style.background = "#F5E4DF";
-                e.currentTarget.style.color = "#E65A15";
+                e.currentTarget.style.background = "#F5E4DF"
+                e.currentTarget.style.color = "#E65A15"
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#000000";
+                e.currentTarget.style.background = "transparent"
+                e.currentTarget.style.color = "#000000"
               }}
             >
               Become a Host
@@ -1563,356 +1609,6 @@ export default function IVYHomePage() {
           </div>
         </div>
       </footer>
-    </div>
-  )
-}
-"use client"
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useState } from "react"
-import {
-  Heart,
-  MapPin,
-  Users,
-  Calendar,
-  Star,
-  ArrowRight,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Search,
-  Filter,
-  X,
-  Stethoscope,
-  Armchair as Wheelchair,
-  UserCheck,
-  HeartHandshake,
-  Leaf,
-  BookOpen,
-} from "lucide-react"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { format, differenceInWeeks } from "date-fns"
-import { Calendar as DatePicker } from "@/components/ui/calendar"
-
-export default function IVYHomePage() {
-  const [searchFilters, setSearchFilters] = useState({
-    location: "",
-    theme: "",
-    duration: "",
-    type: "",
-  })
-  const [showHealthcareContent, setShowHealthcareContent] = useState(false)
-  const [showWildlifeContent, setShowWildlifeContent] = useState(false)
-  const [showChildEducationContent, setShowChildEducationContent] = useState(false)
-  const [showApplicationForm, setShowApplicationForm] = useState(false)
-  const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null)
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
-  const [showCalendar, setShowCalendar] = useState(false)
-  const [calendarType, setCalendarType] = useState<"start" | "end" | null>(null)
-  const router = useRouter()
-
-  const opportunitiesData = [
-    {
-      title: "Child Education Support",
-      location: "Madurai, Tamil Nadu",
-      category: "Childcare & Education",
-      type: "Volunteer & Intern",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "smiling indian woman host profile photo",
-      image: "Child.png",
-      rating: 4.8,
-      reviews: 24,
-      pricePerWeek: 2500,
-      accommodation: "Shared dormitory",
-      meals: "3 meals included",
-      verified: true,
-    },
-    {
-      title: "Wildlife Conservation Project",
-      location: "Coimbatore, Tamil Nadu",
-      category: "Wildlife & Environment",
-      type: "Volunteer",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "indian male conservationist profile photo",
-      image: "wildlife.png",
-      rating: 4.9,
-      reviews: 18,
-      pricePerWeek: 3200,
-      accommodation: "Private room",
-      meals: "Vegetarian meals",
-      verified: true,
-    },
-    {
-      title: "Healthcare Assistance",
-      location: "Kochi, Kerala",
-      category: "Healthcare & Medical",
-      type: "Intern",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "indian female doctor profile photo",
-      image: "Medical.png",
-      rating: 4.7,
-      reviews: 31,
-      pricePerWeek: 2800,
-      accommodation: "Host family",
-      meals: "Local cuisine",
-      verified: true,
-    },
-    {
-      title: "Heritage Site Restoration",
-      location: "Hampi, Karnataka",
-      category: "Heritage & Culture",
-      type: "Volunteer",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "indian male archaeologist profile photo",
-      image: "heritage.png",
-      rating: 4.6,
-      reviews: 15,
-      pricePerWeek: 2200,
-      accommodation: "Guesthouse",
-      meals: "Traditional meals",
-      verified: true,
-    },
-    {
-      title: "Elderly Care Program",
-      location: "Chennai, Tamil Nadu",
-      category: "Elderly Care Program",
-      type: "Volunteer & Intern",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "indian female social worker profile photo",
-      image: "elder.png",
-      rating: 4.8,
-      reviews: 28,
-      pricePerWeek: 2000,
-      accommodation: "Nearby hostel",
-      meals: "South Indian meals",
-      verified: true,
-    },
-    {
-      title: "Special Needs Education",
-      location: "Bangalore, Karnataka",
-      category: "Disability Support",
-      type: "Intern",
-      hostName: "Grace Kennett Foundation",
-      hostImage: "indian male special educator profile photo",
-      image: "edu.png",
-      rating: 4.9,
-      reviews: 22,
-      pricePerWeek: 3000,
-      accommodation: "Shared apartment",
-      meals: "Flexible dining",
-      verified: true,
-    },
-  ]
-
-  const handleSearch = () => {
-    const params = new URLSearchParams()
-    Object.entries(searchFilters).forEach(([key, value]) => {
-      if (value) params.set(key, value)
-    })
-    const queryString = params.toString()
-    window.location.href = `/search${queryString ? `?${queryString}` : ""}`
-  }
-
-  const handleLearnMore = (opportunityTitle: string) => {
-    if (opportunityTitle === "Healthcare Assistance") {
-      setShowHealthcareContent(true)
-    } else if (opportunityTitle === "Wildlife Conservation") {
-      setShowWildlifeContent(true)
-    } else if (opportunityTitle === "Child Education Support") {
-      setShowChildEducationContent(true)
-    }
-  }
-
-  const handleApply = (opportunityTitle: string) => {
-    setSelectedOpportunity(opportunityTitle)
-    setShowApplicationForm(true)
-  }
-
-  const handleJoinIVY = () => {
-    router.push("/application")
-  }
-
-  const calculateTotalAmount = () => {
-    if (!startDate || !endDate || !selectedOpportunity) return 0
-    const selectedOpp = opportunitiesData.find(opp => opp.title === selectedOpportunity)
-    if (!selectedOpp) return 0
-    const weeks = Math.max(1, differenceInWeeks(endDate, startDate))
-    return weeks * selectedOpp.pricePerWeek
-  }
-
-  // Calendar handlers for application form
-  const openCalendar = (type: "start" | "end") => {
-    setCalendarType(type)
-    setShowCalendar(true)
-  }
-  const closeCalendar = () => {
-    setShowCalendar(false)
-    setCalendarType(null)
-  }
-  const handleCalendarSelect = (date: Date) => {
-    if (calendarType === "start") {
-      setStartDate(date)
-      if (endDate && endDate < date) setEndDate(null)
-    } else if (calendarType === "end") {
-      setEndDate(date)
-    }
-    closeCalendar()
-  }
-
-  return (
-    <div className="min-h-screen bg-background">
-      {/* ...navigation, hero, search, available/featured opportunities, modals, impact stories, about, CTA, footer remain unchanged... */}
-
-      {/* Application Form Modal */}
-      {showApplicationForm && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 sm:p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="font-playfair font-bold text-2xl sm:text-3xl" style={{ color: "#F55900" }}>
-                  Application for {selectedOpportunity}
-                </h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowApplicationForm(false)}
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  <X className="h-6 w-6" />
-                </Button>
-              </div>
-
-              <div className="space-y-6">
-                {/* ...Applicant Details unchanged... */}
-                {/* ...Program Details... */}
-                <div>
-                  <h3 className="font-semibold text-lg mb-3" style={{ color: "#F55900" }}>
-                    Program Details
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Program Type</label>
-                      <Select
-                        value={selectedOpportunity || ""}
-                        onValueChange={(value) => setSelectedOpportunity(value)}
-                      >
-                        <SelectTrigger className="h-10 sm:h-12">
-                          <SelectValue placeholder="Select program type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {opportunitiesData.map((opp) => (
-                            <SelectItem key={opp.title} value={opp.title}>
-                              {opp.title}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Program Dates</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-muted-foreground mb-1">Start Date</label>
-                          <div className="relative">
-                            <Input
-                              type="text"
-                              value={startDate ? format(startDate, "yyyy-MM-dd") : ""}
-                              onFocus={() => openCalendar("start")}
-                              readOnly
-                              className="h-10 sm:h-12 cursor-pointer"
-                              placeholder="Select start date"
-                            />
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="absolute right-2 top-2"
-                              onClick={() => openCalendar("start")}
-                              style={{ borderColor: "#E65A15", color: "#E65A15", background: "transparent" }}
-                            >
-                              <Calendar className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-muted-foreground mb-1">End Date</label>
-                          <div className="relative">
-                            <Input
-                              type="text"
-                              value={endDate ? format(endDate, "yyyy-MM-dd") : ""}
-                              onFocus={() => openCalendar("end")}
-                              readOnly
-                              className="h-10 sm:h-12 cursor-pointer"
-                              placeholder="Select end date"
-                              min={startDate ? format(startDate, "yyyy-MM-dd") : undefined}
-                            />
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="absolute right-2 top-2"
-                              onClick={() => openCalendar("end")}
-                              style={{ borderColor: "#E65A15", color: "#E65A15", background: "transparent" }}
-                            >
-                              <Calendar className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                      {showCalendar && (
-                        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
-                          <div className="bg-background rounded-xl p-6 shadow-lg">
-                            <div className="flex justify-between mb-4">
-                              <h4 className="font-semibold text-lg" style={{ color: "#F55900" }}>
-                                Select {calendarType === "start" ? "Start" : "End"} Date
-                              </h4>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={closeCalendar}
-                                className="text-muted-foreground hover:text-foreground"
-                              >
-                                <X className="h-5 w-5" />
-                              </Button>
-                            </div>
-                            <DatePicker
-                              selected={
-                                calendarType === "start"
-                                  ? startDate
-                                  : endDate
-                              }
-                              onSelect={handleCalendarSelect}
-                              minDate={calendarType === "end" && startDate ? startDate : undefined}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    {startDate && endDate && (
-                      <div className="sm:col-span-2">
-                        <label className="block text-sm font-medium text-muted-foreground mb-1">Total Amount</label>
-                        <Input
-                          value={`₹${calculateTotalAmount().toLocaleString()}`}
-                          readOnly
-                          className="h-10 sm:h-12 bg-muted"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-                {/* ...Payment Details and Submit/Cancel unchanged... */}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ...other modals and sections unchanged... */}
     </div>
   )
 }
