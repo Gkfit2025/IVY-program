@@ -29,6 +29,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { format, differenceInWeeks } from "date-fns"
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -37,13 +38,107 @@ export default function IVYHomePage() {
     duration: "",
     type: "",
   })
-
   const [showHealthcareContent, setShowHealthcareContent] = useState(false)
   const [showWildlifeContent, setShowWildlifeContent] = useState(false)
   const [showChildEducationContent, setShowChildEducationContent] = useState(false)
   const [showApplicationForm, setShowApplicationForm] = useState(false)
   const [selectedOpportunity, setSelectedOpportunity] = useState<string | null>(null)
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [endDate, setEndDate] = useState<Date | null>(null)
   const router = useRouter()
+
+  const opportunitiesData = [
+    {
+      title: "Child Education Support",
+      location: "Madurai, Tamil Nadu",
+      category: "Childcare & Education",
+      type: "Volunteer & Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "smiling indian woman host profile photo",
+      image: "Child.png",
+      rating: 4.8,
+      reviews: 24,
+      pricePerWeek: 2500,
+      accommodation: "Shared dormitory",
+      meals: "3 meals included",
+      verified: true,
+    },
+    {
+      title: "Wildlife Conservation Project",
+      location: "Coimbatore, Tamil Nadu",
+      category: "Wildlife & Environment",
+      type: "Volunteer",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male conservationist profile photo",
+      image: "wildlife.png",
+      rating: 4.9,
+      reviews: 18,
+      pricePerWeek: 3200,
+      accommodation: "Private room",
+      meals: "Vegetarian meals",
+      verified: true,
+    },
+    {
+      title: "Healthcare Assistance",
+      location: "Kochi, Kerala",
+      category: "Healthcare & Medical",
+      type: "Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian female doctor profile photo",
+      image: "Medical.png",
+      rating: 4.7,
+      reviews: 31,
+      pricePerWeek: 2800,
+      accommodation: "Host family",
+      meals: "Local cuisine",
+      verified: true,
+    },
+    {
+      title: "Heritage Site Restoration",
+      location: "Hampi, Karnataka",
+      category: "Heritage & Culture",
+      type: "Volunteer",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male archaeologist profile photo",
+      image: "heritage.png",
+      rating: 4.6,
+      reviews: 15,
+      pricePerWeek: 2200,
+      accommodation: "Guesthouse",
+      meals: "Traditional meals",
+      verified: true,
+    },
+    {
+      title: "Elderly Care Program",
+      location: "Chennai, Tamil Nadu",
+      category: "Elderly Care Program",
+      type: "Volunteer & Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian female social worker profile photo",
+      image: "elder.png",
+      rating: 4.8,
+      reviews: 28,
+      pricePerWeek: 2000,
+      accommodation: "Nearby hostel",
+      meals: "South Indian meals",
+      verified: true,
+    },
+    {
+      title: "Special Needs Education",
+      location: "Bangalore, Karnataka",
+      category: "Disability Support",
+      type: "Intern",
+      hostName: "Grace Kennett Foundation",
+      hostImage: "indian male special educator profile photo",
+      image: "edu.png",
+      rating: 4.9,
+      reviews: 22,
+      pricePerWeek: 3000,
+      accommodation: "Shared apartment",
+      meals: "Flexible dining",
+      verified: true,
+    },
+  ]
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -71,6 +166,14 @@ export default function IVYHomePage() {
 
   const handleJoinIVY = () => {
     router.push("/application")
+  }
+
+  const calculateTotalAmount = () => {
+    if (!startDate || !endDate || !selectedOpportunity) return 0
+    const selectedOpp = opportunitiesData.find(opp => opp.title === selectedOpportunity)
+    if (!selectedOpp) return 0
+    const weeks = Math.max(1, differenceInWeeks(endDate, startDate))
+    return weeks * selectedOpp.pricePerWeek
   }
 
   return (
@@ -153,7 +256,7 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section with Full Picture View and Cut-Off */}
+      {/* Hero Section */}
       <section
         className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8"
         style={{
@@ -270,27 +373,6 @@ export default function IVYHomePage() {
                   </SelectContent>
                 </Select>
                 <Select
-                  value={searchFilters.duration}
-                  onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, duration: value }))}
-                >
-                  <SelectTrigger className="h-10 sm:h-12">
-                    <SelectValue placeholder="Duration" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
-                    <SelectItem value="2-4weeks">2-4 weeks</SelectItem>
-                    <SelectItem value="2-8weeks">2-8 weeks</SelectItem>
-                    <SelectItem value="2-12weeks">2-12 weeks</SelectItem>
-                    <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
-                    <SelectItem value="1-4weeks">1-4 weeks</SelectItem>
-                    <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
-                    <SelectItem value="1-2months">1-2 months</SelectItem>
-                    <SelectItem value="1-3months">1-3 months</SelectItem>
-                    <SelectItem value="3-6months">3-6 months</SelectItem>
-                    <SelectItem value="6months+">6+ months</SelectItem>
-                  </SelectContent>
-                </Select>
-                <Select
                   value={searchFilters.type}
                   onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, type: value }))}
                 >
@@ -362,104 +444,7 @@ export default function IVYHomePage() {
             </Button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Child Education Support",
-                location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
-                category: "Childcare & Education",
-                type: "Volunteer & Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "smiling indian woman host profile photo",
-                image: "Child.png",
-                rating: 4.8,
-                reviews: 24,
-                price: "₹2,500/week",
-                accommodation: "Shared dormitory",
-                meals: "3 meals included",
-                verified: true,
-              },
-              {
-                title: "Wildlife Conservation Project",
-                location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
-                category: "Wildlife & Environment",
-                type: "Volunteer",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male conservationist profile photo",
-                image: "wildlife.png",
-                rating: 4.9,
-                reviews: 18,
-                price: "₹3,200/week",
-                accommodation: "Private room",
-                meals: "Vegetarian meals",
-                verified: true,
-              },
-              {
-                title: "Healthcare Assistance",
-                location: "Kochi, Kerala",
-                duration: "3-6 weeks",
-                category: "Healthcare & Medical",
-                type: "Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian female doctor profile photo",
-                image: "Medical.png",
-                rating: 4.7,
-                reviews: 31,
-                price: "₹2,800/week",
-                accommodation: "Host family",
-                meals: "Local cuisine",
-                verified: true,
-              },
-              {
-                title: "Heritage Site Restoration",
-                location: "Hampi, Karnataka",
-                duration: "2-8 weeks",
-                category: "Heritage & Culture",
-                type: "Volunteer",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male archaeologist profile photo",
-                image: "heritage.png",
-                rating: 4.6,
-                reviews: 15,
-                price: "₹2,200/week",
-                accommodation: "Guesthouse",
-                meals: "Traditional meals",
-                verified: true,
-              },
-              {
-                title: "Elderly Care Program",
-                location: "Chennai, Tamil Nadu",
-                duration: "1-4 weeks",
-                category: "Elderly Care Program",
-                type: "Volunteer & Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian female social worker profile photo",
-                image: "elder.png",
-                rating: 4.8,
-                reviews: 28,
-                price: "₹2,000/week",
-                accommodation: "Nearby hostel",
-                meals: "South Indian meals",
-                verified: true,
-              },
-              {
-                title: "Special Needs Education",
-                location: "Bangalore, Karnataka",
-                duration: "2-12 weeks",
-                category: "Disability Support",
-                type: "Intern",
-                hostName: "Grace Kennett Foundation",
-                hostImage: "indian male special educator profile photo",
-                image: "edu.png",
-                rating: 4.9,
-                reviews: 22,
-                price: "₹3,000/week",
-                accommodation: "Shared apartment",
-                meals: "Flexible dining",
-                verified: true,
-              },
-            ].map((opportunity, index) => (
+            {opportunitiesData.map((opportunity, index) => (
               <Card
                 key={index}
                 className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
@@ -518,10 +503,6 @@ export default function IVYHomePage() {
                   </div>
                   <div className="space-y-2 text-xs sm:text-sm text-muted-foreground">
                     <div className="flex items-center justify-between">
-                      <span>Duration:</span>
-                      <span className="text-foreground">{opportunity.duration}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
                       <span>Type:</span>
                       <span className="text-foreground">{opportunity.type}</span>
                     </div>
@@ -532,7 +513,7 @@ export default function IVYHomePage() {
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-border">
                     <div>
-                      <span className="text-base sm:text-lg font-bold text-foreground">{opportunity.price}</span>
+                      <span className="text-base sm:text-lg font-bold text-foreground">₹{opportunity.pricePerWeek}/week</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
                     <Button
@@ -602,7 +583,6 @@ export default function IVYHomePage() {
               {
                 title: "Child Education Support",
                 location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
                 category: "Education",
                 image: "Child.png",
                 rating: 4.8,
@@ -611,7 +591,6 @@ export default function IVYHomePage() {
               {
                 title: "Wildlife Conservation",
                 location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
                 category: "Environment",
                 image: "wildlife.png",
                 rating: 4.9,
@@ -620,7 +599,6 @@ export default function IVYHomePage() {
               {
                 title: "Healthcare Assistance",
                 location: "Kochi, Kerala",
-                duration: "3-6 weeks",
                 category: "Healthcare",
                 image: "Medical.png",
                 rating: 4.7,
@@ -655,10 +633,6 @@ export default function IVYHomePage() {
                     <div className="flex items-center space-x-2">
                       <MapPin className="h-4 w-4 text-primary" />
                       <span>{opportunity.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>{opportunity.duration}</span>
                     </div>
                   </div>
                   <Button
@@ -774,39 +748,48 @@ export default function IVYHomePage() {
                           <SelectValue placeholder="Select program type" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Child Education Support">Child Education Support</SelectItem>
-                          <SelectItem value="Wildlife Conservation">Wildlife Conservation</SelectItem>
-                          <SelectItem value="Healthcare Assistance">Healthcare Assistance</SelectItem>
-                          <SelectItem value="Heritage Site Restoration">Heritage Site Restoration</SelectItem>
-                          <SelectItem value="Elderly Care Program">Elderly Care Program</SelectItem>
-                          <SelectItem value="Special Needs Education">Special Needs Education</SelectItem>
+                          {opportunitiesData.map((opp) => (
+                            <SelectItem key={opp.title} value={opp.title}>
+                              {opp.title}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-muted-foreground mb-1">Duration</label>
-                      <Select
-                        value={searchFilters.duration}
-                        onValueChange={(value) => setSearchFilters((prev) => ({ ...prev, duration: value }))}
-                      >
-                        <SelectTrigger className="h-10 sm:h-12">
-                          <SelectValue placeholder="Select duration" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
-                          <SelectItem value="2-4weeks">2-4 weeks</SelectItem>
-                          <SelectItem value="2-8weeks">2-8 weeks</SelectItem>
-                          <SelectItem value="2-12weeks">2-12 weeks</SelectItem>
-                          <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
-                          <SelectItem value="1-4weeks">1-4 weeks</SelectItem>
-                          <SelectItem value="3-6weeks">3-6 weeks</SelectItem>
-                          <SelectItem value="1-2months">1-2 months</SelectItem>
-                          <SelectItem value="1-3months">1-3 months</SelectItem>
-                          <SelectItem value="3-6months">3-6 months</SelectItem>
-                          <SelectItem value="6months+">6+ months</SelectItem>
-                        </SelectContent>
-                      </Select>
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-muted-foreground mb-1">Program Dates</label>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-sm font-medium text-muted-foreground mb-1">Start Date</label>
+                          <Input
+                            type="date"
+                            value={startDate ? format(startDate, "yyyy-MM-dd") : ""}
+                            onChange={(e) => setStartDate(new Date(e.target.value))}
+                            className="h-10 sm:h-12"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-muted-foreground mb-1">End Date</label>
+                          <Input
+                            type="date"
+                            value={endDate ? format(endDate, "yyyy-MM-dd") : ""}
+                            onChange={(e) => setEndDate(new Date(e.target.value))}
+                            className="h-10 sm:h-12"
+                            min={startDate ? format(startDate, "yyyy-MM-dd") : undefined}
+                          />
+                        </div>
+                      </div>
                     </div>
+                    {startDate && endDate && (
+                      <div className="sm:col-span-2">
+                        <label className="block text-sm font-medium text-muted-foreground mb-1">Total Amount</label>
+                        <Input
+                          value={`₹${calculateTotalAmount().toLocaleString()}`}
+                          readOnly
+                          className="h-10 sm:h-12 bg-muted"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -1002,10 +985,6 @@ export default function IVYHomePage() {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                   <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">3-6 weeks</p>
-                  </div>
-                  <div>
                     <span className="font-medium">Location:</span>
                     <p className="text-muted-foreground">Kochi, Kerala</p>
                   </div>
@@ -1154,10 +1133,6 @@ export default function IVYHomePage() {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                   <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">1-3 months</p>
-                  </div>
-                  <div>
                     <span className="font-medium">Location:</span>
                     <p className="text-muted-foreground">Coimbatore, Tamil Nadu</p>
                   </div>
@@ -1305,10 +1280,6 @@ export default function IVYHomePage() {
                   Program Details
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Duration:</span>
-                    <p className="text-muted-foreground">2-4 weeks</p>
-                  </div>
                   <div>
                     <span className="font-medium">Location:</span>
                     <p className="text-muted-foreground">Madurai, Tamil Nadu</p>
