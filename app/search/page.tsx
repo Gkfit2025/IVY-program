@@ -10,196 +10,41 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Heart, MapPin, Star, Search, Filter, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
-// Sample data structure for opportunities
-const allOpportunities = [
-  {
-    id: 1,
-    title: "Child Education Support",
-    location: "Madurai",
-    state: "tamil-nadu",
-    duration: "2-4weeks",
-    theme: "childcare",
-    type: "both",
-    category: "Childcare & Education",
-    hostName: "Sunshine Children's Foundation",
-    hostImage: "smiling indian woman host profile photo",
-    image: "children learning in classroom with volunteer teacher",
-    rating: 4.8,
-    reviews: 24,
-    price: "₹2,500/week",
-    accommodation: "Shared dormitory",
-    meals: "3 meals included",
-    verified: true,
-  },
-  {
-    id: 2,
-    title: "Wildlife Conservation Project",
-    location: "Coimbatore",
-    state: "tamil-nadu",
-    duration: "1-2months",
-    theme: "wildlife",
-    type: "volunteer",
-    category: "Wildlife & Environment",
-    hostName: "Western Ghats Conservation Trust",
-    hostImage: "indian male conservationist profile photo",
-    image: "volunteers working on wildlife conservation project",
-    rating: 4.9,
-    reviews: 18,
-    price: "₹3,200/week",
-    accommodation: "Private room",
-    meals: "Vegetarian meals",
-    verified: true,
-  },
-  {
-    id: 3,
-    title: "Rural Healthcare Support",
-    location: "Kochi",
-    state: "kerala",
-    duration: "3-4weeks",
-    theme: "healthcare",
-    type: "intern",
-    category: "Healthcare & Medical",
-    hostName: "Kerala Rural Health Initiative",
-    hostImage: "indian female doctor profile photo",
-    image: "medical volunteers helping in rural healthcare clinic",
-    rating: 4.7,
-    reviews: 31,
-    price: "₹2,800/week",
-    accommodation: "Host family",
-    meals: "Local cuisine",
-    verified: true,
-  },
-  {
-    id: 4,
-    title: "Heritage Site Restoration",
-    location: "Hampi",
-    state: "karnataka",
-    duration: "3-4weeks",
-    theme: "heritage",
-    type: "volunteer",
-    category: "Heritage & Culture",
-    hostName: "Hampi Heritage Foundation",
-    hostImage: "indian male archaeologist profile photo",
-    image: "volunteers restoring ancient temple structures",
-    rating: 4.6,
-    reviews: 15,
-    price: "₹2,200/week",
-    accommodation: "Guesthouse",
-    meals: "Traditional meals",
-    verified: true,
-  },
-  {
-    id: 5,
-    title: "Elderly Care Program",
-    location: "Chennai",
-    state: "tamil-nadu",
-    duration: "1-2weeks",
-    theme: "elderly",
-    type: "both",
-    category: "Elderly Care",
-    hostName: "Golden Years Care Center",
-    hostImage: "indian female social worker profile photo",
-    image: "volunteers spending time with elderly residents",
-    rating: 4.8,
-    reviews: 28,
-    price: "₹2,000/week",
-    accommodation: "Nearby hostel",
-    meals: "South Indian meals",
-    verified: true,
-  },
-  {
-    id: 6,
-    title: "Special Needs Education",
-    location: "Bangalore",
-    state: "karnataka",
-    duration: "3-6months",
-    theme: "disability",
-    type: "intern",
-    category: "Disability Support",
-    hostName: "Inclusive Learning Center",
-    hostImage: "indian male special educator profile photo",
-    image: "volunteers working with children with special needs",
-    rating: 4.9,
-    reviews: 22,
-    price: "₹3,000/week",
-    accommodation: "Shared apartment",
-    meals: "Flexible dining",
-    verified: true,
-  },
-  {
-    id: 7,
-    title: "Community Development Project",
-    location: "Hyderabad",
-    state: "telangana",
-    duration: "1-2months",
-    theme: "community",
-    type: "volunteer",
-    category: "Community Development",
-    hostName: "Telangana Community Foundation",
-    hostImage: "indian female community leader profile photo",
-    image: "volunteers working on community development project",
-    rating: 4.5,
-    reviews: 19,
-    price: "₹2,400/week",
-    accommodation: "Shared room",
-    meals: "Local meals",
-    verified: true,
-  },
-  {
-    id: 8,
-    title: "Marine Conservation Initiative",
-    location: "Visakhapatnam",
-    state: "andhra-pradesh",
-    duration: "3-4weeks",
-    theme: "wildlife",
-    type: "both",
-    category: "Wildlife & Environment",
-    hostName: "Coastal Conservation Society",
-    hostImage: "indian male marine biologist profile photo",
-    image: "volunteers working on marine conservation project",
-    rating: 4.7,
-    reviews: 16,
-    price: "₹2,900/week",
-    accommodation: "Beach resort",
-    meals: "Seafood included",
-    verified: true,
-  },
-]
+import { opportunitiesDatabase } from "@/lib/opportunities-data"
 
 function SearchResults() {
   const searchParams = useSearchParams()
-  const [filteredOpportunities, setFilteredOpportunities] = useState(allOpportunities)
+  const [filteredOpportunities, setFilteredOpportunities] = useState(opportunitiesDatabase)
   const [filters, setFilters] = useState({
     location: "",
     theme: "",
-    duration: "",
     type: "",
+    fromDate: "",
+    toDate: "",
   })
 
   useEffect(() => {
-    // Get search parameters from URL
     const locationParam = searchParams.get("location") || ""
     const themeParam = searchParams.get("theme") || ""
-    const durationParam = searchParams.get("duration") || ""
     const typeParam = searchParams.get("type") || ""
+    const fromDateParam = searchParams.get("fromDate") || ""
+    const toDateParam = searchParams.get("toDate") || ""
 
     setFilters({
       location: locationParam,
       theme: themeParam,
-      duration: durationParam,
       type: typeParam,
+      fromDate: fromDateParam,
+      toDate: toDateParam,
     })
 
-    // Filter opportunities based on search parameters
-    const filtered = allOpportunities.filter((opportunity) => {
+    const filtered = opportunitiesDatabase.filter((opportunity) => {
       const matchesLocation = !locationParam || opportunity.state === locationParam
       const matchesTheme = !themeParam || opportunity.theme === themeParam
-      const matchesDuration = !durationParam || opportunity.duration === durationParam
       const matchesType =
         !typeParam || typeParam === "both" || opportunity.type === typeParam || opportunity.type === "both"
 
-      return matchesLocation && matchesTheme && matchesDuration && matchesType
+      return matchesLocation && matchesTheme && matchesType
     })
 
     setFilteredOpportunities(filtered)
@@ -222,13 +67,6 @@ function SearchResults() {
         community: "Community Development",
         elderly: "Elderly Care",
         disability: "Disability Support",
-      },
-      duration: {
-        "1-2weeks": "1-2 weeks",
-        "3-4weeks": "3-4 weeks",
-        "1-2months": "1-2 months",
-        "3-6months": "3-6 months",
-        "6months+": "6+ months",
       },
       type: {
         volunteer: "Volunteer",
@@ -276,18 +114,25 @@ function SearchResults() {
                   <span className="text-sm text-muted-foreground">Filters:</span>
                   {Object.entries(filters).map(
                     ([key, value]) =>
-                      value && (
+                      value &&
+                      key !== "fromDate" &&
+                      key !== "toDate" && (
                         <Badge key={key} variant="secondary" className="bg-primary/10 text-primary">
                           {getFilterDisplayName(key, value)}
                         </Badge>
                       ),
+                  )}
+                  {filters.fromDate && filters.toDate && (
+                    <Badge variant="secondary" className="bg-primary/10 text-primary">
+                      {filters.fromDate} to {filters.toDate}
+                    </Badge>
                   )}
                 </div>
               )}
 
               {/* Search Bar */}
               <div className="bg-background rounded-xl p-6 shadow-sm border border-border">
-                <div className="grid md:grid-cols-5 gap-4">
+                <div className="grid md:grid-cols-4 gap-4">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input placeholder="Search..." className="pl-10" />
@@ -318,19 +163,6 @@ function SearchResults() {
                       <SelectItem value="community">Community Development</SelectItem>
                       <SelectItem value="elderly">Elderly Care</SelectItem>
                       <SelectItem value="disability">Disability Support</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <Select value={filters.duration}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Duration" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1-2weeks">1-2 weeks</SelectItem>
-                      <SelectItem value="3-4weeks">3-4 weeks</SelectItem>
-                      <SelectItem value="1-2months">1-2 months</SelectItem>
-                      <SelectItem value="3-6months">3-6 months</SelectItem>
-                      <SelectItem value="6months+">6+ months</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -439,9 +271,7 @@ function SearchResults() {
                       <div className="space-y-2 text-sm text-muted-foreground">
                         <div className="flex items-center justify-between">
                           <span>Duration:</span>
-                          <span className="text-foreground">
-                            {getFilterDisplayName("duration", opportunity.duration)}
-                          </span>
+                          <span className="text-foreground">{opportunity.duration}</span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span>Type:</span>
