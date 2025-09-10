@@ -174,7 +174,7 @@ export default function IVYHomePage() {
     if (!startDate || !endDate || !selectedOpportunity) return 0
     const selectedOpp = opportunitiesData.find((opp) => opp.title === selectedOpportunity)
     if (!selectedOpp) return 0
-    const weeks = Math.max(1, differenceInWeeks(endDate, startDate))
+    const weeks = Math.max(1, Math.ceil(differenceInWeeks(endDate, startDate) || 1))
     return weeks * selectedOpp.pricePerWeek
   }
 
@@ -780,7 +780,12 @@ export default function IVYHomePage() {
                               <Calendar
                                 mode="single"
                                 selected={startDate || undefined}
-                                onSelect={(date) => setStartDate(date || null)}
+                                onSelect={(date) => {
+                                  setStartDate(date || null)
+                                  if (endDate && date && endDate <= date) {
+                                    setEndDate(null)
+                                  }
+                                }}
                                 disabled={(date) => date < new Date()}
                                 initialFocus
                               />
@@ -812,14 +817,19 @@ export default function IVYHomePage() {
                         </div>
                       </div>
                     </div>
-                    {startDate && endDate && (
+                    {startDate && endDate && selectedOpportunity && (
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium text-muted-foreground mb-1">Total Amount</label>
-                        <Input
-                          value={`₹${calculateTotalAmount().toLocaleString()}`}
-                          readOnly
-                          className="h-10 sm:h-12 bg-muted"
-                        />
+                        <div className="bg-muted/30 rounded-lg p-4 border">
+                          <div className="flex justify-between items-center text-sm text-muted-foreground mb-2">
+                            <span>Duration:</span>
+                            <span>{Math.max(1, Math.ceil(differenceInWeeks(endDate, startDate) || 1))} weeks</span>
+                          </div>
+                          <div className="flex justify-between items-center text-lg font-bold">
+                            <span>Total:</span>
+                            <span className="text-primary">₹{calculateTotalAmount().toLocaleString()}</span>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
