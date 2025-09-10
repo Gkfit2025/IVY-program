@@ -74,7 +74,7 @@ export const opportunitiesDatabase: Opportunity[] = [
     location: "Madurai",
     state: "tamil-nadu",
     duration: "3-4weeks",
-    theme: "elderly",
+    theme: "healthcare",
     type: "intern",
     category: "Elderly Care",
     hostName: "Grace Kennett Foundation",
