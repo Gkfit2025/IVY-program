@@ -37,8 +37,8 @@ export default function IVYHomePage() {
 
   const [dateRange, setDateRange] = useState([
     {
-      startDate: null,
-      endDate: null,
+      startDate: null as Date | null,
+      endDate: null as Date | null,
       key: 'selection',
     },
   ])
@@ -48,12 +48,11 @@ export default function IVYHomePage() {
     Object.entries(searchFilters).forEach(([key, value]) => {
       if (value) params.set(key, value)
     })
-
     const queryString = params.toString()
     window.location.href = `/search${queryString ? `?${queryString}` : ""}`
   }
 
-  const handleDateRangeChange = (ranges) => {
+  const handleDateRangeChange = (ranges: any) => {
     const { selection } = ranges
     setDateRange([selection])
     setSearchFilters((prev) => ({
@@ -67,7 +66,7 @@ export default function IVYHomePage() {
   const calculateDuration = () => {
     const { startDate, endDate } = dateRange[0]
     if (startDate && endDate) {
-      const diffTime = Math.abs(endDate - startDate)
+      const diffTime = Math.abs((endDate as Date).getTime() - (startDate as Date).getTime())
       const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7))
       return `${diffWeeks} week${diffWeeks !== 1 ? 's' : ''}`
     }
@@ -380,7 +379,7 @@ export default function IVYHomePage() {
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${encodeURIComponent(opportunity.image)}`}
                       alt={opportunity.title}
                       width={400}
                       height={240}
@@ -418,7 +417,7 @@ export default function IVYHomePage() {
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
-                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${opportunity.hostImage}`}
+                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${encodeURIComponent(opportunity.hostImage)}`}
                         alt={opportunity.hostName}
                         width={32}
                         height={32}
@@ -516,7 +515,7 @@ export default function IVYHomePage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${encodeURIComponent(opportunity.image)}`}
                     alt={opportunity.title}
                     width={400}
                     height={240}
@@ -612,7 +611,7 @@ export default function IVYHomePage() {
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
                       <Image
-                        src={`/abstract-geometric-shapes.png?height=48&width=48&query=${story.image}`}
+                        src={`/abstract-geometric-shapes.png?height=48&width=48&query=${encodeURIComponent(story.image)}`}
                         alt={story.name}
                         width={48}
                         height={48}
