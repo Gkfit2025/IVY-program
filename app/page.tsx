@@ -39,8 +39,8 @@ export default function IVYHomePage() {
     {
       startDate: null,
       endDate: null,
-      key: 'selection'
-    }
+      key: 'selection',
+    },
   ])
 
   const handleSearch = () => {
@@ -54,22 +54,22 @@ export default function IVYHomePage() {
   }
 
   const handleDateRangeChange = (ranges) => {
-    setDateRange([ranges.selection])
+    const { selection } = ranges
+    setDateRange([selection])
     setSearchFilters((prev) => ({
       ...prev,
-      fromDate: ranges.selection.startDate?.toISOString().split('T')[0] || "",
-      toDate: ranges.selection.endDate?.toISOString().split('T')[0] || "",
+      fromDate: selection.startDate ? selection.startDate.toISOString().split('T')[0] : "",
+      toDate: selection.endDate ? selection.endDate.toISOString().split('T')[0] : "",
     }))
   }
 
   // Calculate duration based on date range
   const calculateDuration = () => {
-    if (dateRange[0].startDate && dateRange[0].endDate) {
-      const start = new Date(dateRange[0].startDate)
-      const end = new Date(dateRange[0].endDate)
-      const diffTime = Math.abs(end - start)
+    const { startDate, endDate } = dateRange[0]
+    if (startDate && endDate) {
+      const diffTime = Math.abs(endDate - startDate)
       const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7))
-      return `${diffWeeks} week${diffWeeks > 1 ? 's' : ''}`
+      return `${diffWeeks} week${diffWeeks !== 1 ? 's' : ''}`
     }
     return "Select dates"
   }
@@ -415,7 +415,6 @@ export default function IVYHomePage() {
                     </div>
                   </div>
 
-                  {/* Host Information */}
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
