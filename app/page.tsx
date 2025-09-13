@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
-import Link from "next/link"
+import Link from "next/link" // Fixed Link import to use default import instead of named import
 import {
   Heart,
   MapPin,
@@ -22,9 +22,6 @@ import {
   Filter,
 } from "lucide-react"
 import Image from "next/image"
-import { DateRange } from 'react-date-range'
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -35,71 +32,37 @@ export default function IVYHomePage() {
     type: "",
   })
 
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: null as Date | null,
-      endDate: null as Date | null,
-      key: 'selection',
-    },
-  ])
-
   const handleSearch = () => {
     const params = new URLSearchParams()
     Object.entries(searchFilters).forEach(([key, value]) => {
       if (value) params.set(key, value)
     })
+
     const queryString = params.toString()
     window.location.href = `/search${queryString ? `?${queryString}` : ""}`
-  }
-
-  const handleDateRangeChange = (ranges: any) => {
-    const { selection } = ranges
-    setDateRange([selection])
-    setSearchFilters((prev) => ({
-      ...prev,
-      fromDate: selection.startDate ? selection.startDate.toISOString().split('T')[0] : "",
-      toDate: selection.endDate ? selection.endDate.toISOString().split('T')[0] : "",
-    }))
-  }
-
-  // Calculate duration based on date range
-  const calculateDuration = () => {
-    const { startDate, endDate } = dateRange[0]
-    if (startDate && endDate) {
-      const diffTime = Math.abs((endDate as Date).getTime() - (startDate as Date).getTime())
-      const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7))
-      return `${diffWeeks} week${diffWeeks !== 1 ? 's' : ''}`
-    }
-    return "Select dates"
   }
 
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-[#000000] backdrop-blur-sm border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Image
-                src="/logo12.png"
-                alt="Grace Kennett Foundation Logo"
-                width={32}
-                height={32}
-                className="h-8 w-8"
-              />
-              <span className="font-playfair font-bold text-2xl text-[#F26A02]">Grace Kennett Foundation</span>
+              <Heart className="h-8 w-8 text-primary" />
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
             </div>
-            <div className="hidden md:flex items-center space-x-8 justify-end">
-              <a href="#search" className="text-[#F26A02] hover:text-[#ffffff] transition-colors">
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#search" className="text-foreground hover:text-primary transition-colors">
                 Find Opportunities
               </a>
-              <a href="#about" className="text-[#F26A02] hover:text-[#ffffff] transition-colors">
+              <a href="#about" className="text-foreground hover:text-primary transition-colors">
                 About Us
               </a>
-              <a href="#impact" className="text-[#F26A02] hover:text-[#ffffff] transition-colors">
+              <a href="#impact" className="text-foreground hover:text-primary transition-colors">
                 Impact Stories
               </a>
-              <a href="#contact" className="text-[#F26A02] hover:text-[#ffffff] transition-colors">
+              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
                 Contact
               </a>
             </div>
@@ -114,10 +77,14 @@ export default function IVYHomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span className="text-[#000000]">Find the Role That</span><br />
-                  <span className="text-[#F26A02]">Fits Your Passion</span>
+                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
+                  Find Your Perfect
+                  <span className="text-primary"> Volunteering</span> Match
                 </h1>
+                <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
+                  Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
+                  match for your skills and passion.
+                </p>
               </div>
               <div className="flex items-center space-x-8 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
@@ -229,16 +196,26 @@ export default function IVYHomePage() {
                 <div className="md:col-span-2 lg:col-span-1">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Duration</label>
-                    <div className="bg-background border border-border rounded-lg">
-                      <DateRange
-                        editableDateInputs={true}
-                        onChange={handleDateRangeChange}
-                        moveRangeOnFirstSelection={false}
-                        ranges={dateRange}
-                        className="w-full"
-                      />
-                      <div className="text-center p-2 text-sm font-medium text-foreground">
-                        Duration: {calculateDuration()}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="relative">
+                        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          type="date"
+                          placeholder="From Date"
+                          value={searchFilters.fromDate}
+                          onChange={(e) => setSearchFilters((prev) => ({ ...prev, fromDate: e.target.value }))}
+                          className="pl-10 h-12 text-sm"
+                        />
+                      </div>
+                      <div className="relative">
+                        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          type="date"
+                          placeholder="To Date"
+                          value={searchFilters.toDate}
+                          onChange={(e) => setSearchFilters((prev) => ({ ...prev, toDate: e.target.value }))}
+                          className="pl-10 h-12 text-sm"
+                        />
                       </div>
                     </div>
                   </div>
@@ -379,7 +356,7 @@ export default function IVYHomePage() {
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
-                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${encodeURIComponent(opportunity.image)}`}
+                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
                       alt={opportunity.title}
                       width={400}
                       height={240}
@@ -414,10 +391,11 @@ export default function IVYHomePage() {
                     </div>
                   </div>
 
+                  {/* Host Information */}
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
-                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${encodeURIComponent(opportunity.hostImage)}`}
+                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${opportunity.hostImage}`}
                         alt={opportunity.hostName}
                         width={32}
                         height={32}
@@ -515,7 +493,7 @@ export default function IVYHomePage() {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${encodeURIComponent(opportunity.image)}`}
+                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
                     alt={opportunity.title}
                     width={400}
                     height={240}
@@ -611,7 +589,7 @@ export default function IVYHomePage() {
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-muted">
                       <Image
-                        src={`/abstract-geometric-shapes.png?height=48&width=48&query=${encodeURIComponent(story.image)}`}
+                        src={`/abstract-geometric-shapes.png?height=48&width=48&query=${story.image}`}
                         alt={story.name}
                         width={48}
                         height={48}
