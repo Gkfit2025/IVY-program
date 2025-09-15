@@ -79,13 +79,24 @@ export default function IVYHomePage() {
 
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-                  Find Your Perfect
-                  <span className="text-primary"> Volunteering</span> Match
+  <div className="max-w-7xl mx-auto">
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
+            <span style={{ color: "#A83D0F" }}>
+              Build Experience, Create Impact —
+            </span>{" "}
+            <span style={{ color: "#F55105" }}>
+              Internship & Volunteer Opportunities
+            </span>{" "}
+            Await
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
