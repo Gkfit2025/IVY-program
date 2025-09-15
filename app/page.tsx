@@ -84,12 +84,12 @@ export default function IVYHomePage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span style={{ color: "#A83D0F" }}>
-                    Build Experience, Create Impact —
+                  <span style={{ color: "#965032" }}>
+                    “Where Careers Begin and 
                   </span>{" "}
                   <span style={{ color: "#F55105" }}>
-                    Internship & Volunteer Opportunities
-                  </span>{" "}
+                   Thrive
+                  </span>{#"965032 "}
                   Await
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
