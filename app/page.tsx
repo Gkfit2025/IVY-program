@@ -58,7 +58,7 @@ export default function IVYHomePage() {
               />
               <span className="font-playfair font-bold text-2xl text-[#F26602]">Grace Kennett Foundation</span>
             </div>
-            <div className="hidden md:flex items-right space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               <a href="#search" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 Find Opportunities
               </a>
@@ -79,24 +79,18 @@ export default function IVYHomePage() {
 
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-  <div className="max-w-7xl mx-auto">
-    <div className="grid lg:grid-cols-2 gap-12 items-center">
-      <div className="space-y-8">
-        <div className="space-y-4">
-          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-            <span style={{ color: "#A83D0F" }}>
-              Build Experience, Create Impact —
-            </span>{" "}
-            <span style={{ color: "#F55105" }}>
-              Internship & Volunteer Opportunities
-            </span>{" "}
-            Await
-          </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
+                  <span style={{ color: "#A83D0F" }}>
+                    Build Experience, Create Impact —
+                  </span>{" "}
+                  <span style={{ color: "#F55105" }}>
+                    Internship & Volunteer Opportunities
+                  </span>{" "}
+                  Await
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
@@ -145,7 +139,7 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">Build Experience, Create Impact — Internship and Volunteer Opportunities Await.</h2>
+                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
                 <p className="text-muted-foreground">
                   Search and filter volunteering opportunities that match your interests
                 </p>
