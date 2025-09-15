@@ -93,12 +93,13 @@ export default function IVYHomePage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span className="text-[#965032]">
+                  <span className="text-[#F0B59C]">
                     “Where Careers Begin and 
                   </span>{" "}
                   <span className="text-[#F55105]">
                     Thrive
                   </span>{" "}
+                  <span className="text-[#F0B59C]">
                   Await
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
