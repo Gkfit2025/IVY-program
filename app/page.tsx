@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
-import Link from "next/link" // Fixed Link import to use default import instead of named import
+import Link from "next/link"
 import {
   Heart,
   MapPin,
@@ -45,24 +45,30 @@ export default function IVYHomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
+      <nav className="fixed top-0 w-full bg-[#000000] backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
+              <Image
+                src="/logo12.png"
+                alt="Grace Kennett Foundation Logo"
+                width={32}
+                height={32}
+                className="object-contain"
+              />
+              <span className="font-playfair font-bold text-2xl text-[#F26602]">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#search" className="text-foreground hover:text-primary transition-colors">
+              <a href="#search" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 Find Opportunities
               </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
+              <a href="#about" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 About Us
               </a>
-              <a href="#impact" className="text-foreground hover:text-primary transition-colors">
+              <a href="#impact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 Impact Stories
               </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
+              <a href="#contact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 Contact
               </a>
             </div>
