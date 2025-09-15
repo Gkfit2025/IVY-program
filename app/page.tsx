@@ -123,13 +123,14 @@ export default function IVYHomePage() {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
                 <Image
-                  src="/bg6.png"
-                  alt="Volunteers working together in community project"
-                  width={1000}
-                  height={600}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+                 <div className="relative">
+                <div
+                  className="aspect-square rounded-2xl overflow-hidden bg-muted"
+                  style={{ backgroundImage: "url('/bg6.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    >
+                  </div>
+                </div>
+                    </div>
               <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
                 <div className="flex items-center space-x-2">
                   <Star className="h-5 w-5 fill-current" />
