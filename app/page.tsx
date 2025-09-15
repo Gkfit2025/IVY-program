@@ -58,7 +58,7 @@ export default function IVYHomePage() {
               />
               <span className="font-playfair font-bold text-2xl text-[#F26602]">Grace Kennett Foundation</span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-right space-x-8">
               <a href="#search" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
                 Find Opportunities
               </a>
@@ -134,7 +134,7 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">Find Your Perfect Opportunity</h2>
+                <h2 className="font-playfair font-bold text-2xl text-foreground">Build Experience, Create Impact — Internship & Volunteer Opportunities Await.</h2>
                 <p className="text-muted-foreground">
                   Search and filter volunteering opportunities that match your interests
                 </p>
