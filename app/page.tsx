@@ -97,10 +97,10 @@ export default function IVYHomePage() {
                     “Where Careers Begin and 
                   </span>{" "}
                   <span className="text-[#F55105]">
-                    Thrive
+                    Communities
                   </span>{" "}
                   <span className="text-[#F79C7C]">
-                  Await
+                  Thrive
                   </span>{" "}
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
