@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
   Heart,
   MapPin,
@@ -23,8 +24,17 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 
+interface SearchFilters {
+  location: string
+  theme: string
+  fromDate: string
+  toDate: string
+  type: string
+}
+
 export default function IVYHomePage() {
-  const [searchFilters, setSearchFilters] = useState({
+  const router = useRouter()
+  const [searchFilters, setSearchFilters] = useState<SearchFilters>({
     location: "",
     theme: "",
     fromDate: "",
@@ -37,9 +47,8 @@ export default function IVYHomePage() {
     Object.entries(searchFilters).forEach(([key, value]) => {
       if (value) params.set(key, value)
     })
-
     const queryString = params.toString()
-    window.location.href = `/search${queryString ? `?${queryString}` : ""}`
+    router.push(`/search${queryString ? `?${queryString}` : ""}`)
   }
 
   return (
@@ -59,18 +68,18 @@ export default function IVYHomePage() {
               <span className="font-playfair font-bold text-2xl text-[#F26602]">Grace Kennett Foundation</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#search" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
+              <Link href="#search" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors" aria-label="Find Opportunities">
                 Find Opportunities
-              </a>
-              <a href="#about" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
+              </Link>
+              <Link href="#about" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors" aria-label="About Us">
                 About Us
-              </a>
-              <a href="#impact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
+              </Link>
+              <Link href="#impact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors" aria-label="Impact Stories">
                 Impact Stories
-              </a>
-              <a href="#contact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors">
+              </Link>
+              <Link href="#contact" className="text-[#F26602] hover:text-[#FFFCFC] transition-colors" aria-label="Contact">
                 Contact
-              </a>
+              </Link>
             </div>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Join IVY</Button>
           </div>
@@ -84,12 +93,12 @@ export default function IVYHomePage() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span style={{ color: "#965032" }}>
+                  <span className="text-[#965032]">
                     “Where Careers Begin and 
                   </span>{" "}
-                  <span style={{ color: "#F55105" }}>
-                   Thrive
-                  </span>{#"965032 "}
+                  <span className="text-[#F55105]">
+                    Thrive
+                  </span>{" "}
                   Await
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
@@ -481,6 +490,7 @@ export default function IVYHomePage() {
                 image: "children learning in classroom with volunteer teacher",
                 rating: 4.8,
                 reviews: 24,
+                slug: "child-education-support",
               },
               {
                 title: "Wildlife Conservation",
@@ -490,6 +500,7 @@ export default function IVYHomePage() {
                 image: "volunteers working on wildlife conservation project",
                 rating: 4.9,
                 reviews: 18,
+                slug: "wildlife-conservation",
               },
               {
                 title: "Healthcare Assistance",
@@ -499,6 +510,7 @@ export default function IVYHomePage() {
                 image: "medical volunteers helping in rural healthcare clinic",
                 rating: 4.7,
                 reviews: 31,
+                slug: "healthcare-assistance",
               },
             ].map((opportunity, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
@@ -535,10 +547,8 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Link href="/healthcare-assistance" className="block w-full">
-                      Learn More
-                    </Link>
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Link href={`/${opportunity.slug}`}>Learn More</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -703,28 +713,32 @@ export default function IVYHomePage() {
                 Connecting volunteers with meaningful opportunities across South India.
               </p>
               <div className="flex space-x-4">
-                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+                <a href="https://facebook.com" aria-label="Facebook">
+                  <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+                </a>
+                <a href="https://instagram.com" aria-label="Instagram">
+                  <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+                </a>
               </div>
             </div>
 
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Volunteers</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Find Opportunities</div>
-                <div>How It Works</div>
-                <div>Safety Guidelines</div>
-                <div>FAQs</div>
+                <div><Link href="/opportunities">Find Opportunities</Link></div>
+                <div><Link href="/how-it-works">How It Works</Link></div>
+                <div><Link href="/safety">Safety Guidelines</Link></div>
+                <div><Link href="/faq">FAQs</Link></div>
               </div>
             </div>
 
             <div className="space-y-4">
               <h4 className="font-semibold text-foreground">For Hosts</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div>List Your Project</div>
-                <div>Host Resources</div>
-                <div>Best Practices</div>
-                <div>Support</div>
+                <div><Link href="/list-project">List Your Project</Link></div>
+                <div><Link href="/host-resources">Host Resources</Link></div>
+                <div><Link href="/best-practices">Best Practices</Link></div>
+                <div><Link href="/support">Support</Link></div>
               </div>
             </div>
 
