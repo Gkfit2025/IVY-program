@@ -101,6 +101,7 @@ export default function IVYHomePage() {
                   </span>{" "}
                   <span className="text-[#F0B59C]">
                   Await
+                  </span>{" "}
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
                   Discover meaningful opportunities across South India. Search by location, theme, and find the perfect
