@@ -736,7 +736,7 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                image: "/Medical.png",
+                image: "/wildlife.png",
                 rating: 4.9,
                 reviews: 18,
                 slug: "wildlife-conservation",
@@ -746,7 +746,7 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "/featured3.png",
+                image: "/Medical.png",
                 rating: 4.7,
                 reviews: 31,
                 slug: "healthcare-assistance",
@@ -903,6 +903,11 @@ export default function IVYHomePage() {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
+                 Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
+                  A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
+                  Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
+                  
                   IV is an innovative platform that connects passionate volunteers
                   with meaningful opportunities across South India. Just like Airbnb
                   revolutionized travel, we're transforming how people discover and
@@ -931,7 +936,7 @@ export default function IVYHomePage() {
             </div>
             <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
               <Image
-                src="/diverse-group-of-volunteers-working-together-in-so.png"
+                src="/pro.png"
                 alt="IVY volunteers working together"
                 width={500}
                 height={500}
