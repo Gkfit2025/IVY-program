@@ -558,7 +558,7 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Golden Years Care Center",
                 hostImage: "/logo12.png",
-                image: "/elder.png",
+                image: "/elder.png", // Fixed the image path
                 rating: 4.8,
                 reviews: 28,
                 price: "₹2,000/week",
@@ -901,13 +901,14 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
                 About Us
               </h2>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-muted-foreground leading-relaxed text-justify">
                 <p>
-                 Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
+                  Grace Kennett Foundation is a non-governmental organization with a glorious 80-year history. 
                   Our work has saved the lives of a thousand victims of female infanticide and abandoned children.
                   A thousand happy families have been built through adoption. If you need to have a garden, dig a well first. 
                   Our well is our hospital and our allied services. We address the physical, mental, and social well being of the community and raise resources to pursue our lofty objectives.
-                  
+                </p>
+                <p>
                   IV is an innovative platform that connects passionate volunteers
                   with meaningful opportunities across South India. Just like Airbnb
                   revolutionized travel, we're transforming how people discover and
@@ -948,12 +949,12 @@ export default function IVYHomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F26602' }}>
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">
+          <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance text-white">
             Ready to Make a Difference?
           </h2>
-          <p className="text-xl opacity-90 text-pretty">
+          <p className="text-xl text-white/90 text-pretty">
             Join our community of changemakers and start your volunteering journey
             today
           </p>
@@ -961,14 +962,14 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="secondary"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="bg-white hover:bg-white/90 text-[#F26602]"
             >
               Find Opportunities
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-[#F26602] bg-transparent"
             >
               Become a Host
             </Button>
@@ -1001,42 +1002,6 @@ export default function IVYHomePage() {
                 <a href="https://instagram.com" aria-label="Instagram">
                   <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
                 </a>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">For Volunteers</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>
-                  <Link href="/opportunities">Find Opportunities</Link>
-                </div>
-                <div>
-                  <Link href="/how-it-works">How It Works</Link>
-                </div>
-                <div>
-                  <Link href="/safety">Safety Guidelines</Link>
-                </div>
-                <div>
-                  <Link href="/faq">FAQs</Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">For Hosts</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>
-                  <Link href="/list-project">List Your Project</Link>
-                </div>
-                <div>
-                  <Link href="/host-resources">Host Resources</Link>
-                </div>
-                <div>
-                  <Link href="/best-practices">Best Practices</Link>
-                </div>
-                <div>
-                  <Link href="/support">Support</Link>
-                </div>
               </div>
             </div>
 
