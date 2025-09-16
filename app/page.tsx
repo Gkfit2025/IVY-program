@@ -494,7 +494,7 @@ export default function IVYHomePage() {
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
                 hostImage: "/logo12.png",
-                image: "/child.png",
+                image: "/Child.png",
                 rating: 4.8,
                 reviews: 24,
                 price: "₹2,500/week",
