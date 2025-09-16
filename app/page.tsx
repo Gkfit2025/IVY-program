@@ -1006,6 +1006,42 @@ export default function IVYHomePage() {
             </div>
 
             <div className="space-y-4">
+              <h4 className="font-semibold text-foreground">For Volunteers</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div>
+                  <Link href="/opportunities">Find Opportunities</Link>
+                </div>
+                <div>
+                  <Link href="/how-it-works">How It Works</Link>
+                </div>
+                <div>
+                  <Link href="/safety">Safety Guidelines</Link>
+                </div>
+                <div>
+                  <Link href="/faq">FAQs</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-semibold text-foreground">For Hosts</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div>
+                  <Link href="/list-project">List Your Project</Link>
+                </div>
+                <div>
+                  <Link href="/host-resources">Host Resources</Link>
+                </div>
+                <div>
+                  <Link href="/best-practices">Best Practices</Link>
+                </div>
+                <div>
+                  <Link href="/support">Support</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
               <h4 className="font-semibold text-foreground">Contact</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center space-x-2">
