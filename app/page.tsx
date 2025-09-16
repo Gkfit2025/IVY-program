@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -32,6 +32,7 @@ import {
   Facebook,
   Search,
   Filter,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -42,6 +43,168 @@ interface SearchFilters {
   toDate: string;
   type: string;
 }
+
+// Custom date input component for cross-browser compatibility
+const DateInput = ({ 
+  value, 
+  onChange, 
+  placeholder 
+}: { 
+  value: string; 
+  onChange: (value: string) => void; 
+  placeholder: string;
+}) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const datePickerRef = useRef<HTMLDivElement>(null);
+
+  // Format date for display
+  const formatDisplayDate = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-IN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
+  // Handle click outside to close date picker
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node) &&
+          inputRef.current && !inputRef.current.contains(event.target as Node)) {
+        setShowDatePicker(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Generate days in month
+  const getDaysInMonth = (year: number, month: number) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  // Get day of the week for the first day of the month
+  const getFirstDayOfMonth = (year: number, month: number) => {
+    return new Date(year, month, 1).getDay();
+  };
+
+  // Render calendar
+  const renderCalendar = () => {
+    if (!showDatePicker) return null;
+
+    const today = new Date();
+    const currentDate = value ? new Date(value) : today;
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+    const firstDayOfMonth = getFirstDayOfMonth(currentYear, currentMonth);
+
+    const days = [];
+    
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
+    }
+
+    // Add cells for each day of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const isSelected = value === dateStr;
+      
+      days.push(
+        <div
+          key={day}
+          className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ${
+            isSelected 
+              ? 'bg-primary text-primary-foreground' 
+              : 'hover:bg-accent hover:text-accent-foreground'
+          }`}
+          onClick={() => {
+            onChange(dateStr);
+            setShowDatePicker(false);
+          }}
+        >
+          {day}
+        </div>
+      );
+    }
+
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    return (
+      <div 
+        ref={datePickerRef}
+        className="absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 p-4 w-64"
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-semibold">
+            {monthNames[currentMonth]} {currentYear}
+          </h3>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowDatePicker(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+        
+        <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+            <div key={day} className="font-medium text-muted-foreground">
+              {day}
+            </div>
+          ))}
+        </div>
+        
+        <div className="grid grid-cols-7 gap-1">
+          {days}
+        </div>
+        
+        <div className="mt-4 flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              onChange('');
+              setShowDatePicker(false);
+            }}
+          >
+            Clear
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="relative">
+      <div className="relative">
+        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={inputRef}
+          type="text"
+          placeholder={placeholder}
+          value={formatDisplayDate(value)}
+          readOnly
+          onClick={() => setShowDatePicker(!showDatePicker)}
+          className="pl-10 h-12 text-sm cursor-pointer"
+        />
+      </div>
+      {renderCalendar()}
+    </div>
+  );
+};
 
 export default function IVYHomePage() {
   const router = useRouter();
@@ -270,38 +433,20 @@ export default function IVYHomePage() {
                       Duration
                     </label>
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="relative">
-                        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          type="date"
-                          placeholder="From Date"
-                          value={searchFilters.fromDate}
-                          onChange={(e) =>
-                            setSearchFilters((prev) => ({
-                              ...prev,
-                              fromDate: e.target.value,
-                            }))
-                          }
-                          className="pl-10 h-12 text-sm"
-                          aria-label="From Date"
-                        />
-                      </div>
-                      <div className="relative">
-                        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          type="date"
-                          placeholder="To Date"
-                          value={searchFilters.toDate}
-                          onChange={(e) =>
-                            setSearchFilters((prev) => ({
-                              ...prev,
-                              toDate: e.target.value,
-                            }))
-                          }
-                          className="pl-10 h-12 text-sm"
-                          aria-label="To Date"
-                        />
-                      </div>
+                      <DateInput
+                        value={searchFilters.fromDate}
+                        onChange={(value) =>
+                          setSearchFilters((prev) => ({ ...prev, fromDate: value }))
+                        }
+                        placeholder="From Date"
+                      />
+                      <DateInput
+                        value={searchFilters.toDate}
+                        onChange={(value) =>
+                          setSearchFilters((prev) => ({ ...prev, toDate: value }))
+                        }
+                        placeholder="To Date"
+                      />
                     </div>
                   </div>
                 </div>
