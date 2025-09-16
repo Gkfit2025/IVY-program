@@ -726,7 +726,7 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                image: "/featured1.png",
+                image: "/Child.png",
                 rating: 4.8,
                 reviews: 24,
                 slug: "child-education-support",
@@ -736,7 +736,7 @@ export default function IVYHomePage() {
                 location: "Coimbatore, Tamil Nadu",
                 duration: "1-3 months",
                 category: "Environment",
-                image: "/featured2.png",
+                image: "/Medical.png",
                 rating: 4.9,
                 reviews: 18,
                 slug: "wildlife-conservation",
@@ -899,11 +899,11 @@ export default function IVYHomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
-                About IVY Platform
+                About Us
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  IVY is an innovative platform that connects passionate volunteers
+                  IV is an innovative platform that connects passionate volunteers
                   with meaningful opportunities across South India. Just like Airbnb
                   revolutionized travel, we're transforming how people discover and
                   engage in volunteer work.
@@ -982,7 +982,7 @@ export default function IVYHomePage() {
               <div className="flex items-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
                 <span className="font-playfair font-bold text-xl text-foreground">
-                  IVY
+                  IV
                 </span>
               </div>
               <p className="text-muted-foreground text-sm">
