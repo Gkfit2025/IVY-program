@@ -44,7 +44,7 @@ interface SearchFilters {
   type: string;
 }
 
-// Custom date input component for cross-browser compatibility
+// DateInput component
 const DateInput = ({ 
   value, 
   onChange, 
@@ -58,7 +58,6 @@ const DateInput = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const datePickerRef = useRef<HTMLDivElement>(null);
 
-  // Format date for display
   const formatDisplayDate = (dateString: string) => {
     if (!dateString) return "";
     const date = new Date(dateString);
@@ -69,7 +68,6 @@ const DateInput = ({
     });
   };
 
-  // Handle click outside to close date picker
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node) &&
@@ -84,17 +82,14 @@ const DateInput = ({
     };
   }, []);
 
-  // Generate days in month
   const getDaysInMonth = (year: number, month: number) => {
     return new Date(year, month + 1, 0).getDate();
   };
 
-  // Get day of the week for the first day of the month
   const getFirstDayOfMonth = (year: number, month: number) => {
     return new Date(year, month, 1).getDay();
   };
 
-  // Render calendar
   const renderCalendar = () => {
     if (!showDatePicker) return null;
 
@@ -108,12 +103,10 @@ const DateInput = ({
 
     const days = [];
     
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < firstDayOfMonth; i++) {
       days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
     }
 
-    // Add cells for each day of the month
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const isSelected = value === dateStr;
@@ -217,22 +210,119 @@ export default function IVYHomePage() {
   });
 
   const handleSearch = () => {
-    // Basic validation to ensure at least one filter is set
     const hasFilters = Object.values(searchFilters).some((value) => value !== "");
     if (!hasFilters) {
       alert("Please select at least one search filter.");
       return;
     }
 
-    // Construct query string
     const params = new URLSearchParams();
     Object.entries(searchFilters).forEach(([key, value]) => {
       if (value) params.set(key, value);
     });
     const queryString = params.toString();
-    // Ensure the /search route exists in your Next.js routes
     router.push(`/search${queryString ? `?${queryString}` : ""}`);
   };
+
+  // Sample data for opportunities
+  const opportunities = [
+    {
+      title: "Child Education Support",
+      location: "Madurai, Tamil Nadu",
+      duration: "2-4 weeks",
+      category: "Childcare & Education",
+      type: "Volunteer & Intern",
+      hostName: "Sunshine Children's Foundation",
+      hostImage: "/logo12.png",
+      image: "/child.png",
+      rating: 4.8,
+      reviews: 24,
+      price: "₹2,500/week",
+      accommodation: "Shared dormitory",
+      meals: "3 meals included",
+      verified: true,
+    },
+    {
+      title: "Wildlife Conservation Project",
+      location: "Coimbatore, Tamil Nadu",
+      duration: "1-3 months",
+      category: "Wildlife & Environment",
+      type: "Volunteer",
+      hostName: "Western Ghats Conservation Trust",
+      hostImage: "/host2.png",
+      image: "/wildlife.png",
+      rating: 4.9,
+      reviews: 18,
+      price: "₹3,200/week",
+      accommodation: "Private room",
+      meals: "Vegetarian meals",
+      verified: true,
+    },
+    {
+      title: "Rural Healthcare Support",
+      location: "Kochi, Kerala",
+      duration: "3-6 weeks",
+      category: "Healthcare & Medical",
+      type: "Intern",
+      hostName: "Kerala Rural Health Initiative",
+      hostImage: "/logo12.png",
+      image: "/rural.png",
+      rating: 4.7,
+      reviews: 31,
+      price: "₹2,800/week",
+      accommodation: "Host family",
+      meals: "Local cuisine",
+      verified: true,
+    },
+    {
+      title: "Heritage Site Restoration",
+      location: "Hampi, Karnataka",
+      duration: "2-8 weeks",
+      category: "Heritage & Culture",
+      type: "Volunteer",
+      hostName: "Hampi Heritage Foundation",
+      hostImage: "/host4.png",
+      image: "/heritage.png",
+      rating: 4.6,
+      reviews: 15,
+      price: "₹2,200/week",
+      accommodation: "Guesthouse",
+      meals: "Traditional meals",
+      verified: true,
+    },
+    {
+      title: "Elderly Care Program",
+      location: "Chennai, Tamil Nadu",
+      duration: "1-4 weeks",
+      category: "Elderly Care",
+      type: "Volunteer & Intern",
+      hostName: "Golden Years Care Center",
+      hostImage: "/logo12.png",
+      image: "/elder.png",
+      rating: 4.8,
+      reviews: 28,
+      price: "₹2,000/week",
+      accommodation: "Nearby hostel",
+      meals: "South Indian meals",
+      verified: true,
+    },
+    {
+      title: "Special Needs Education",
+      location: "Bangalore, Karnataka",
+      duration: "2-12 weeks",
+      category: "Disability Support",
+      type: "Intern",
+      hostName: "Inclusive Learning Center",
+      hostImage: "/host6.png",
+      image: "/edu.png",
+      rating: 4.9,
+      reviews: 22,
+      price: "₹3,000/week",
+      accommodation: "Shared apartment",
+      meals: "Flexible dining",
+      verified: true,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -332,6 +422,7 @@ export default function IVYHomePage() {
                   width={500}
                   height={500}
                   className="object-cover w-full h-full"
+                  priority
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
@@ -473,7 +564,7 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl text-foreground">
                 Available Opportunities
               </h2>
-              <p className="text-muted-foreground">147 opportunities found</p>
+              <p className="text-muted-foreground">{opportunities.length} opportunities found</p>
             </div>
             <Button
               variant="outline"
@@ -485,104 +576,7 @@ export default function IVYHomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Child Education Support",
-                location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
-                category: "Childcare & Education",
-                type: "Volunteer & Intern",
-                hostName: "Sunshine Children's Foundation",
-                hostImage: "/logo12.png",
-                image: "/Child.png",
-                rating: 4.8,
-                reviews: 24,
-                price: "₹2,500/week",
-                accommodation: "Shared dormitory",
-                meals: "3 meals included",
-                verified: true,
-              },
-              {
-                title: "Wildlife Conservation Project",
-                location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
-                category: "Wildlife & Environment",
-                type: "Volunteer",
-                hostName: "Western Ghats Conservation Trust",
-                hostImage: "/host2.png",
-                image: "/wildlife.png",
-                rating: 4.9,
-                reviews: 18,
-                price: "₹3,200/week",
-                accommodation: "Private room",
-                meals: "Vegetarian meals",
-                verified: true,
-              },
-              {
-                title: "Rural Healthcare Support",
-                location: "Kochi, Kerala",
-                duration: "3-6 weeks",
-                category: "Healthcare & Medical",
-                type: "Intern",
-                hostName: "Kerala Rural Health Initiative",
-                hostImage: "/logo12.png",
-                image: "/rural.png",
-                rating: 4.7,
-                reviews: 31,
-                price: "₹2,800/week",
-                accommodation: "Host family",
-                meals: "Local cuisine",
-                verified: true,
-              },
-              {
-                title: "Heritage Site Restoration",
-                location: "Hampi, Karnataka",
-                duration: "2-8 weeks",
-                category: "Heritage & Culture",
-                type: "Volunteer",
-                hostName: "Hampi Heritage Foundation",
-                hostImage: "/host4.png",
-                image: "/heritage.png",
-                rating: 4.6,
-                reviews: 15,
-                price: "₹2,200/week",
-                accommodation: "Guesthouse",
-                meals: "Traditional meals",
-                verified: true,
-              },
-              {
-                title: "Elderly Care Program",
-                location: "Chennai, Tamil Nadu",
-                duration: "1-4 weeks",
-                category: "Elderly Care",
-                type: "Volunteer & Intern",
-                hostName: "Golden Years Care Center",
-                hostImage: "/logo12.png",
-                image: "/elder.png", // Fixed the image path
-                rating: 4.8,
-                reviews: 28,
-                price: "₹2,000/week",
-                accommodation: "Nearby hostel",
-                meals: "South Indian meals",
-                verified: true,
-              },
-              {
-                title: "Special Needs Education",
-                location: "Bangalore, Karnataka",
-                duration: "2-12 weeks",
-                category: "Disability Support",
-                type: "Intern",
-                hostName: "Inclusive Learning Center",
-                hostImage: "/host6.png",
-                image: "/edu.png",
-                rating: 4.9,
-                reviews: 22,
-                price: "₹3,000/week",
-                accommodation: "Shared apartment",
-                meals: "Flexible dining",
-                verified: true,
-              },
-            ].map((opportunity, index) => (
+            {opportunities.map((opportunity, index) => (
               <Card
                 key={index}
                 className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
@@ -726,7 +720,7 @@ export default function IVYHomePage() {
                 location: "Madurai, Tamil Nadu",
                 duration: "2-4 weeks",
                 category: "Education",
-                image: "/Child.png",
+                image: "/child.png",
                 rating: 4.8,
                 reviews: 24,
                 slug: "child-education-support",
@@ -746,7 +740,7 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "/Medical.png",
+                image: "/medical.png",
                 rating: 4.7,
                 reviews: 31,
                 slug: "healthcare-assistance",
@@ -1060,328 +1054,26 @@ export default function IVYHomePage() {
             </div>
           </div>
 
-          <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>
-              &copy; 2024 IV Platform. All rights reserved. Spreading kindness
-              across South India.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-"use client";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import {
-  Heart,
-  MapPin,
-  Users,
-  Calendar,
-  Star,
-  ArrowRight,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Search,
-  Filter,
-  X,
-} from "lucide-react";
-import Image from "next/image";
-
-interface SearchFilters {
-  location: string;
-  theme: string;
-  fromDate: string;
-  toDate: string;
-  type: string;
-}
-
-// -------------------- DateInput component --------------------
-const DateInput = ({ 
-  value, 
-  onChange, 
-  placeholder 
-}: { 
-  value: string; 
-  onChange: (value: string) => void; 
-  placeholder: string;
-}) => {
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const datePickerRef = useRef<HTMLDivElement>(null);
-
-  const formatDisplayDate = (dateString: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        datePickerRef.current &&
-        !datePickerRef.current.contains(event.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setShowDatePicker(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const getDaysInMonth = (year: number, month: number) =>
-    new Date(year, month + 1, 0).getDate();
-
-  const getFirstDayOfMonth = (year: number, month: number) =>
-    new Date(year, month, 1).getDay();
-
-  const renderCalendar = () => {
-    if (!showDatePicker) return null;
-
-    const today = new Date();
-    const currentDate = value ? new Date(value) : today;
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-
-    const daysInMonth = getDaysInMonth(currentYear, currentMonth);
-    const firstDayOfMonth = getFirstDayOfMonth(currentYear, currentMonth);
-
-    const days = [];
-
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(
-        2,
-        "0"
-      )}-${String(day).padStart(2, "0")}`;
-      const isSelected = value === dateStr;
-
-      days.push(
-        <div
-          key={day}
-          className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ${
-            isSelected
-              ? "bg-primary text-primary-foreground"
-              : "hover:bg-accent hover:text-accent-foreground"
-          }`}
-          onClick={() => {
-            onChange(dateStr);
-            setShowDatePicker(false);
-          }}
-        >
-          {day}
-        </div>
-      );
-    }
-
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-
-    return (
-      <div
-        ref={datePickerRef}
-        className="absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 p-4 w-64"
-      >
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="font-semibold">
-            {monthNames[currentMonth]} {currentYear}
-          </h3>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setShowDatePicker(false)}
-          >
-            <X className="h-4 w-4" />
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-            <div key={day} className="font-medium text-muted-foreground">
-              {day}
-            </div>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-7 gap-1">{days}</div>
-
-        <div className="mt-4 flex justify-end">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              onChange("");
-              setShowDatePicker(false);
-            }}
-          >
-            Clear
-          </Button>
-        </div>
-      </div>
-    );
-  };
-
-  return (
-    <div className="relative">
-      <div className="relative">
-        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          ref={inputRef}
-          type="text"
-          placeholder={placeholder}
-          value={formatDisplayDate(value)}
-          readOnly
-          onClick={() => setShowDatePicker(!showDatePicker)}
-          className="pl-10 h-12 text-sm cursor-pointer"
-        />
-      </div>
-      {renderCalendar()}
-    </div>
-  );
-};
-
-// -------------------- Main IVY Home Page --------------------
-export default function IVYHomePage() {
-  const router = useRouter();
-  const [searchFilters, setSearchFilters] = useState<SearchFilters>({
-    location: "",
-    theme: "",
-    fromDate: "",
-    toDate: "",
-    type: "",
-  });
-
-  const handleSearch = () => {
-    const hasFilters = Object.values(searchFilters).some(
-      (value) => value !== ""
-    );
-    if (!hasFilters) {
-      alert("Please select at least one search filter.");
-      return;
-    }
-
-    const params = new URLSearchParams();
-    Object.entries(searchFilters).forEach(([key, value]) => {
-      if (value) params.set(key, value);
-    });
-    const queryString = params.toString();
-    router.push(`/search${queryString ? `?${queryString}` : ""}`);
-  };
-
-  return (
-    <div className="min-h-screen bg-background">
-      {/* -------------------- NAV + CONTENT (your existing code kept same) -------------------- */}
-      {/* ... all sections above remain same ... */}
-
-      {/* -------------------- Footer with QR Code -------------------- */}
-      <footer
-        id="contact"
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border"
-      >
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
-          {/* Logo + Intro */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Heart className="h-6 w-6 text-primary" />
-              <span className="font-playfair font-bold text-xl text-foreground">
-                IV
-              </span>
-            </div>
-            <p className="text-muted-foreground text-sm">
-              Connecting volunteers with meaningful opportunities across South
-              India.
-            </p>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-foreground">Contact Us</h4>
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Phone className="h-4 w-4" /> +91 98765 43210
-            </p>
-            <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Mail className="h-4 w-4" /> info@gkf.org
-            </p>
-          </div>
-
-          {/* Social Links */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-foreground">Follow Us</h4>
-            <div className="flex gap-4">
-              <Link href="https://facebook.com">
-                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary" />
-              </Link>
-              <Link href="https://instagram.com">
-                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary" />
-              </Link>
-            </div>
-          </div>
-
           {/* QR Code Section */}
-          <div className="space-y-3 text-center">
-            <h4 className="font-semibold text-foreground">Support Us</h4>
-            <p className="text-sm text-muted-foreground">
-              Scan the QR to make a payment or donation
-            </p>
-            <div className="flex justify-center">
-              <Image
-                src="/qr.png"
-                alt="QR Code for Payments"
-                width={140}
-                height={140}
-                className="rounded-md border border-border"
-              />
+          <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-sm text-muted-foreground text-center md:text-left">
+              <p>&copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.</p>
+            </div>
+            
+            <div className="flex flex-col items-center">
+              <p className="text-sm font-medium mb-2">Support us with a donation</p>
+              <div className="border border-border rounded-md p-2 bg-white">
+                <Image
+                  src="/qr.png"
+                  alt="Donation QR Code"
+                  width={100}
+                  height={100}
+                  className="rounded"
+                />
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">Scan to donate</p>
             </div>
           </div>
-        </div>
-
-        <div className="mt-8 text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Grace Kennett Foundation. All rights reserved.
         </div>
       </footer>
     </div>
