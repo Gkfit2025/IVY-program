@@ -1069,6 +1069,67 @@ export default function IVYHomePage() {
                   width={100}
                   height={100}
                   className="rounded"
+             // Add new state at the top:
+const [showQrModal, setShowQrModal] = useState(false)
+// Change formData.duration to a string for numeric input:
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  duration: "3", // now in days
+  startDate: "",
+  message: "",
+})
+...
+// Replace duration select with this:
+<div>
+  <label className="text-sm font-medium mb-1 block">Duration (days, min 3)</label>
+  <Input
+    name="duration"
+    type="number"
+    min={3}
+    value={formData.duration}
+    onChange={handleInputChange}
+    required
+    placeholder="Enter duration in days (min 3)"
+  />
+</div>
+...
+// Change the QR button to this:
+<Button
+  type="button"
+  variant={paymentMethod === "qr" ? "default" : "outline"}
+  onClick={() => {
+    setPaymentMethod("qr")
+    setShowQrModal(true)
+  }}
+  className="text-xs h-10"
+>
+  QR Code
+</Button>
+...
+// Add QR modal at the end of the form or in the page (outside the form, but inside the component):
+{showQrModal && paymentMethod === "qr" && (
+  <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
+    <div className="bg-white rounded-lg p-6 max-w-xs mx-auto">
+      <h2 className="text-lg font-semibold mb-2 text-center">Scan the QR code</h2>
+      <Image
+        src="/qr.png"
+        alt="Payment QR Code"
+        width={200}
+        height={200}
+        className="object-contain mx-auto"
+      />
+      <Button
+        className="mt-4 w-full"
+        onClick={() => setShowQrModal(false)}
+        type="button"
+      >
+        Close
+      </Button>
+    </div>
+  </div>
+)}
                 />
               </div>
               <p className="text-xs text-muted-foreground mt-2">Scan to donate</p>
