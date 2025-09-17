@@ -167,7 +167,6 @@ const DateInput = ({
           ))}
         </div>
         
- UT
         <div className="grid grid-cols-7 gap-1">
           {days}
         </div>
@@ -427,60 +426,39 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section with Search */}
-      <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance">
-                  <span className="text-[#F79C7C]">
-                    "Where Careers Begin and
-                  </span>{" "}
-                  <span className="text-[#F55105]">
-                    Communities Thrive
-                  </span>{" "}
-                </h1>
-                <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Discover meaningful opportunities across South India. Search by
-                  location, theme, and find the perfect match for your skills and
-                  passion.
-                </p>
-              </div>
-              <div className="flex items-center space-x-8 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <Users className="h-5 w-5 text-accent" />
-                  <span>500+ Volunteers</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-accent" />
-                  <span>50+ Locations</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Heart className="h-5 w-5 text-accent" />
-                  <span>100+ Projects</span>
-                </div>
-              </div>
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(/bg6.png)` }}>
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="font-playfair font-bold text-4xl md:text-6xl text-balance text-white mb-6">
+            <span className="text-[#F79C7C]">Where Careers Begin and</span>{" "}
+            <span className="text-[#F55105]">Communities Thrive</span>
+          </h1>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+            Discover meaningful opportunities across South India. Search by
+            location, theme, and find the perfect match for your skills and
+            passion.
+          </p>
+          <div className="flex justify-center space-x-8 text-sm text-white/80">
+            <div className="flex items-center space-x-2">
+              <Users className="h-5 w-5 text-white" />
+              <span>500+ Volunteers</span>
             </div>
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-                <Image
-                  src="/bg6.png"
-                  alt="Volunteers in action"
-                  width={500}
-                  height={500}
-                  className="object-cover w-full h-full"
-                  priority
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <Star className="h-5 w-5 fill-current" />
-                  <span className="font-semibold">4.9/5 Rating</span>
-                </div>
-                <p className="text-sm opacity-90">From 200+ reviews</p>
-              </div>
+            <div className="flex items-center space-x-2">
+              <MapPin className="h-5 w-5 text-white" />
+              <span>50+ Locations</span>
             </div>
+            <div className="flex items-center space-x-2">
+              <Heart className="h-5 w-5 text-white" />
+              <span>100+ Projects</span>
+            </div>
+          </div>
+          <div className="absolute bottom-6 left-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
+            <div className="flex items-center space-x-2">
+              <Star className="h-5 w-5 fill-current" />
+              <span className="font-semibold">4.9/5 Rating</span>
+            </div>
+            <p className="text-sm opacity-90">From 200+ reviews</p>
           </div>
         </div>
       </section>
