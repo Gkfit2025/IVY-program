@@ -372,7 +372,7 @@ export default function IVYHomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation (unchanged) */}
+      {/* Navigation */}
       <nav className="fixed top-0 w-full bg-[#000000] backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -425,7 +425,7 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section with Background Image (unchanged) */}
+      {/* Hero Section with Background Image */}
       <section className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(/bg6.png)` }}>
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -477,7 +477,7 @@ export default function IVYHomePage() {
                 </p>
               </div>
 
-              {/* Search Bar (unchanged) */}
+              {/* Search Bar */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -487,7 +487,7 @@ export default function IVYHomePage() {
                 />
               </div>
 
-              {/* Filters (unchanged) */}
+              {/* Filters */}
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select
                   value={searchFilters.location}
@@ -653,7 +653,7 @@ export default function IVYHomePage() {
                     </div>
                   </div>
 
-                  {/* Host Information (unchanged) */}
+                  {/* Host Information */}
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
@@ -996,7 +996,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* Footer (unchanged) */}
+      {/* Footer */}
       <footer
         id="contact"
         className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border"
@@ -1015,10 +1015,10 @@ export default function IVYHomePage() {
                 India.
               </p>
               <div className="flex space-x-4">
-                <a href="https://facebook.com" aria-label="Facebook">
+                <a href="https://www.facebook.com/share/1Uxc1kVsLi/" aria-label="Facebook">
                   <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
                 </a>
-                <a href="https://instagram.com" aria-label="Instagram">
+                <a href="https://www.instagram.com/gkfmadurai?igsh=cWJqaTd2eWRlc2Iz" aria-label="Instagram">
                   <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
                 </a>
               </div>
@@ -1101,7 +1101,7 @@ export default function IVYHomePage() {
         </div>
       </footer>
 
-      {/* QR Modal (unchanged) */}
+      {/* QR Modal */}
       {showQrModal && paymentMethod === "qr" && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
           <div className="bg-white rounded-lg p-6 max-w-xs mx-auto">
