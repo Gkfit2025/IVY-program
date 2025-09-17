@@ -94,6 +94,7 @@ const DateInput = ({
     if (!showDatePicker) return null;
 
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize today's date
     const currentDate = value ? new Date(value) : today;
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
@@ -109,19 +110,25 @@ const DateInput = ({
 
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const currentDateObj = new Date(dateStr);
       const isSelected = value === dateStr;
-      
+      const isDisabled = currentDateObj < today;
+
       days.push(
         <div
           key={day}
-          className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ${
-            isSelected 
-              ? 'bg-primary text-primary-foreground' 
-              : 'hover:bg-accent hover:text-accent-foreground'
+          className={`w-8 h-8 flex items-center justify-center rounded-full ${
+            isDisabled 
+              ? 'text-muted-foreground/50 cursor-not-allowed'
+              : isSelected 
+                ? 'bg-primary text-primary-foreground cursor-pointer'
+                : 'hover:bg-accent hover:text-accent-foreground cursor-pointer'
           }`}
           onClick={() => {
-            onChange(dateStr);
-            setShowDatePicker(false);
+            if (!isDisabled) {
+              onChange(dateStr);
+              setShowDatePicker(false);
+            }
           }}
         >
           {day}
@@ -160,6 +167,7 @@ const DateInput = ({
           ))}
         </div>
         
+ UT
         <div className="grid grid-cols-7 gap-1">
           {days}
         </div>
@@ -211,22 +219,6 @@ export default function IVYHomePage() {
   const [showQrModal, setShowQrModal] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
 
-  const handleSearch = () => {
-    const hasFilters = Object.values(searchFilters).some((value) => value !== "");
-    if (!hasFilters) {
-      alert("Please select at least one search filter.");
-      return;
-    }
-
-    const params = new URLSearchParams();
-    Object.entries(searchFilters).forEach(([key, value]) => {
-      if (value) params.set(key, value);
-    });
-    const queryString = params.toString();
-    router.push(`/search${queryString ? `?${queryString}` : ""}`);
-  };
-
-  // Sample data for opportunities
   const opportunities = [
     {
       title: "Child Education Support",
@@ -243,6 +235,9 @@ export default function IVYHomePage() {
       accommodation: "Shared dormitory",
       meals: "3 meals included",
       verified: true,
+      state: "tamil-nadu",
+      theme: "childcare",
+      typeFilter: ["volunteer", "intern"]
     },
     {
       title: "Wildlife Conservation Project",
@@ -259,6 +254,9 @@ export default function IVYHomePage() {
       accommodation: "Private room",
       meals: "Vegetarian meals",
       verified: true,
+      state: "tamil-nadu",
+      theme: "wildlife",
+      typeFilter: ["volunteer"]
     },
     {
       title: "Rural Healthcare Support",
@@ -275,6 +273,9 @@ export default function IVYHomePage() {
       accommodation: "Host family",
       meals: "Local cuisine",
       verified: true,
+      state: "kerala",
+      theme: "healthcare",
+      typeFilter: ["intern"]
     },
     {
       title: "Heritage Site Restoration",
@@ -291,6 +292,9 @@ export default function IVYHomePage() {
       accommodation: "Guesthouse",
       meals: "Traditional meals",
       verified: true,
+      state: "karnataka",
+      theme: "heritage",
+      typeFilter: ["volunteer"]
     },
     {
       title: "Elderly Care Program",
@@ -307,6 +311,9 @@ export default function IVYHomePage() {
       accommodation: "Nearby hostel",
       meals: "South Indian meals",
       verified: true,
+      state: "tamil-nadu",
+      theme: "elderly",
+      typeFilter: ["volunteer", "intern"]
     },
     {
       title: "Special Needs Education",
@@ -323,8 +330,47 @@ export default function IVYHomePage() {
       accommodation: "Shared apartment",
       meals: "Flexible dining",
       verified: true,
+      state: "karnataka",
+      theme: "disability",
+      typeFilter: ["intern"]
     },
   ];
+
+  const filteredOpportunities = opportunities.filter(opportunity => {
+    const matchesLocation = !searchFilters.location || opportunity.state === searchFilters.location;
+    const matchesTheme = !searchFilters.theme || opportunity.theme === searchFilters.theme;
+    const matchesType = !searchFilters.type || 
+      (searchFilters.type === "both" 
+        ? opportunity.typeFilter.includes("volunteer") || opportunity.typeFilter.includes("intern")
+        : opportunity.typeFilter.includes(searchFilters.type));
+    
+    // Date filtering logic
+    const opportunityStartDate = new Date(opportunity.duration.split('-')[0].replace(/\D/g, '') + ' days');
+    const opportunityEndDate = new Date(opportunity.duration.split('-')[1]?.replace(/\D/g, '') + ' days' || opportunityStartDate);
+    const fromDate = searchFilters.fromDate ? new Date(searchFilters.fromDate) : null;
+    const toDate = searchFilters.toDate ? new Date(searchFilters.toDate) : null;
+
+    const matchesDate = !fromDate || !toDate || (
+      fromDate <= opportunityEndDate && toDate >= opportunityStartDate
+    );
+
+    return matchesLocation && matchesTheme && matchesType && matchesDate;
+  });
+
+  const handleSearch = () => {
+    const hasFilters = Object.values(searchFilters).some((value) => value !== "");
+    if (!hasFilters) {
+      alert("Please select at least one search filter.");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    Object.entries(searchFilters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const queryString = params.toString();
+    router.push(`/search${queryString ? `?${queryString}` : ""}`);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -566,7 +612,7 @@ export default function IVYHomePage() {
               <h2 className="font-playfair font-bold text-3xl text-foreground">
                 Available Opportunities
               </h2>
-              <p className="text-muted-foreground">{opportunities.length} opportunities found</p>
+              <p className="text-muted-foreground">{filteredOpportunities.length} opportunities found</p>
             </div>
             <Button
               variant="outline"
@@ -578,7 +624,7 @@ export default function IVYHomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {opportunities.map((opportunity, index) => (
+            {filteredOpportunities.map((opportunity, index) => (
               <Card
                 key={index}
                 className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
