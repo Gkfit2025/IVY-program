@@ -44,7 +44,7 @@ interface SearchFilters {
   type: string;
 }
 
-// DateInput component
+// DateInput component (unchanged)
 const DateInput = ({ 
   value, 
   onChange, 
@@ -94,7 +94,7 @@ const DateInput = ({
     if (!showDatePicker) return null;
 
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize today's date
+    today.setHours(0, 0, 0, 0);
     const currentDate = value ? new Date(value) : today;
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth();
@@ -343,7 +343,6 @@ export default function IVYHomePage() {
         ? opportunity.typeFilter.includes("volunteer") || opportunity.typeFilter.includes("intern")
         : opportunity.typeFilter.includes(searchFilters.type));
     
-    // Date filtering logic
     const opportunityStartDate = new Date(opportunity.duration.split('-')[0].replace(/\D/g, '') + ' days');
     const opportunityEndDate = new Date(opportunity.duration.split('-')[1]?.replace(/\D/g, '') + ' days' || opportunityStartDate);
     const fromDate = searchFilters.fromDate ? new Date(searchFilters.fromDate) : null;
@@ -373,7 +372,7 @@ export default function IVYHomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
+      {/* Navigation (unchanged) */}
       <nav className="fixed top-0 w-full bg-[#000000] backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -426,7 +425,7 @@ export default function IVYHomePage() {
         </div>
       </nav>
 
-      {/* Hero Section with Background Image */}
+      {/* Hero Section with Background Image (unchanged) */}
       <section className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: `url(/bg6.png)` }}>
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -469,7 +468,7 @@ export default function IVYHomePage() {
           <div className="bg-background rounded-2xl p-8 shadow-lg border border-border">
             <div className="space-y-6">
               <div className="text-center space-y-2">
-                <h2 className="font-playfair font-bold text-2xl text-foreground">
+                <h2 className="font-playfair font-bold text-2xl text-[#F26602]">
                   Find Your Perfect Opportunity
                 </h2>
                 <p className="text-muted-foreground">
@@ -478,7 +477,7 @@ export default function IVYHomePage() {
                 </p>
               </div>
 
-              {/* Search Bar */}
+              {/* Search Bar (unchanged) */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -488,7 +487,7 @@ export default function IVYHomePage() {
                 />
               </div>
 
-              {/* Filters */}
+              {/* Filters (unchanged) */}
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select
                   value={searchFilters.location}
@@ -587,7 +586,7 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="font-playfair font-bold text-3xl text-foreground">
+              <h2 className="font-playfair font-bold text-3xl text-[#F26602]">
                 Available Opportunities
               </h2>
               <p className="text-muted-foreground">{filteredOpportunities.length} opportunities found</p>
@@ -645,7 +644,7 @@ export default function IVYHomePage() {
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-lg text-foreground line-clamp-1">
+                    <h3 className="font-semibold text-lg text-[#F26602] line-clamp-1">
                       {opportunity.title}
                     </h3>
                     <div className="flex items-center space-x-1 text-sm text-muted-foreground mt-1">
@@ -654,7 +653,7 @@ export default function IVYHomePage() {
                     </div>
                   </div>
 
-                  {/* Host Information */}
+                  {/* Host Information (unchanged) */}
                   <div className="flex items-center space-x-2 py-2">
                     <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
                       <Image
@@ -730,7 +729,7 @@ export default function IVYHomePage() {
       <section id="opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#F26602]">
               Featured Opportunities
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -799,7 +798,7 @@ export default function IVYHomePage() {
                       <span>({opportunity.reviews})</span>
                     </div>
                   </div>
-                  <CardTitle className="text-xl font-playfair">
+                  <CardTitle className="text-xl font-playfair text-[#F26602]">
                     {opportunity.title}
                   </CardTitle>
                 </CardHeader>
@@ -842,7 +841,7 @@ export default function IVYHomePage() {
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#F26602]">
               Impact Stories
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -918,7 +917,7 @@ export default function IVYHomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#F26602]">
                 About Us
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed text-justify">
@@ -997,7 +996,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* Footer (unchanged) */}
       <footer
         id="contact"
         className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border"
@@ -1080,7 +1079,6 @@ export default function IVYHomePage() {
             </div>
           </div>
 
-          {/* QR Code Section */}
           <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-sm text-muted-foreground text-center md:text-left">
               <p>&copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.</p>
@@ -1103,7 +1101,7 @@ export default function IVYHomePage() {
         </div>
       </footer>
 
-      {/* QR Modal */}
+      {/* QR Modal (unchanged) */}
       {showQrModal && paymentMethod === "qr" && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
           <div className="bg-white rounded-lg p-6 max-w-xs mx-auto">
