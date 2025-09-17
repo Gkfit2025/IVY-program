@@ -1071,3 +1071,319 @@ export default function IVYHomePage() {
     </div>
   );
 }
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  Heart,
+  MapPin,
+  Users,
+  Calendar,
+  Star,
+  ArrowRight,
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+  Search,
+  Filter,
+  X,
+} from "lucide-react";
+import Image from "next/image";
+
+interface SearchFilters {
+  location: string;
+  theme: string;
+  fromDate: string;
+  toDate: string;
+  type: string;
+}
+
+// -------------------- DateInput component --------------------
+const DateInput = ({ 
+  value, 
+  onChange, 
+  placeholder 
+}: { 
+  value: string; 
+  onChange: (value: string) => void; 
+  placeholder: string;
+}) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const datePickerRef = useRef<HTMLDivElement>(null);
+
+  const formatDisplayDate = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target as Node) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
+        setShowDatePicker(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const getDaysInMonth = (year: number, month: number) =>
+    new Date(year, month + 1, 0).getDate();
+
+  const getFirstDayOfMonth = (year: number, month: number) =>
+    new Date(year, month, 1).getDay();
+
+  const renderCalendar = () => {
+    if (!showDatePicker) return null;
+
+    const today = new Date();
+    const currentDate = value ? new Date(value) : today;
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+    const firstDayOfMonth = getFirstDayOfMonth(currentYear, currentMonth);
+
+    const days = [];
+
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(<div key={`empty-${i}`} className="w-8 h-8"></div>);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(
+        2,
+        "0"
+      )}-${String(day).padStart(2, "0")}`;
+      const isSelected = value === dateStr;
+
+      days.push(
+        <div
+          key={day}
+          className={`w-8 h-8 flex items-center justify-center rounded-full cursor-pointer ${
+            isSelected
+              ? "bg-primary text-primary-foreground"
+              : "hover:bg-accent hover:text-accent-foreground"
+          }`}
+          onClick={() => {
+            onChange(dateStr);
+            setShowDatePicker(false);
+          }}
+        >
+          {day}
+        </div>
+      );
+    }
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    return (
+      <div
+        ref={datePickerRef}
+        className="absolute top-full left-0 mt-1 bg-background border border-border rounded-md shadow-lg z-50 p-4 w-64"
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="font-semibold">
+            {monthNames[currentMonth]} {currentYear}
+          </h3>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowDatePicker(false)}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+            <div key={day} className="font-medium text-muted-foreground">
+              {day}
+            </div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-7 gap-1">{days}</div>
+
+        <div className="mt-4 flex justify-end">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              onChange("");
+              setShowDatePicker(false);
+            }}
+          >
+            Clear
+          </Button>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="relative">
+      <div className="relative">
+        <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={inputRef}
+          type="text"
+          placeholder={placeholder}
+          value={formatDisplayDate(value)}
+          readOnly
+          onClick={() => setShowDatePicker(!showDatePicker)}
+          className="pl-10 h-12 text-sm cursor-pointer"
+        />
+      </div>
+      {renderCalendar()}
+    </div>
+  );
+};
+
+// -------------------- Main IVY Home Page --------------------
+export default function IVYHomePage() {
+  const router = useRouter();
+  const [searchFilters, setSearchFilters] = useState<SearchFilters>({
+    location: "",
+    theme: "",
+    fromDate: "",
+    toDate: "",
+    type: "",
+  });
+
+  const handleSearch = () => {
+    const hasFilters = Object.values(searchFilters).some(
+      (value) => value !== ""
+    );
+    if (!hasFilters) {
+      alert("Please select at least one search filter.");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    Object.entries(searchFilters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const queryString = params.toString();
+    router.push(`/search${queryString ? `?${queryString}` : ""}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* -------------------- NAV + CONTENT (your existing code kept same) -------------------- */}
+      {/* ... all sections above remain same ... */}
+
+      {/* -------------------- Footer with QR Code -------------------- */}
+      <footer
+        id="contact"
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border"
+      >
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
+          {/* Logo + Intro */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Heart className="h-6 w-6 text-primary" />
+              <span className="font-playfair font-bold text-xl text-foreground">
+                IV
+              </span>
+            </div>
+            <p className="text-muted-foreground text-sm">
+              Connecting volunteers with meaningful opportunities across South
+              India.
+            </p>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-3">
+            <h4 className="font-semibold text-foreground">Contact Us</h4>
+            <p className="text-sm text-muted-foreground flex items-center gap-2">
+              <Phone className="h-4 w-4" /> +91 98765 43210
+            </p>
+            <p className="text-sm text-muted-foreground flex items-center gap-2">
+              <Mail className="h-4 w-4" /> info@gkf.org
+            </p>
+          </div>
+
+          {/* Social Links */}
+          <div className="space-y-3">
+            <h4 className="font-semibold text-foreground">Follow Us</h4>
+            <div className="flex gap-4">
+              <Link href="https://facebook.com">
+                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary" />
+              </Link>
+              <Link href="https://instagram.com">
+                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary" />
+              </Link>
+            </div>
+          </div>
+
+          {/* QR Code Section */}
+          <div className="space-y-3 text-center">
+            <h4 className="font-semibold text-foreground">Support Us</h4>
+            <p className="text-sm text-muted-foreground">
+              Scan the QR to make a payment or donation
+            </p>
+            <div className="flex justify-center">
+              <Image
+                src="/qr.png"
+                alt="QR Code for Payments"
+                width={140}
+                height={140}
+                className="rounded-md border border-border"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 text-center text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Grace Kennett Foundation. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  );
+}
