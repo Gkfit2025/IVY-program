@@ -742,7 +742,7 @@ export default function IVYHomePage() {
                 location: "Kochi, Kerala",
                 duration: "3-6 weeks",
                 category: "Healthcare",
-                image: "/medical.png",
+                image: "/Medical.png",
                 rating: 4.7,
                 reviews: 31,
                 slug: "healthcare-assistance",
