@@ -1119,50 +1119,13 @@ export default function IVYHomePage() {
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-sm text-gray-400 text-center md:text-left">
-              <p>&copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.</p>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <p className="text-sm font-medium mb-2 text-white">Support us with a donation</p>
-              <div className="border border-gray-700 rounded-md p-2 bg-gray-800">
-                <Image
-                  src="/qr.png"
-                  alt="Donation QR Code"
-                  width={100}
-                  height={100}
-                  className="rounded"
-                />
-              </div>
-              <p className="text-xs text-gray-400 mt-2">Scan to donate</p>
-            </div>
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+            <p className="text-sm text-gray-400">
+              &copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.
+            </p>
           </div>
         </div>
       </footer>
-
-      {/* QR Modal */}
-      {showQrModal && paymentMethod === "qr" && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
-          <div className="bg-gray-900 rounded-lg p-6 max-w-xs mx-auto border border-gray-800">
-            <h2 className="text-lg font-semibold mb-2 text-center text-white">Scan the QR code</h2>
-            <Image
-              src="/qr.png"
-              alt="Payment QR Code"
-              width={200}
-              height={200}
-              className="object-contain mx-auto"
-            />
-            <Button
-              className="mt-4 w-full bg-[#F26602] hover:bg-[#F26602]/90 text-white"
-              onClick={() => setShowQrModal(false)}
-              type="button"
-            >
-              Close
-            </Button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
