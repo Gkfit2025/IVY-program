@@ -5,25 +5,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { useState } from "react"
 import Link from "next/link"
-import {
-  Heart,
-  MapPin,
-  Users,
-  Calendar,
-  Star,
-  ArrowRight,
-  Phone,
-  Mail,
-  Instagram,
-  Facebook,
-  Search,
-  Filter,
-  ChevronDown,
-} from "lucide-react"
+import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Search, Filter } from "lucide-react"
 import Image from "next/image"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -46,50 +33,7 @@ export default function IVYHomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#search" className="text-foreground hover:text-primary transition-colors">
-                Find Opportunities
-              </a>
-              <a href="#about" className="text-foreground hover:text-primary transition-colors">
-                About Us
-              </a>
-              <a href="#impact" className="text-foreground hover:text-primary transition-colors">
-                Impact Stories
-              </a>
-              <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
-              </a>
-            </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Join IVY
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/internship">Internship</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/join-ivy?type=volunteer">Volunteer</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/join-ivy?type=both">Both</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
@@ -699,68 +643,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
-              </div>
-              <p className="text-muted-foreground text-sm">
-                Connecting volunteers with meaningful opportunities across South India.
-              </p>
-              <div className="flex space-x-4">
-                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">For Volunteers</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Find Opportunities</div>
-                <div>How It Works</div>
-                <div>Safety Guidelines</div>
-                <div>FAQs</div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">For Hosts</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>List Your Project</div>
-                <div>Host Resources</div>
-                <div>Best Practices</div>
-                <div>Support</div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Contact</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <span>hello@ivyplatform.org</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-4 w-4" />
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-4 w-4" />
-                  <span>Madurai, Tamil Nadu</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved. Spreading kindness across South India.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

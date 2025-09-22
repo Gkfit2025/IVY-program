@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
 import { useState } from "react"
-import { Heart, ArrowLeft, CheckCircle } from "lucide-react"
+import { CheckCircle } from "lucide-react"
 import ApplicationForm from "@/components/application-form"
+import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/footer"
 
 export default function ApplyPage() {
   const [showApplication, setShowApplication] = useState(false)
@@ -17,32 +18,7 @@ export default function ApplyPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
-            </Link>
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href="/internship" className="text-foreground hover:text-primary transition-colors">
-                <ArrowLeft className="inline h-4 w-4 mr-2" />
-                Back to Program
-              </Link>
-              <Link href="/#contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
-            </div>
-            <Button
-              onClick={() => setShowApplication(true)}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
-            >
-              Start Application
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
       <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -263,61 +239,7 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
-              </Link>
-              <p className="text-muted-foreground text-sm">
-                Connecting healthcare professionals with meaningful opportunities across South India.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Programs</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/internship" className="block hover:text-primary transition-colors">
-                  Healthcare Internships
-                </Link>
-                <Link href="/search?type=volunteer" className="block hover:text-primary transition-colors">
-                  Volunteer Opportunities
-                </Link>
-                <Link href="/join-ivy" className="block hover:text-primary transition-colors">
-                  All Programs
-                </Link>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Resources</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/internship/learn-more" className="block hover:text-primary transition-colors">
-                  Program Details
-                </Link>
-                <div>Application Guide</div>
-                <div>FAQs</div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Support</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Contact Us</div>
-                <div>Help Center</div>
-                <div>Safety Guidelines</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
