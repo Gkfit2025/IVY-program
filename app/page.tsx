@@ -34,10 +34,10 @@ export default function IVYHomePage() {
   return (
     <div className="min-h-screen bg-ivory">
       <Header className="bg-black" navItems={[
-        { name: "Join IVY", href: "/join" },
-        { name: "Contact", href: "/contact" },
         { name: "About Us", href: "/about" },
-        { name: "Impact Stories", href: "/impact" }
+        { name: "Impact Stories", href: "/impact" },
+        { name: "Join IVY", href: "/join" },
+        { name: "Contact", href: "/contact" }
       ]} />
 
       {/* Hero Section with Search */}
