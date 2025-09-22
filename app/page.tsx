@@ -318,7 +318,7 @@ export default function IVYHomePage() {
       type: "Volunteer",
       hostName: "Hampi Heritage Foundation",
       hostImage: "/host4.png",
-      image: "/images/heritage.png",
+      image: "/heritage.png",
       rating: 4.6,
       reviews: 15,
       price: "₹2,200/week",
