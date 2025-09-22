@@ -356,7 +356,7 @@ export default function IVYHomePage() {
       type: "Intern",
       hostName: "Inclusive Learning Center",
       hostImage: "/host6.png",
-      image: "/images/edu.png",
+      image: "/edu.png",
       rating: 4.9,
       reviews: 22,
       price: "₹3,000/week",
