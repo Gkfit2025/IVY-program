@@ -118,10 +118,7 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
-                    <SelectItem value="kerala">Kerala</SelectItem>
                     <SelectItem value="karnataka">Karnataka</SelectItem>
-                    <SelectItem value="andhra-pradesh">Andhra Pradesh</SelectItem>
-                    <SelectItem value="telangana">Telangana</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -134,12 +131,7 @@ export default function IVYHomePage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="childcare">Childcare & Education</SelectItem>
-                    <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
                     <SelectItem value="wildlife">Wildlife & Environment</SelectItem>
-                    <SelectItem value="heritage">Heritage & Culture</SelectItem>
-                    <SelectItem value="community">Community Development</SelectItem>
-                    <SelectItem value="elderly">Elderly Care</SelectItem>
-                    <SelectItem value="disability">Disability Support</SelectItem>
                   </SelectContent>
                 </Select>
 
