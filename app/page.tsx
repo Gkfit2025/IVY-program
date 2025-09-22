@@ -455,7 +455,7 @@ export default function IVYHomePage() {
 
       <div className="relative z-10">
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-white backdrop-blur-sm border-b border-gray-200 z-50">
+        <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-700 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
@@ -473,28 +473,28 @@ export default function IVYHomePage() {
               <div className="hidden md:flex items-center space-x-8">
                 <Link
                   href="#search"
-                  className="text-[#F26602] hover:text-black transition-colors"
+                  className="text-[#F26602] hover:text-white transition-colors"
                   aria-label="Find Opportunities"
                 >
                   Find Opportunities
                 </Link>
                 <Link
                   href="#about"
-                  className="text-[#F26602] hover:text-black transition-colors"
+                  className="text-[#F26602] hover:text-white transition-colors"
                   aria-label="About Us"
                 >
                   About Us
                 </Link>
                 <Link
                   href="#impact"
-                  className="text-[#F26602] hover:text-black transition-colors"
+                  className="text-[#F26602] hover:text-white transition-colors"
                   aria-label="Impact Stories"
                 >
                   Impact Stories
                 </Link>
                 <Link
                   href="#contact"
-                  className="text-[#F26602] hover:text-black transition-colors"
+                  className="text-[#F26602] hover:text-white transition-colors"
                   aria-label="Contact"
                 >
                   Contact
@@ -813,7 +813,7 @@ export default function IVYHomePage() {
                         className="bg-[#F26602] hover:bg-[#F26602]/90 text-white"
                         asChild
                       >
-                        <Link href={`/apply?opportunity=${encodeURIComponent(opportunity.title)}`}>
+                        <Link href={`/program-details?opportunity=${encodeURIComponent(opportunity.title)}`}>
                           Apply Now
                         </Link>
                       </Button>
