@@ -2,15 +2,20 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
 import Link from "next/link"
-import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Search, Filter } from "lucide-react"
+import { Heart, MapPin, Users, Calendar, Star, Search } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function IVYHomePage() {
   const [searchFilters, setSearchFilters] = useState({
@@ -20,6 +25,8 @@ export default function IVYHomePage() {
     toDate: "",
     type: "",
   })
+  const [selectedOpportunity, setSelectedOpportunity] = useState("")
+  const [calendarOpen, setCalendarOpen] = useState(false)
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -30,6 +37,39 @@ export default function IVYHomePage() {
     const queryString = params.toString()
     window.location.href = `/search${queryString ? `?${queryString}` : ""}`
   }
+
+  const volunteerOptions = [
+    {
+      title: "Child Education Support",
+      location: "Madurai, Tamil Nadu",
+      duration: "1-2 months",
+      category: "Education",
+      image: "children learning in classroom with volunteer teacher",
+      rating: 4.8,
+      reviews: 24,
+      price: "1 month ₹1,000 / 2 months ₹2,000",
+    },
+    {
+      title: "Wildlife Conservation",
+      location: "Coimbatore, Tamil Nadu",
+      duration: "1-2 months",
+      category: "Environment",
+      image: "volunteers working on wildlife conservation project",
+      rating: 4.9,
+      reviews: 18,
+      price: "1 month ₹1,000 / 2 months ₹2,000",
+    },
+    {
+      title: "Healthcare Assistance",
+      location: "Kochi, Kerala",
+      duration: "1-2 months",
+      category: "Healthcare",
+      image: "medical volunteers helping in rural healthcare clinic",
+      rating: 4.7,
+      reviews: 31,
+      price: "1 month ₹1,000 / 2 months ₹2,000",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -64,6 +104,24 @@ export default function IVYHomePage() {
                   <span>100+ Projects</span>
                 </div>
               </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Join IV
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => (window.location.href = "/internship-program")}>
+                    Internship
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSelectedOpportunity("volunteer")}>
+                    Volunteer
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSelectedOpportunity("both")}>
+                    Internship & Volunteer
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
@@ -98,7 +156,6 @@ export default function IVYHomePage() {
                 </p>
               </div>
 
-              {/* Search Bar */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
@@ -107,7 +164,6 @@ export default function IVYHomePage() {
                 />
               </div>
 
-              {/* Filters */}
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select
                   value={searchFilters.location}
@@ -198,303 +254,166 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="font-playfair font-bold text-3xl text-foreground">Available Opportunities</h2>
-              <p className="text-muted-foreground">147 opportunities found</p>
+      {selectedOpportunity && (
+        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">
+                {selectedOpportunity === "volunteer" ? "Volunteer Opportunities" : "Internship & Volunteer Opportunities"}
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Discover meaningful ways to contribute to communities across South India
+              </p>
             </div>
-            <Button
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-            >
-              <Filter className="mr-2 h-4 w-4" />
-              More Filters
-            </Button>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Child Education Support",
-                location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
-                category: "Childcare & Education",
-                type: "Volunteer & Intern",
-                hostName: "Sunshine Children's Foundation",
-                hostImage: "smiling indian woman host profile photo",
-                image: "children learning in classroom with volunteer teacher",
-                rating: 4.8,
-                reviews: 24,
-                price: "₹2,500/week",
-                accommodation: "Shared dormitory",
-                meals: "3 meals included",
-                verified: true,
-              },
-              {
-                title: "Wildlife Conservation Project",
-                location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
-                category: "Wildlife & Environment",
-                type: "Volunteer",
-                hostName: "Western Ghats Conservation Trust",
-                hostImage: "indian male conservationist profile photo",
-                image: "volunteers working on wildlife conservation project",
-                rating: 4.9,
-                reviews: 18,
-                price: "₹3,200/week",
-                accommodation: "Private room",
-                meals: "Vegetarian meals",
-                verified: true,
-              },
-              {
-                title: "Rural Healthcare Support",
-                location: "Kochi, Kerala",
-                duration: "3-6 weeks",
-                category: "Healthcare & Medical",
-                type: "Intern",
-                hostName: "Kerala Rural Health Initiative",
-                hostImage: "indian female doctor profile photo",
-                image: "medical volunteers helping in rural healthcare clinic",
-                rating: 4.7,
-                reviews: 31,
-                price: "₹2,800/week",
-                accommodation: "Host family",
-                meals: "Local cuisine",
-                verified: true,
-              },
-              {
-                title: "Heritage Site Restoration",
-                location: "Hampi, Karnataka",
-                duration: "2-8 weeks",
-                category: "Heritage & Culture",
-                type: "Volunteer",
-                hostName: "Hampi Heritage Foundation",
-                hostImage: "indian male archaeologist profile photo",
-                image: "volunteers restoring ancient temple structures",
-                rating: 4.6,
-                reviews: 15,
-                price: "₹2,200/week",
-                accommodation: "Guesthouse",
-                meals: "Traditional meals",
-                verified: true,
-              },
-              {
-                title: "Elderly Care Program",
-                location: "Chennai, Tamil Nadu",
-                duration: "1-4 weeks",
-                category: "Elderly Care",
-                type: "Volunteer & Intern",
-                hostName: "Golden Years Care Center",
-                hostImage: "indian female social worker profile photo",
-                image: "volunteers spending time with elderly residents",
-                rating: 4.8,
-                reviews: 28,
-                price: "₹2,000/week",
-                accommodation: "Nearby hostel",
-                meals: "South Indian meals",
-                verified: true,
-              },
-              {
-                title: "Special Needs Education",
-                location: "Bangalore, Karnataka",
-                duration: "2-12 weeks",
-                category: "Disability Support",
-                type: "Intern",
-                hostName: "Inclusive Learning Center",
-                hostImage: "indian male special educator profile photo",
-                image: "volunteers working with children with special needs",
-                rating: 4.9,
-                reviews: 22,
-                price: "₹3,000/week",
-                accommodation: "Shared apartment",
-                meals: "Flexible dining",
-                verified: true,
-              },
-            ].map((opportunity, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-border overflow-hidden"
-              >
-                <div className="relative">
-                  <div className="aspect-video overflow-hidden">
-                    <Image
-                      src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
-                      alt={opportunity.title}
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  {opportunity.verified && (
-                    <Badge className="absolute top-3 left-3 bg-green-500 hover:bg-green-600 text-white">Verified</Badge>
-                  )}
-                  <div className="absolute top-3 right-3 bg-background/90 backdrop-blur-sm rounded-full p-2">
-                    <Heart className="h-4 w-4 text-muted-foreground hover:text-red-500 cursor-pointer transition-colors" />
-                  </div>
-                </div>
-
-                <CardContent className="p-4 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20 text-xs">
-                      {opportunity.category}
-                    </Badge>
-                    <div className="flex items-center space-x-1 text-sm">
-                      <Star className="h-4 w-4 fill-current text-yellow-500" />
-                      <span className="font-medium">{opportunity.rating}</span>
-                      <span className="text-muted-foreground">({opportunity.reviews})</span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-lg text-foreground line-clamp-1">{opportunity.title}</h3>
-                    <div className="flex items-center space-x-1 text-sm text-muted-foreground mt-1">
-                      <MapPin className="h-3 w-3" />
-                      <span>{opportunity.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Host Information */}
-                  <div className="flex items-center space-x-2 py-2">
-                    <div className="w-8 h-8 rounded-full overflow-hidden bg-muted">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {(selectedOpportunity === "volunteer" || selectedOpportunity === "both") &&
+                volunteerOptions.map((opportunity, index) => (
+                  <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
+                    <div className="aspect-video overflow-hidden rounded-t-lg">
                       <Image
-                        src={`/abstract-geometric-shapes.png?height=32&width=32&query=${opportunity.hostImage}`}
-                        alt={opportunity.hostName}
-                        width={32}
-                        height={32}
-                        className="object-cover w-full h-full"
+                        src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
+                        alt={opportunity.title}
+                        width={400}
+                        height={240}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{opportunity.hostName}</p>
-                      <p className="text-xs text-muted-foreground">Host organization</p>
-                    </div>
-                  </div>
+                    <CardHeader className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
+                          {opportunity.category}
+                        </Badge>
+                        <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                          <Star className="h-4 w-4 fill-current text-yellow-500" />
+                          <span>{opportunity.rating}</span>
+                          <span>({opportunity.reviews})</span>
+                        </div>
+                      </div>
+                      <CardTitle className="text-xl font-playfair">{opportunity.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2 text-sm text-muted-foreground">
+                        <div className="flex items-center space-x-2">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <span>{opportunity.location}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Calendar className="h-4 w-4 text-primary" />
+                          <span>{opportunity.duration}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span>{opportunity.price}</span>
+                        </div>
+                      </div>
+                      <Button
+                        onClick={() => setCalendarOpen(true)}
+                        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                      >
+                        Select Dates
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
 
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-between">
-                      <span>Duration:</span>
-                      <span className="text-foreground">{opportunity.duration}</span>
+            {calendarOpen && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <Card className="bg-background p-6 max-w-md w-full">
+                  <CardHeader>
+                    <CardTitle>Select Your Dates</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">From Date</label>
+                        <Input
+                          type="date"
+                          value={searchFilters.fromDate}
+                          onChange={(e) => setSearchFilters((prev) => ({ ...prev, fromDate: e.target.value }))}
+                          className="h-12"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground">To Date</label>
+                        <Input
+                          type="date"
+                          value={searchFilters.toDate}
+                          onChange={(e) => setSearchFilters((prev) => ({ ...prev, toDate: e.target.value }))}
+                          className="h-12"
+                        />
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span>Type:</span>
-                      <span className="text-foreground">{opportunity.type}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>Accommodation:</span>
-                      <span className="text-foreground">{opportunity.accommodation}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-2 border-t border-border">
-                    <div>
-                      <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
-                      <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
-                    </div>
-                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    <Button
+                      asChild
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
                       <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
                         Apply Now
                       </a>
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <Button
+                      variant="outline"
+                      onClick={() => setCalendarOpen(false)}
+                      className="w-full"
+                    >
+                      Cancel
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
           </div>
+        </section>
+      )}
 
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-            >
-              Load More Opportunities
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Opportunities */}
-      <section id="opportunities" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section id="internship-program" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Featured Opportunities</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Internship Program Details</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover meaningful ways to contribute to communities across South India
+              Explore our internship program designed to provide hands-on experience and professional growth
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: "Child Education Support",
-                location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
-                category: "Education",
-                image: "children learning in classroom with volunteer teacher",
-                rating: 4.8,
-                reviews: 24,
+                title: "Clinical Exposure",
+                description: "Interns observe patient care, assist healthcare professionals, and learn hospital operations.",
+                image: "intern observing patient care in hospital",
               },
               {
-                title: "Wildlife Conservation",
-                location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
-                category: "Environment",
-                image: "volunteers working on wildlife conservation project",
-                rating: 4.9,
-                reviews: 18,
+                title: "Department Rotations",
+                description: "Opportunities in General Medicine, Pediatrics, Nursing, Pharmacy, Laboratory, and Administration.",
+                image: "intern rotating through hospital departments",
               },
               {
-                title: "Healthcare Assistance",
-                location: "Kochi, Kerala",
-                duration: "3-6 weeks",
-                category: "Healthcare",
-                image: "medical volunteers helping in rural healthcare clinic",
-                rating: 4.7,
-                reviews: 31,
+                title: "Skill Development",
+                description: "Training in patient interaction, documentation, and teamwork.",
+                image: "intern practicing patient interaction skills",
               },
-            ].map((opportunity, index) => (
+              {
+                title: "Mentorship",
+                description: "Guidance from doctors, nurses, and staff for career planning.",
+                image: "mentor guiding intern in hospital",
+              },
+            ].map((section, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <Image
-                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${opportunity.image}`}
-                    alt={opportunity.title}
+                    src={`/abstract-geometric-shapes.png?height=240&width=400&query=${section.image}`}
+                    alt={section.title}
                     width={400}
                     height={240}
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <CardHeader className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
-                      {opportunity.category}
-                    </Badge>
-                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                      <Star className="h-4 w-4 fill-current text-yellow-500" />
-                      <span>{opportunity.rating}</span>
-                      <span>({opportunity.reviews})</span>
-                    </div>
-                  </div>
-                  <CardTitle className="text-xl font-playfair">{opportunity.title}</CardTitle>
+                <CardHeader>
+                  <CardTitle className="text-xl font-playfair">{section.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span>{opportunity.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>{opportunity.duration}</span>
-                    </div>
-                  </div>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Link href="/healthcare-assistance" className="block w-full">
-                      Learn More
-                    </Link>
-                  </Button>
+                <CardContent>
+                  <p className="text-muted-foreground">{section.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -502,18 +421,15 @@ export default function IVYHomePage() {
 
           <div className="text-center mt-12">
             <Button
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              onClick={() => setCalendarOpen(true)}
+              className="w-full max-w-md bg-primary hover:bg-primary/90 text-primary-foreground"
             >
-              View All Opportunities
-              <ArrowRight className="ml-2 h-5 w-5" />
+              Select Dates
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Impact Stories */}
       <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-4 mb-16">
@@ -582,7 +498,6 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -623,7 +538,6 @@ export default function IVYHomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance">Ready to Make a Difference?</h2>
