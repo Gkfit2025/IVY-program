@@ -289,7 +289,9 @@ function SearchResults() {
                           <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                         </div>
                         <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                          Apply Now
+                          <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                            Apply Now
+                          </a>
                         </Button>
                       </div>
                     </CardContent>

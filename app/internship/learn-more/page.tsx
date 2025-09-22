@@ -30,7 +30,9 @@ export default function LearnMorePage() {
               </Link>
             </div>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link href="/internship/apply">Apply Now</Link>
+              <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                Apply Now
+              </a>
             </Button>
           </div>
         </div>
@@ -378,7 +380,9 @@ export default function LearnMorePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/internship/apply">Apply Now</Link>
+              <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                Apply Now
+              </a>
             </Button>
             <Button
               size="lg"

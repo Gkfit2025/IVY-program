@@ -40,7 +40,9 @@ export function Header() {
           </div>
 
           <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <Link href="/internship/apply">Apply Now</Link>
+            <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+              Apply Now
+            </a>
           </Button>
         </div>
       </div>

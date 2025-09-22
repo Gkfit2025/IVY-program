@@ -20,7 +20,6 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link" // Fixed Link import to use default import instead of named import
-import { ApplicationForm } from "@/components/application-form"
 
 export default function HealthcareAssistancePage() {
   const [showApplication, setShowApplication] = useState(false)
@@ -38,7 +37,13 @@ export default function HealthcareAssistancePage() {
               Apply for Healthcare Assistance Program
             </h1>
           </div>
-          <ApplicationForm />
+          <Button
+            onClick={() => window.open("https://forms.gle/FHirPbejNSDV87Lx5", "_blank")}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+            size="lg"
+          >
+            Apply Now
+          </Button>
         </div>
       </div>
     )
@@ -163,7 +168,7 @@ export default function HealthcareAssistancePage() {
                       <Badge variant="secondary">Internship Available</Badge>
                     </div>
                     <Button
-                      onClick={() => setShowApplication(true)}
+                      onClick={() => window.open("https://forms.gle/FHirPbejNSDV87Lx5", "_blank")}
                       className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                       size="lg"
                     >

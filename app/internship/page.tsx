@@ -33,7 +33,9 @@ export default function InternshipPage() {
               </Link>
             </div>
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link href="/internship/apply">Apply Now</Link>
+              <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                Apply Now
+              </a>
             </Button>
           </div>
         </div>
@@ -73,7 +75,9 @@ export default function InternshipPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Link href="/internship/apply">Apply Now</Link>
+                  <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                    Apply Now
+                  </a>
                 </Button>
                 <Button
                   size="lg"
@@ -259,9 +263,14 @@ export default function InternshipPage() {
                     </div>
                   </div>
                   <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Link href="/internship/apply" className="block w-full">
+                    <a
+                      href="https://forms.gle/FHirPbejNSDV87Lx5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full"
+                    >
                       Apply for This Position
-                    </Link>
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
@@ -314,7 +323,9 @@ export default function InternshipPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <Link href="/internship/apply">Apply Now</Link>
+              <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                Apply Now
+              </a>
             </Button>
             <Button
               size="lg"

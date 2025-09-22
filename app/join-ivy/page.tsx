@@ -8,7 +8,7 @@ import Link from "next/link"
 import { Heart, MapPin, Users, Calendar, Star, GraduationCap, HandHeart, Globe } from "lucide-react"
 import Image from "next/image"
 
-export default function JoinIVPage() {
+export default function JoinIVYPage() {
   const searchParams = useSearchParams()
   const type = searchParams.get("type")
 
@@ -20,7 +20,7 @@ export default function JoinIVPage() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
               <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IV</span>
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/#search" className="text-foreground hover:text-primary transition-colors">
@@ -48,7 +48,7 @@ export default function JoinIVPage() {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
-              {type === "volunteer" ? "Volunteer Program" : type === "both" ? "Volunteer & Internship" : "Join IV"}
+              {type === "volunteer" ? "Volunteer Program" : type === "both" ? "Volunteer & Internship" : "Join IVY"}
             </Badge>
             <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
               Start Your
@@ -330,7 +330,7 @@ export default function JoinIVPage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IV Platform. All rights reserved.</p>
+            <p>&copy; 2024 IVY Platform. All rights reserved.</p>
           </div>
         </div>
       </footer>
