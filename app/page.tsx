@@ -254,6 +254,7 @@ export default function IVYHomePage() {
 
   const opportunities = [
     {
+      id: 1,
       title: "Child Education Support",
       location: "Madurai, Tamil Nadu",
       duration: "2-4 weeks",
@@ -273,6 +274,7 @@ export default function IVYHomePage() {
       typeFilter: ["volunteer", "intern"],
     },
     {
+      id: 2,
       title: "Wildlife Conservation Project",
       location: "Coimbatore, Tamil Nadu",
       duration: "1-3 months",
@@ -292,6 +294,7 @@ export default function IVYHomePage() {
       typeFilter: ["volunteer"],
     },
     {
+      id: 3,
       title: "Rural Healthcare Support",
       location: "Kochi, Kerala",
       duration: "3-6 weeks",
@@ -311,6 +314,7 @@ export default function IVYHomePage() {
       typeFilter: ["intern"],
     },
     {
+      id: 4,
       title: "Heritage Site Restoration",
       location: "Hampi, Karnataka",
       duration: "2-8 weeks",
@@ -330,6 +334,7 @@ export default function IVYHomePage() {
       typeFilter: ["volunteer"],
     },
     {
+      id: 5,
       title: "Elderly Care Program",
       location: "Chennai, Tamil Nadu",
       duration: "1-4 weeks",
@@ -349,6 +354,7 @@ export default function IVYHomePage() {
       typeFilter: ["volunteer", "intern"],
     },
     {
+      id: 6,
       title: "Special Needs Education",
       location: "Bangalore, Karnataka",
       duration: "2-12 weeks",
@@ -414,6 +420,10 @@ export default function IVYHomePage() {
     router.push(`/search${queryString ? `?${queryString}` : ""}`)
   }
 
+  const handleApplyNow = (opportunityId: number) => {
+    router.push(`/program-details/${opportunityId}`)
+  }
+
   return (
     <div
       className="min-h-screen relative"
@@ -454,8 +464,8 @@ export default function IVYHomePage() {
       `}</style>
 
       <div className="relative z-10">
-        {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-700 z-50">
+        {/* Navigation - Changed to black background */}
+        <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-800 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
@@ -466,35 +476,35 @@ export default function IVYHomePage() {
                   height={32}
                   className="object-contain"
                 />
-                <span className="font-playfair font-bold text-2xl text-[#F26602]">
+                <span className="font-playfair font-bold text-2xl text-white">
                   Grace Kennett Foundation
                 </span>
               </div>
               <div className="hidden md:flex items-center space-x-8">
                 <Link
                   href="#search"
-                  className="text-[#F26602] hover:text-white transition-colors"
+                  className="text-white hover:text-gray-300 transition-colors"
                   aria-label="Find Opportunities"
                 >
                   Find Opportunities
                 </Link>
                 <Link
                   href="#about"
-                  className="text-[#F26602] hover:text-white transition-colors"
+                  className="text-white hover:text-gray-300 transition-colors"
                   aria-label="About Us"
                 >
                   About Us
                 </Link>
                 <Link
                   href="#impact"
-                  className="text-[#F26602] hover:text-white transition-colors"
+                  className="text-white hover:text-gray-300 transition-colors"
                   aria-label="Impact Stories"
                 >
                   Impact Stories
                 </Link>
                 <Link
                   href="#contact"
-                  className="text-[#F26602] hover:text-white transition-colors"
+                  className="text-white hover:text-gray-300 transition-colors"
                   aria-label="Contact"
                 >
                   Contact
@@ -811,11 +821,9 @@ export default function IVYHomePage() {
                       <Button
                         size="sm"
                         className="bg-[#F26602] hover:bg-[#F26602]/90 text-white"
-                        asChild
+                        onClick={() => handleApplyNow(opportunity.id)}
                       >
-                        <Link href={`/program-details?opportunity=${encodeURIComponent(opportunity.title)}`}>
-                          Apply Now
-                        </Link>
+                        Apply Now
                       </Button>
                     </div>
                   </CardContent>
