@@ -169,6 +169,7 @@ export default function IVYHomePage() {
                           value={searchFilters.fromDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, fromDate: e.target.value }))}
                           className="pl-10 h-12 text-sm"
+                          onClick={(e) => e.target.showPicker && e.target.showPicker()}
                         />
                       </div>
                       <div className="relative">
@@ -179,6 +180,7 @@ export default function IVYHomePage() {
                           value={searchFilters.toDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, toDate: e.target.value }))}
                           className="pl-10 h-12 text-sm"
+                          onClick={(e) => e.target.showPicker && e.target.showPicker()}
                         />
                       </div>
                     </div>
@@ -259,21 +261,6 @@ export default function IVYHomePage() {
                 price: "₹2,800/week",
                 accommodation: "Host family",
                 meals: "Local cuisine",
-                verified: true,
-              },
-              {
-                title: "Special Needs Education",
-                location: "Bangalore, Karnataka",
-                category: "Disability Support",
-                type: "Intern",
-                hostName: "Inclusive Learning Center",
-                hostImage: "indian male special educator profile photo",
-                image: "volunteers working with children with special needs",
-                rating: 4.9,
-                reviews: 22,
-                price: "₹3,000/week",
-                accommodation: "Shared apartment",
-                meals: "Flexible dining",
                 verified: true,
               },
             ].map((opportunity, index) => (
