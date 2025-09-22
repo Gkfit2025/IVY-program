@@ -24,7 +24,9 @@ export default function IVYHomePage() {
   const handleSearch = () => {
     const params = new URLSearchParams()
     Object.entries(searchFilters).forEach(([key, value]) => {
-      if (value) params.set(key, value)
+      if (value) {
+        params.append(key, value)
+      }
     })
 
     const queryString = params.toString()
@@ -117,7 +119,6 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="tamil-nadu">Tamil Nadu</SelectItem>
                     <SelectItem value="kerala">Kerala</SelectItem>
                   </SelectContent>
                 </Select>
@@ -130,8 +131,6 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Theme" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="childcare">Childcare & Education</SelectItem>
-                    <SelectItem value="wildlife">Wildlife & Environment</SelectItem>
                     <SelectItem value="healthcare">Healthcare & Medical</SelectItem>
                   </SelectContent>
                 </Select>
@@ -144,9 +143,7 @@ export default function IVYHomePage() {
                     <SelectValue placeholder="Type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="volunteer">Volunteer</SelectItem>
                     <SelectItem value="intern">Internship</SelectItem>
-                    <SelectItem value="both">Both</SelectItem>
                   </SelectContent>
                 </Select>
 
