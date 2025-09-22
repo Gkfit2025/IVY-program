@@ -33,12 +33,15 @@ export default function IVYHomePage() {
 
   return (
     <div className="min-h-screen bg-ivory">
-      <Header className="bg-black" navItems={[
-        { name: "About Us", href: "/about" },
-        { name: "Impact Stories", href: "/impact" },
-        { name: "Join IVY", href: "/join" },
-        { name: "Contact", href: "/contact" }
-      ]} />
+      <Header 
+        className="bg-black" 
+        navItems={[
+          { name: "About Us", href: "/about" },
+          { name: "Impact Stories", href: "/impact-stories" },
+          { name: "Join IVY", href: "/join-ivy" },
+          { name: "Contact", href: "/contact" }
+        ]} 
+      />
 
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8 bg-ivory">
@@ -92,6 +95,7 @@ export default function IVYHomePage() {
         </div>
       </section>
 
+      {/* Rest of your existing code remains exactly the same */}
       <section id="search" className="py-12 px-4 sm:px-6 lg:px-8 bg-ivory">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-300">
