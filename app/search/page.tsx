@@ -42,7 +42,12 @@ function SearchResults() {
       const matchesLocation = !locationParam || opportunity.state === locationParam
       const matchesTheme = !themeParam || opportunity.theme === themeParam
       const matchesType =
-        !typeParam || typeParam === "both" || opportunity.type === typeParam || opportunity.type === "both"
+        !typeParam ||
+        typeParam === "both" ||
+        opportunity.type === typeParam ||
+        opportunity.type === "both" ||
+        (typeParam === "internship" && opportunity.type === "intern") ||
+        (typeParam === "intern" && opportunity.type === "internship")
 
       return matchesLocation && matchesTheme && matchesType
     })
@@ -71,6 +76,7 @@ function SearchResults() {
       type: {
         volunteer: "Volunteer",
         intern: "Internship",
+        internship: "Internship",
         both: "Both",
       },
     }
