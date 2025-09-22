@@ -856,7 +856,7 @@ export default function IVYHomePage() {
                   location: "Madurai, Tamil Nadu",
                   duration: "2-4 weeks",
                   category: "Education",
-                  image: "/images/Child.png",
+                  image: "/Child.png",
                   rating: 4.8,
                   reviews: 24,
                   slug: "child-education-support",
@@ -866,7 +866,7 @@ export default function IVYHomePage() {
                   location: "Coimbatore, Tamil Nadu",
                   duration: "1-3 months",
                   category: "Environment",
-                  image: "/images/wildlife.png",
+                  image: "/wildlife.png",
                   rating: 4.9,
                   reviews: 18,
                   slug: "wildlife-conservation",
@@ -876,7 +876,7 @@ export default function IVYHomePage() {
                   location: "Kochi, Kerala",
                   duration: "3-6 weeks",
                   category: "Healthcare",
-                  image: "/images/Medical.png",
+                  image: "/Medical.png",
                   rating: 4.7,
                   reviews: 31,
                   slug: "healthcare-assistance",
@@ -1059,7 +1059,7 @@ export default function IVYHomePage() {
               </div>
               <div className="aspect-square rounded-2xl overflow-hidden bg-gray-200">
                 <Image
-                  src="/images/pro.png"
+                  src="/pro.png"
                   alt="IVY volunteers working together"
                   width={500}
                   height={500}
@@ -1073,10 +1073,10 @@ export default function IVYHomePage() {
         {/* CTA Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#F26602" }}>
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance text-white">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-balance text-black">
               Ready to Make a Difference?
             </h2>
-            <p className="text-xl text-white/90 text-pretty">
+            <p className="text-xl text-black/90 text-pretty">
               Join our community of changemakers and start your volunteering journey
               today
             </p>
