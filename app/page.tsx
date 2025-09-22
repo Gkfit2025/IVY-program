@@ -546,7 +546,7 @@ export default function IVYHomePage() {
         <section
           className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/bg6.png')",
+            backgroundImage: "url('/bg6.png')",
           }}
         >
           <div className="absolute inset-0 bg-white/40 z-10"></div>
