@@ -419,7 +419,7 @@ export default function IVYHomePage() {
       className="min-h-screen relative"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1588776814546-ec72a9a62d36?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'), url('/images/bg6.png')",
+          "url('https://images.unsplash.com/photo-1588776814546-ec72a9a62d36?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80'), url('/bg6.png')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
