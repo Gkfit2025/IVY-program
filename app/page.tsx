@@ -219,7 +219,6 @@ export default function IVYHomePage() {
               {
                 title: "Child Education Support",
                 location: "Madurai, Tamil Nadu",
-                duration: "2-4 weeks",
                 category: "Childcare & Education",
                 type: "Volunteer & Intern",
                 hostName: "Sunshine Children's Foundation",
@@ -235,7 +234,6 @@ export default function IVYHomePage() {
               {
                 title: "Wildlife Conservation Project",
                 location: "Coimbatore, Tamil Nadu",
-                duration: "1-3 months",
                 category: "Wildlife & Environment",
                 type: "Volunteer",
                 hostName: "Western Ghats Conservation Trust",
@@ -251,7 +249,6 @@ export default function IVYHomePage() {
               {
                 title: "Rural Healthcare Support",
                 location: "Kochi, Kerala",
-                duration: "3-6 weeks",
                 category: "Healthcare & Medical",
                 type: "Intern",
                 hostName: "Kerala Rural Health Initiative",
@@ -265,41 +262,8 @@ export default function IVYHomePage() {
                 verified: true,
               },
               {
-                title: "Heritage Site Restoration",
-                location: "Hampi, Karnataka",
-                duration: "2-8 weeks",
-                category: "Heritage & Culture",
-                type: "Volunteer",
-                hostName: "Hampi Heritage Foundation",
-                hostImage: "indian male archaeologist profile photo",
-                image: "volunteers restoring ancient temple structures",
-                rating: 4.6,
-                reviews: 15,
-                price: "₹2,200/week",
-                accommodation: "Guesthouse",
-                meals: "Traditional meals",
-                verified: true,
-              },
-              {
-                title: "Elderly Care Program",
-                location: "Chennai, Tamil Nadu",
-                duration: "1-4 weeks",
-                category: "Elderly Care",
-                type: "Volunteer & Intern",
-                hostName: "Golden Years Care Center",
-                hostImage: "indian female social worker profile photo",
-                image: "volunteers spending time with elderly residents",
-                rating: 4.8,
-                reviews: 28,
-                price: "₹2,000/week",
-                accommodation: "Nearby hostel",
-                meals: "South Indian meals",
-                verified: true,
-              },
-              {
                 title: "Special Needs Education",
                 location: "Bangalore, Karnataka",
-                duration: "2-12 weeks",
                 category: "Disability Support",
                 type: "Intern",
                 hostName: "Inclusive Learning Center",
@@ -373,10 +337,6 @@ export default function IVYHomePage() {
                   </div>
 
                   <div className="space-y-2 text-sm text-muted-foreground">
-                    <div className="flex items-center justify-between">
-                      <span>Duration:</span>
-                      <span className="text-foreground">{opportunity.duration}</span>
-                    </div>
                     <div className="flex items-center justify-between">
                       <span>Type:</span>
                       <span className="text-foreground">{opportunity.type}</span>
