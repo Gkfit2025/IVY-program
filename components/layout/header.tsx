@@ -29,12 +29,6 @@ export function Header() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("search")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Find Opportunities
-            </button>
             <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About Us
             </Link>
