@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
 import Link from "next/link"
-import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Search, Filter } from "lucide-react"
+import { Heart, MapPin, Users, Calendar, Star, ArrowRight, Search, Filter, MessageCircle, Instagram, Facebook } from "lucide-react"
 import Image from "next/image"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
@@ -669,12 +669,33 @@ export default function IVYHomePage() {
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Join Our Community</h3>
-                    <p className="text-muted-foreground">
-                      Follow us on social media for updates
-                      <br />
-                      and volunteer stories
-                    </p>
+                    <h3 className="font-semibold text-foreground mb-2">Connect With Us</h3>
+                    <div className="flex space-x-3 mt-2">
+                      <a 
+                        href="https://wa.me/your-whatsapp-number" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <MessageCircle className="h-5 w-5" />
+                      </a>
+                      <a 
+                        href="https://instagram.com/your-instagram" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <Instagram className="h-5 w-5" />
+                      </a>
+                      <a 
+                        href="https://facebook.com/your-facebook" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <Facebook className="h-5 w-5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
