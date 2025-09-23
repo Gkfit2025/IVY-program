@@ -19,7 +19,7 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-foreground hover:text-primary">
-                  Join IVY
+                  Type
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
