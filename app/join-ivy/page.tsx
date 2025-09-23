@@ -20,6 +20,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import Image from "next/image"
+import Footer from "components/layout/footer"
 
 export default function JoinIVYPage() {
   const searchParams = useSearchParams()
@@ -462,61 +463,9 @@ export default function JoinIVYPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">IV</span>
-              </Link>
-              <p className="text-muted-foreground text-sm">
-                Connecting volunteers with meaningful opportunities across South India.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Programs</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/internship" className="block hover:text-primary transition-colors">
-                  Internships
-                </Link>
-                <Link href="/search?type=volunteer" className="block hover:text-primary transition-colors">
-                  Volunteer Work
-                </Link>
-                <Link href="/search?type=both" className="block hover:text-primary transition-colors">
-                  Combined Programs
-                </Link>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Support</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <div>Help Center</div>
-                <div>Safety Guidelines</div>
-                <div>Contact Support</div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h4 className="font-semibold text-foreground">Company</h4>
-              <div className="space-y-2 text-sm text-muted-foreground">
-                <Link href="/#about" className="block hover:text-primary transition-colors">
-                  About Us
-                </Link>
-                <div>Careers</div>
-                <div>Privacy Policy</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 IV Platform. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      /* {/* Footer */}
+      <Footer/>
+ 
     </div>
   )
 }
