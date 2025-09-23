@@ -5,6 +5,13 @@ import { Heart } from "lucide-react"
 import Link from "next/link"
 
 export function Header() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,18 +22,27 @@ export function Header() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/search" className="text-foreground hover:text-primary transition-colors">
+            <button
+              onClick={() => scrollToSection("search")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
               Find Opportunities
-            </Link>
+            </button>
             <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About Us
             </Link>
-            <Link href="/impact-stories" className="text-foreground hover:text-primary transition-colors">
+            <button
+              onClick={() => scrollToSection("impact")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
               Impact Stories
-            </Link>
-            <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
               Contact
-            </Link>
+            </button>
           </div>
 
           <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">

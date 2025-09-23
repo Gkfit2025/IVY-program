@@ -623,6 +623,82 @@ export default function IVYHomePage() {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Get in Touch</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Have questions? We're here to help you find the perfect volunteering opportunity
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Our Location</h3>
+                    <p className="text-muted-foreground">
+                      Chennai, Tamil Nadu, India
+                      <br />
+                      Serving all of South India
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Heart className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Email Us</h3>
+                    <p className="text-muted-foreground">
+                      info@ivyplatform.org
+                      <br />
+                      support@ivyplatform.org
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">Join Our Community</h3>
+                    <p className="text-muted-foreground">
+                      Follow us on social media for updates
+                      <br />
+                      and volunteer stories
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                  Contact Us
+                </a>
+              </Button>
+            </div>
+
+            <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
+              <Image
+                src="/volunteers-connecting-with-local-community-members.png"
+                alt="Contact IVY Platform"
+                width={500}
+                height={500}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center space-y-8">
