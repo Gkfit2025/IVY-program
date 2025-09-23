@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
 import Link from "next/link"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export function Header() {
   return (
@@ -16,32 +15,23 @@ export function Header() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-foreground hover:text-primary">
-                  Type
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/internship">Internship</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/volunteer">Volunteer</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/join-ivy">Both</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link href="/#contact" className="text-foreground hover:text-primary transition-colors">
+            <Link href="/search" className="text-foreground hover:text-primary transition-colors">
+              Find Opportunities
+            </Link>
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+              About Us
+            </Link>
+            <Link href="/impact-stories" className="text-foreground hover:text-primary transition-colors">
+              Impact Stories
+            </Link>
+            <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
               Contact
             </Link>
           </div>
 
           <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
             <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
-              Apply Now
+              Apply
             </a>
           </Button>
         </div>
