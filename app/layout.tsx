@@ -13,9 +13,9 @@ const playfairDisplay = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "IVY - Spread Kindness Through Volunteering",
+  title: "IV - Spread Kindness Through Volunteering",
   description:
-    "Connect with meaningful volunteering opportunities across South India. Join IVY to make a difference in communities while experiencing cultural exchange.",
+    "Connect with meaningful volunteering opportunities across South India. Join IV to make a difference in communities while experiencing cultural exchange.",
   generator: "v0.app",
 }
 

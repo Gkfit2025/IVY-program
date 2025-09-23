@@ -3,20 +3,20 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
+    <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
               <Heart className="h-6 w-6 text-white" />
-              <span className="font-playfair font-bold text-xl text-white">IVY</span>
+              <span className="font-playfair font-bold text-xl text-white">IV</span>
             </Link>
             <p className="text-white/90 text-sm">
               Connecting volunteers and meaningful opportunities across South India.
             </p>
             <div className="flex items-center space-x-4">
               <a
-                href="https://facebook.com/ivyplatform"
+                href="https://facebook.com/ivplatform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
@@ -24,7 +24,7 @@ export function Footer() {
                 <Facebook className="h-4 w-4 text-white" />
               </a>
               <a
-                href="https://instagram.com/ivyplatform"
+                href="https://instagram.com/ivplatform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors"
@@ -72,9 +72,9 @@ export function Footer() {
               <div>
                 <strong className="text-white">Email:</strong>
                 <br />
-                info@ivyplatform.org
+                info@ivplatform.org
                 <br />
-                support@ivyplatform.org
+                support@ivplatform.org
               </div>
               <div>
                 <strong className="text-white">Phone:</strong>
@@ -93,7 +93,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/20 mt-12 pt-8 text-center text-sm text-white/80">
-          <p>&copy; 2025 IVY Platform. All rights reserved.</p>
+          <p>&copy; 2025 IV Platform. All rights reserved.</p>
         </div>
       </div>
     </footer>

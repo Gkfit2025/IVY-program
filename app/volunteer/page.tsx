@@ -167,7 +167,7 @@ export default function VolunteerPage() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Why Volunteer with IVY?</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Why Volunteer with IV?</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Experience meaningful impact while gaining valuable life experiences
             </p>

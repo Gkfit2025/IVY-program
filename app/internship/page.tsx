@@ -16,7 +16,7 @@ export default function InternshipPage() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
               <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
+              <span className="font-playfair font-bold text-2xl text-foreground">IV</span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/#search" className="text-foreground hover:text-primary transition-colors">
@@ -345,7 +345,7 @@ export default function InternshipPage() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center space-x-2">
                 <Heart className="h-6 w-6 text-primary" />
-                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
+                <span className="font-playfair font-bold text-xl text-foreground">IV</span>
               </Link>
               <p className="text-muted-foreground text-sm">
                 Connecting healthcare professionals with meaningful opportunities across South India.
@@ -389,7 +389,7 @@ export default function InternshipPage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved.</p>
+            <p>&copy; 2025 IV Platform. All rights reserved.</p>
           </div>
         </div>
       </footer>
