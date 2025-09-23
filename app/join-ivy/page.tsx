@@ -5,7 +5,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
-import { Heart, MapPin, Users, Calendar, Star, GraduationCap, HandHeart, Globe } from "lucide-react"
+import {
+  Heart,
+  MapPin,
+  Users,
+  Calendar,
+  Star,
+  GraduationCap,
+  HandHeart,
+  Globe,
+  Award,
+  Target,
+  Eye,
+  Lightbulb,
+} from "lucide-react"
 import Image from "next/image"
 
 export default function JoinIVYPage() {
@@ -210,6 +223,176 @@ export default function JoinIVYPage() {
         </div>
       </section>
 
+      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+              Inspiring Volunteer Youth (IVY) is a platform dedicated to connecting passionate individuals with
+              meaningful opportunities to create positive change across South India.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Target className="h-6 w-6 text-primary" />
+                  <h3 className="font-playfair font-semibold text-xl text-foreground">Our Mission</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  To bridge the gap between passionate volunteers and communities in need, creating sustainable impact
+                  through meaningful engagement and cultural exchange.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Eye className="h-6 w-6 text-primary" />
+                  <h3 className="font-playfair font-semibold text-xl text-foreground">Our Vision</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  A world where every individual has the opportunity to contribute to positive social change while
+                  gaining valuable experience and cultural understanding.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6">
+              <Card className="text-center border-border">
+                <CardContent className="p-6 space-y-2">
+                  <div className="text-3xl font-bold text-primary">500+</div>
+                  <div className="text-sm text-muted-foreground">Volunteers Placed</div>
+                </CardContent>
+              </Card>
+              <Card className="text-center border-border">
+                <CardContent className="p-6 space-y-2">
+                  <div className="text-3xl font-bold text-primary">120+</div>
+                  <div className="text-sm text-muted-foreground">Partner Organizations</div>
+                </CardContent>
+              </Card>
+              <Card className="text-center border-border">
+                <CardContent className="p-6 space-y-2">
+                  <div className="text-3xl font-bold text-primary">25+</div>
+                  <div className="text-sm text-muted-foreground">Cities Covered</div>
+                </CardContent>
+              </Card>
+              <Card className="text-center border-border">
+                <CardContent className="p-6 space-y-2">
+                  <div className="text-3xl font-bold text-primary">98%</div>
+                  <div className="text-sm text-muted-foreground">Satisfaction Rate</div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Lightbulb,
+                title: "Innovation",
+                description: "We continuously evolve our platform to better serve volunteers and communities",
+              },
+              {
+                icon: Heart,
+                title: "Compassion",
+                description: "Every opportunity is designed with genuine care for both volunteers and beneficiaries",
+              },
+              {
+                icon: Award,
+                title: "Excellence",
+                description: "We maintain the highest standards in program quality and volunteer support",
+              },
+            ].map((value, index) => (
+              <Card key={index} className="text-center border-border">
+                <CardContent className="p-6 space-y-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <value.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{value.title}</h3>
+                  <p className="text-sm text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Real stories from volunteers who have made a difference through IVY programs
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Johnson",
+                program: "Healthcare Internship",
+                location: "Chennai, Tamil Nadu",
+                quote:
+                  "Working with local healthcare providers opened my eyes to innovative solutions in resource-limited settings. The experience shaped my career path completely.",
+                impact: "Helped train 50+ healthcare workers",
+              },
+              {
+                name: "Michael Chen",
+                program: "Education Volunteer",
+                location: "Coimbatore, Tamil Nadu",
+                quote:
+                  "Teaching English to underprivileged children was incredibly rewarding. Seeing their progress and enthusiasm motivated me every day.",
+                impact: "Improved literacy for 30+ students",
+              },
+              {
+                name: "Priya Sharma",
+                program: "Environmental Conservation",
+                location: "Kochi, Kerala",
+                quote:
+                  "The community-based approach to environmental conservation here is inspiring. I learned as much as I contributed to the cause.",
+                impact: "Planted 200+ trees, cleaned 5km coastline",
+              },
+            ].map((story, index) => (
+              <Card key={index} className="border-border">
+                <CardContent className="p-6 space-y-4">
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-foreground">{story.name}</h3>
+                    <div className="text-sm text-muted-foreground">
+                      <div>{story.program}</div>
+                      <div className="flex items-center space-x-1">
+                        <MapPin className="h-3 w-3" />
+                        <span>{story.location}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <blockquote className="text-sm text-muted-foreground italic">"{story.quote}"</blockquote>
+                  <div className="pt-2 border-t border-border">
+                    <div className="text-xs font-medium text-primary">{story.impact}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Card className="bg-primary text-primary-foreground border-primary">
+              <CardContent className="p-8 space-y-4">
+                <h3 className="font-playfair font-semibold text-2xl">Join Our Impact Community</h3>
+                <p className="text-primary-foreground/90">
+                  Be part of the next success story. Start your journey with IVY today.
+                </p>
+                <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                  <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                    Share Your Story
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose IVY */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
@@ -330,7 +513,7 @@ export default function JoinIVYPage() {
           </div>
 
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2024 IVY Platform. All rights reserved.</p>
+            <p>&copy; 2025 IVY Platform. All rights reserved.</p>
           </div>
         </div>
       </footer>
