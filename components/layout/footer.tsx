@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export function Footer() {
   return (
-    <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
+    <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -32,7 +32,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold text-foreground">Resources</h4>
+            <h4 className="font-semibold text-foreground">Our Location</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
               <Link href="/internship/learn-more" className="block hover:text-primary transition-colors">
                 Program Details
@@ -43,7 +43,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="font-semibold text-foreground">Support</h4>
+            <h4 className="font-semibold text-foreground">Email Us</h4>
             <div className="space-y-2 text-sm text-muted-foreground">
               <div>Contact Us</div>
               <div>Help Center</div>
@@ -53,6 +53,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
+          <h4 className="font-semibold text-foreground mb-4">Connect With Us</h4>
           <p>&copy; 2024 IVY Platform. All rights reserved.</p>
         </div>
       </div>
