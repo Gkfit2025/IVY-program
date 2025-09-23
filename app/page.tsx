@@ -33,14 +33,7 @@ export default function IVYHomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header className="bg-black">
-        <nav className="flex items-center space-x-6 px-4 py-3">
-          <Link href="#search" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Find Opportunities</Link>
-          <Link href="#about" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">About Us</Link>
-          <Link href="#impact" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Impact Stories</Link>
-          <Link href="#contact" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Contact</Link>
-        </nav>
-      </Header>
+      <Header />
 
       {/* Hero Section with Search */}
       <section className="pt-16 pb-12 px-4 sm:px-6 lg:px-8">
@@ -172,20 +165,20 @@ export default function IVYHomePage() {
                         <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input
                           type="date"
+                          placeholder="From Date"
                           value={searchFilters.fromDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, fromDate: e.target.value }))}
-                          className="pl-10 h-12 text-sm border border-input bg-background rounded-md focus:ring-2 focus:ring-[#F56A00] text-foreground"
-                          style={{ WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', colorScheme: 'light dark' }}
+                          className="pl-10 h-12 text-sm"
                         />
                       </div>
                       <div className="relative">
                         <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                         <Input
                           type="date"
+                          placeholder="To Date"
                           value={searchFilters.toDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, toDate: e.target.value }))}
-                          className="pl-10 h-12 text-sm border border-input bg-background rounded-md focus:ring-2 focus:ring-[#F56A00] text-foreground"
-                          style={{ WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', colorScheme: 'light dark' }}
+                          className="pl-10 h-12 text-sm"
                         />
                       </div>
                     </div>
@@ -195,7 +188,7 @@ export default function IVYHomePage() {
 
               <Button
                 onClick={handleSearch}
-                className="w-full h-12 bg-[#F56A00] hover:bg-[#F56A00]/90 text-primary-foreground text-lg"
+                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground text-lg"
               >
                 <Search className="mr-2 h-5 w-5" />
                 Search Opportunities
@@ -214,7 +207,7 @@ export default function IVYHomePage() {
             </div>
             <Button
               variant="outline"
-              className="border-[#F56A00] text-[#F56A00] hover:bg-[#F56A00] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               <Filter className="mr-2 h-4 w-4" />
               More Filters
@@ -399,7 +392,7 @@ export default function IVYHomePage() {
                       <span className="text-lg font-bold text-foreground">{opportunity.price}</span>
                       <p className="text-xs text-muted-foreground">{opportunity.meals}</p>
                     </div>
-                    <Button size="sm" className="bg-[#F56A00] hover:bg-[#F56A00]/90 text-primary-foreground">
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                       <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
                         Apply Now
                       </a>
@@ -414,7 +407,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-[#F56A00] text-[#F56A00] hover:bg-[#F56A00] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               Load More Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -497,7 +490,7 @@ export default function IVYHomePage() {
                       <span>{opportunity.duration}</span>
                     </div>
                   </div>
-                  <Button className="w-full bg-[#F56A00] hover:bg-[#F56A00]/90 text-primary-foreground">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                     <Link href="/healthcare-assistance" className="block w-full">
                       Learn More
                     </Link>
@@ -511,7 +504,7 @@ export default function IVYHomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-[#F56A00] text-[#F56A00] hover:bg-[#F56A00] hover:text-primary-foreground bg-transparent"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
               View All Opportunities
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -638,13 +631,13 @@ export default function IVYHomePage() {
             Join our community of changemakers and start your volunteering journey today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-[#F56A00] hover:bg-[#F56A00]/90 text-accent-foreground">
+            <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
               Find Opportunities
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-primary-foreground text-primary-foreground hover:bg-[#F56A00] hover:text-primary-foreground bg-transparent"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
             >
               Become a Host
             </Button>
