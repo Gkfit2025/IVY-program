@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button"
 import { Heart } from "lucide-react"
 import Link from "next/link"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export function Header() {
   return (
@@ -15,7 +14,7 @@ export function Header() {
             <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="flex items-center space-x-8">
             <Link href="/opportunities" className="text-[#F56A00] hover:text-white transition-colors">
               Find Opportunities
             </Link>
@@ -25,16 +24,15 @@ export function Header() {
             <Link href="/impact" className="text-[#F56A00] hover:text-white transition-colors">
               Impact Stories
             </Link>
-            <Link href="/#contact" className="text-[#F56A00] hover:text-white transition-colors">
+            <Link href="/contact" className="text-[#F56A00] hover:text-white transition-colors">
               Contact
             </Link>
+            <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
+                Apply Now
+              </a>
+            </Button>
           </div>
-
-          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-            <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
-              Apply Now
-            </a>
-          </Button>
         </div>
       </div>
     </nav>
