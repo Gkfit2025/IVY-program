@@ -34,11 +34,11 @@ export default function IVYHomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header className="bg-black">
-        <nav className="flex items-center space-x-6">
-          <Link href="#search" className="text-[#F56A00] hover:text-white transition-colors">Find Opportunities</Link>
-          <Link href="#about" className="text-[#F56A00] hover:text-white transition-colors">About Us</Link>
-          <Link href="#impact" className="text-[#F56A00] hover:text-white transition-colors">Impact Stories</Link>
-          <Link href="#contact" className="text-[#F56A00] hover:text-white transition-colors">Contact</Link>
+        <nav className="flex items-center space-x-6 px-4 py-3">
+          <Link href="#search" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Find Opportunities</Link>
+          <Link href="#about" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">About Us</Link>
+          <Link href="#impact" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Impact Stories</Link>
+          <Link href="#contact" className="text-[#F56A00] hover:text-white transition-colors font-medium text-lg">Contact</Link>
         </nav>
       </Header>
 
@@ -174,7 +174,8 @@ export default function IVYHomePage() {
                           type="date"
                           value={searchFilters.fromDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, fromDate: e.target.value }))}
-                          className="pl-10 h-12 text-sm appearance-none"
+                          className="pl-10 h-12 text-sm border border-input bg-background rounded-md focus:ring-2 focus:ring-[#F56A00] text-foreground"
+                          style={{ WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', colorScheme: 'light dark' }}
                         />
                       </div>
                       <div className="relative">
@@ -183,7 +184,8 @@ export default function IVYHomePage() {
                           type="date"
                           value={searchFilters.toDate}
                           onChange={(e) => setSearchFilters((prev) => ({ ...prev, toDate: e.target.value }))}
-                          className="pl-10 h-12 text-sm appearance-none"
+                          className="pl-10 h-12 text-sm border border-input bg-background rounded-md focus:ring-2 focus:ring-[#F56A00] text-foreground"
+                          style={{ WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', colorScheme: 'light dark' }}
                         />
                       </div>
                     </div>
