@@ -28,9 +28,12 @@ export function Header() {
             >
               Find Opportunities
             </button>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
+             <button
+            onClick={() => scrollToSection("about")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
               About Us
-            </Link>
+               </button>
             <button
               onClick={() => scrollToSection("impact")}
               className="text-foreground hover:text-primary transition-colors"
