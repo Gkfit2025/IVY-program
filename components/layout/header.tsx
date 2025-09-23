@@ -12,6 +12,13 @@ export function Header() {
     }
   }
 
+  const scrollToFooter = () => {
+    const footer = document.querySelector("footer")
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,22 +35,16 @@ export function Header() {
             >
               Find Opportunities
             </button>
-             <button
-            onClick={() => scrollToSection("about")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
+            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
               About Us
-               </button>
+            </Link>
             <button
               onClick={() => scrollToSection("impact")}
               className="text-foreground hover:text-primary transition-colors"
             >
               Impact Stories
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
+            <button onClick={scrollToFooter} className="text-foreground hover:text-primary transition-colors">
               Contact
             </button>
           </div>

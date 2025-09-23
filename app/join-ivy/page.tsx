@@ -109,7 +109,7 @@ export default function JoinIVYPage() {
                 </div>
                 <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                   <Link href="/internship" className="block w-full">
-                    Explore Internships
+                    Apply Now
                   </Link>
                 </Button>
               </CardContent>
@@ -154,8 +154,8 @@ export default function JoinIVYPage() {
                   </div>
                 </div>
                 <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                  <Link href="/search?type=volunteer" className="block w-full">
-                    Find Volunteer Work
+                  <Link href="/volunteer" className="block w-full">
+                    Apply Now
                   </Link>
                 </Button>
               </CardContent>
@@ -179,11 +179,11 @@ export default function JoinIVYPage() {
                   </Badge>
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl font-playfair">Both Programs</CardTitle>
+                <CardTitle className="text-xl font-playfair">Explore All</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">
-                  Combine professional development with community service for a comprehensive experience.
+                  Browse all available opportunities including internships, volunteer work, and combined programs.
                 </p>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center space-x-2">
@@ -192,16 +192,16 @@ export default function JoinIVYPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Users className="h-4 w-4 text-primary" />
-                    <span>Dual experience</span>
+                    <span>120+ opportunities</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Star className="h-4 w-4 text-primary" />
-                    <span>Enhanced portfolio</span>
+                    <span>All categories</span>
                   </div>
                 </div>
                 <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                  <Link href="/search?type=both" className="block w-full">
-                    Explore All Options
+                  <Link href="/explore-all" className="block w-full">
+                    Apply Now
                   </Link>
                 </Button>
               </CardContent>
