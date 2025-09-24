@@ -20,7 +20,6 @@ import {
   Lightbulb,
 } from "lucide-react"
 import Image from "next/image"
-import Footer from "@/components/layout/footer"
 
 export default function JoinIVYPage() {
   const searchParams = useSearchParams()
@@ -34,7 +33,7 @@ export default function JoinIVYPage() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
               <Heart className="h-8 w-8 text-primary" />
-              <span className="font-playfair font-bold text-2xl text-foreground">IV</span>
+              <span className="font-playfair font-bold text-2xl text-foreground">IVY</span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
               <Link href="/#search" className="text-foreground hover:text-primary transition-colors">
@@ -62,7 +61,7 @@ export default function JoinIVYPage() {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
             <Badge variant="secondary" className="bg-accent/10 text-accent hover:bg-accent/20">
-              {type === "volunteer" ? "Volunteer Program" : type === "both" ? "Volunteer & Internship" : "Join IV"}
+              {type === "volunteer" ? "Volunteer Program" : type === "both" ? "Volunteer & Internship" : "Join IVY"}
             </Badge>
             <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
               Start Your
@@ -227,9 +226,9 @@ export default function JoinIVYPage() {
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IV</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">About IVY</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Inspiring Volunteer Youth (IV) is a platform dedicated to connecting passionate individuals with
+              Inspiring Volunteer Youth (IVY) is a platform dedicated to connecting passionate individuals with
               meaningful opportunities to create positive change across South India.
             </p>
           </div>
@@ -324,7 +323,7 @@ export default function JoinIVYPage() {
           <div className="text-center space-y-4 mb-16">
             <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Impact Stories</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real stories from volunteers who have made a difference through IV programs
+              Real stories from volunteers who have made a difference through IVY programs
             </p>
           </div>
 
@@ -381,7 +380,7 @@ export default function JoinIVYPage() {
               <CardContent className="p-8 space-y-4">
                 <h3 className="font-playfair font-semibold text-2xl">Join Our Impact Community</h3>
                 <p className="text-primary-foreground/90">
-                  Be part of the next success story. Start your journey with IV today.
+                  Be part of the next success story. Start your journey with IVY today.
                 </p>
                 <Button size="lg" variant="secondary" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                   <a href="https://forms.gle/FHirPbejNSDV87Lx5" target="_blank" rel="noopener noreferrer">
@@ -394,11 +393,11 @@ export default function JoinIVYPage() {
         </div>
       </section>
 
-      {/* Why Choose IV */}
+      {/* Why Choose IVY */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Why Choose IV?</h2>
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-foreground">Why Choose IVY?</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We provide comprehensive support to ensure your experience is meaningful and impactful
             </p>
@@ -464,7 +463,60 @@ export default function JoinIVYPage() {
       </section>
 
       {/* Footer */}
-      <Footer />
+      <footer className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <Link href="/" className="flex items-center space-x-2">
+                <Heart className="h-6 w-6 text-primary" />
+                <span className="font-playfair font-bold text-xl text-foreground">IVY</span>
+              </Link>
+              <p className="text-muted-foreground text-sm">
+                Connecting volunteers with meaningful opportunities across South India.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-semibold text-foreground">Programs</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <Link href="/internship" className="block hover:text-primary transition-colors">
+                  Internships
+                </Link>
+                <Link href="/search?type=volunteer" className="block hover:text-primary transition-colors">
+                  Volunteer Work
+                </Link>
+                <Link href="/search?type=both" className="block hover:text-primary transition-colors">
+                  Combined Programs
+                </Link>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-semibold text-foreground">Support</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <div>Help Center</div>
+                <div>Safety Guidelines</div>
+                <div>Contact Support</div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-semibold text-foreground">Company</h4>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <Link href="/#about" className="block hover:text-primary transition-colors">
+                  About Us
+                </Link>
+                <div>Careers</div>
+                <div>Privacy Policy</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
+            <p>&copy; 2025 IVY Platform. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
