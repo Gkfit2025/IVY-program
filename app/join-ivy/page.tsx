@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { useSearchParams } from "next/navigation"
+import Link from "next/link"
 import {
   Heart,
   MapPin,
@@ -18,33 +18,34 @@ import {
   Target,
   Eye,
   Lightbulb,
-} from "lucide-react";
-import Image from "next/image";
-import { useEffect } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import "../styles/particles.css"; // Import the new CSS file
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+} from "lucide-react"
+import Image from "next/image"
+import { useEffect } from "react"
 
 export default function JoinIVYPage() {
-  const searchParams = useSearchParams();
-  const type = searchParams.get("type");
+  const searchParams = useSearchParams()
+  const type = searchParams.get("type")
 
   // Generate floating particles on mount
   useEffect(() => {
     for (let i = 0; i < 25; i++) {
-      let particle = document.createElement("div");
-      particle.className = "particle";
-      particle.style.left = Math.random() * 100 + "vw";
-      particle.style.animationDuration = 5 + Math.random() * 10 + "s";
-      particle.style.animationDelay = Math.random() * 10 + "s";
-      document.body.appendChild(particle);
+      let particle = document.createElement("div")
+      particle.className = "particle"
+      particle.style.left = Math.random() * 100 + "vw"
+      particle.style.animationDuration = 5 + Math.random() * 10 + "s"
+      particle.style.animationDelay = Math.random() * 10 + "s"
+      document.body.appendChild(particle)
     }
     // Cleanup particles on unmount
     return () => {
-      const particles = document.querySelectorAll(".particle");
-      particles.forEach((particle) => particle.remove());
-    };
-  }, []);
+      const particles = document.querySelectorAll(".particle")
+      particles.forEach((particle) => particle.remove())
+    }
+  }, [])
 
   return (
     <div
@@ -61,9 +62,67 @@ export default function JoinIVYPage() {
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-black/60 pointer-events-none z-0"></div>
 
-      {/* The floating particles are now styled by the imported CSS */}
+      {/* Particle styles */}
+      <style jsx>{`
+        .particle {
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background: #00e0ff;
+          border-radius: 50%;
+          opacity: 0.7;
+          animation: floatUp 10s linear infinite;
+          z-index: 1;
+        }
+        @keyframes floatUp {
+          0% {
+            transform: translateY(100vh) scale(0.5);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateY(-10vh) scale(1);
+            opacity: 0;
+          }
+        }
+      `}</style>
+
       <div className="relative z-10">
-        <Header />
+        {/* Navigation */}
+        <nav className="fixed top-0 w-full bg-black backdrop-blur-sm border-b border-gray-800 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <Link href="/" className="flex items-center space-x-2">
+                <Image
+                  src="/logo12.png"
+                  alt="Grace Kennett Foundation Logo"
+                  width={32}
+                  height={32}
+                  className="object-contain"
+                />
+                <span className="font-playfair font-bold text-2xl text-[#F0661F]">
+                  Grace Kennett Foundation
+                </span>
+              </Link>
+              <div className="hidden md:flex items-center space-x-8">
+                <Link href="/#search" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+                  Find Opportunities
+                </Link>
+                <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+                  About Us
+                </Link>
+                <Link href="/#impact" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+                  Impact Stories
+                </Link>
+                <Link href="/#contact" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+                  Contact
+                </Link>
+              </div>
+              <Button className="bg-[#F0661F] hover:bg-[#F0661F]/90 text-white">
+                <Link href="/internship">Get Started</Link>
+              </Button>
+            </div>
+          </div>
+        </nav>
 
         {/* Hero Section */}
         <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
@@ -80,8 +139,8 @@ export default function JoinIVYPage() {
                 {type === "volunteer"
                   ? "Make a meaningful difference through volunteer work across South India"
                   : type === "both"
-                  ? "Explore both volunteer and internship opportunities to maximize your impact"
-                  : "Choose your path to create positive change in communities across South India"}
+                    ? "Explore both volunteer and internship opportunities to maximize your impact"
+                    : "Choose your path to create positive change in communities across South India"}
               </p>
             </div>
           </div>
@@ -232,7 +291,6 @@ export default function JoinIVYPage() {
           </div>
         </section>
 
-        {/* About IVY */}
         <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-16">
@@ -242,6 +300,7 @@ export default function JoinIVYPage() {
                 meaningful opportunities to create positive change across South India.
               </p>
             </div>
+
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -254,6 +313,7 @@ export default function JoinIVYPage() {
                     through meaningful engagement and cultural exchange.
                   </p>
                 </div>
+
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Eye className="h-6 w-6 text-[#F0661F]" />
@@ -265,6 +325,7 @@ export default function JoinIVYPage() {
                   </p>
                 </div>
               </div>
+
               <div className="grid grid-cols-2 gap-6">
                 <Card className="text-center border-gray-800 bg-gray-900">
                   <CardContent className="p-6 space-y-2">
@@ -292,6 +353,7 @@ export default function JoinIVYPage() {
                 </Card>
               </div>
             </div>
+
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
@@ -324,7 +386,6 @@ export default function JoinIVYPage() {
           </div>
         </section>
 
-        {/* Impact Stories */}
         <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-16">
@@ -333,6 +394,7 @@ export default function JoinIVYPage() {
                 Real stories from volunteers who have made a difference through IVY programs
               </p>
             </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
@@ -380,6 +442,7 @@ export default function JoinIVYPage() {
                 </Card>
               ))}
             </div>
+
             <div className="mt-16 text-center">
               <Card className="bg-[#F0661F] text-white border-[#F0661F]">
                 <CardContent className="p-8 space-y-4">
@@ -407,6 +470,7 @@ export default function JoinIVYPage() {
                 We provide comprehensive support to ensure your experience is meaningful and impactful
               </p>
             </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
@@ -466,8 +530,97 @@ export default function JoinIVYPage() {
           </div>
         </section>
 
-        <Footer />
+        {/* Footer */}
+        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-black border-t border-gray-800">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src="/logo12.png"
+                    alt="Grace Kennett Foundation Logo"
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
+                  <span className="font-playfair font-bold text-xl text-[#F0661F]">Grace Kennett Foundation</span>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  Connecting volunteers with meaningful opportunities across South India.
+                </p>
+                <div className="flex space-x-4">
+                  <a href="https://www.facebook.com/share/1Uxc1kVsLi/" aria-label="Facebook">
+                    <Facebook className="h-5 w-5 text-gray-400 hover:text-[#F0661F] cursor-pointer transition-colors" />
+                  </a>
+                  <a href="https://www.instagram.com/gkfmadurai?igsh=cWJqaTd2eWRlc2Iz" aria-label="Instagram">
+                    <Instagram className="h-5 w-5 text-gray-400 hover:text-[#F0661F] cursor-pointer transition-colors" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="font-semibold text-white">For Volunteers</h4>
+                <div className="space-y-2 text-sm text-gray-400">
+                  <div>
+                    <Link href="/#search">Find Opportunities</Link>
+                  </div>
+                  <div>
+                    <Link href="/how-it-works">How It Works</Link>
+                  </div>
+                  <div>
+                    <Link href="/safety">Safety Guidelines</Link>
+                  </div>
+                  <div>
+                    <Link href="/faq">FAQs</Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="font-semibold text-white">For Hosts</h4>
+                <div className="space-y-2 text-sm text-gray-400">
+                  <div>
+                    <Link href="/list-project">List Your Project</Link>
+                  </div>
+                  <div>
+                    <Link href="/host-resources">Host Resources</Link>
+                  </div>
+                  <div>
+                    <Link href="/best-practices">Best Practices</Link>
+                  </div>
+                  <div>
+                    <Link href="/support">Support</Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h4 className="font-semibold text-white">Contact</h4>
+                <div className="space-y-2 text-sm text-gray-400">
+                  <div className="flex items-center space-x-2">
+                    <Mail className="h-4 w-4" />
+                    <span>gkfit2025@gmail.com</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Phone className="h-4 w-4" />
+                    <span>+91 99626840401</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <MapPin className="h-4 w-4" />
+                    <span>8, Kennett Road, Madurai - 16, Tamil Nadu</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-gray-800 text-center">
+              <p className="text-sm text-gray-400">
+                &copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
-  );
+  )
 }
