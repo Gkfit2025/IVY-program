@@ -463,9 +463,8 @@ export default function JoinIVYPage() {
         </div>
       </section>
 
-      /* {/* Footer */}
-      <Footer/>
- 
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
