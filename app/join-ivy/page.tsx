@@ -20,7 +20,7 @@ import {
   Lightbulb,
 } from "lucide-react"
 import Image from "next/image"
-import Footer from "components/layout/footer"
+import Footer from "@/components/layout/footer"
 
 export default function JoinIVYPage() {
   const searchParams = useSearchParams()
