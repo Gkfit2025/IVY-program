@@ -103,12 +103,7 @@ export default function JoinIVYPage() {
                 <span className="font-playfair font-bold text-2xl text-[#F0661F]">
                   Grace Kennett Foundation
                 </span>
-              </Link>
-              <div className="hidden md:flex items-center space-x-8">
-                <Link href="/#search" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
-                  Find Opportunities
-                </Link>
-                <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+              <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
                   About Us
                 </Link>
                 <Link href="/#impact" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
@@ -532,7 +527,7 @@ export default function JoinIVYPage() {
         </section>
 
         {/* Footer */}
-        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
+        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-black-600 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-4 gap-8">
               <div className="space-y-4">
@@ -608,7 +603,7 @@ export default function JoinIVYPage() {
                     <strong className="text-white">Email:</strong>
                     <br />
                     <a href="mailto:info@ivplatform.org" className="hover:text-white transition-colors">
-                      info@ivplatform.org
+                      gkfit2025@gmail.com
                     </a>
                     <br />
                     <a href="mailto:support@ivplatform.org" className="hover:text-white transition-colors">
