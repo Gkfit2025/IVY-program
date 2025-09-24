@@ -531,96 +531,111 @@ export default function JoinIVYPage() {
         </section>
 
         {/* Footer */}
-        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-black border-t border-gray-800">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="space-y-4">
-                <div className="flex items-center space-x-2">
-                  <Image
-                    src="/logo12.png"
-                    alt="Grace Kennett Foundation Logo"
-                    width={32}
-                    height={32}
-                    className="object-contain"
-                  />
-                  <span className="font-playfair font-bold text-xl text-[#F0661F]">Grace Kennett Foundation</span>
-                </div>
-                <p className="text-gray-400 text-sm">
-                  Connecting volunteers with meaningful opportunities across South India.
-                </p>
-                <div className="flex space-x-4">
-                  <a href="https://www.facebook.com/share/1Uxc1kVsLi/" aria-label="Facebook">
-                    <Facebook className="h-5 w-5 text-gray-400 hover:text-[#F0661F] cursor-pointer transition-colors" />
-                  </a>
-                  <a href="https://www.instagram.com/gkfmadurai?igsh=cWJqaTd2eWRlc2Iz" aria-label="Instagram">
-                    <Instagram className="h-5 w-5 text-gray-400 hover:text-[#F0661F] cursor-pointer transition-colors" />
-                  </a>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="font-semibold text-white">For Volunteers</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div>
-                    <Link href="/#search">Find Opportunities</Link>
-                  </div>
-                  <div>
-                    <Link href="/how-it-works">How It Works</Link>
-                  </div>
-                  <div>
-                    <Link href="/safety">Safety Guidelines</Link>
-                  </div>
-                  <div>
-                    <Link href="/faq">FAQs</Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="font-semibold text-white">For Hosts</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div>
-                    <Link href="/list-project">List Your Project</Link>
-                  </div>
-                  <div>
-                    <Link href="/host-resources">Host Resources</Link>
-                  </div>
-                  <div>
-                    <Link href="/best-practices">Best Practices</Link>
-                  </div>
-                  <div>
-                    <Link href="/support">Support</Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h4 className="font-semibold text-white">Contact</h4>
-                <div className="space-y-2 text-sm text-gray-400">
-                  <div className="flex items-center space-x-2">
-                    <Mail className="h-4 w-4" />
-                    <span>gkfit2025@gmail.com</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Phone className="h-4 w-4" />
-                    <span>+91 99626840401</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="h-4 w-4" />
-                    <span>8, Kennett Road, Madurai - 16, Tamil Nadu</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-              <p className="text-sm text-gray-400">
-                &copy; 2024 IV Platform. All rights reserved. Spreading kindness across South India.
-              </p>
+         <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-2">
+              <Heart className="h-6 w-6 text-white" />
+              <span className="font-playfair font-bold text-xl text-white">IV</span>
+            </Link>
+            <p className="text-white/90 text-sm">
+              Connecting volunteers and meaningful opportunities across South India.
+            </p>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://facebook.com/ivplatform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+              >
+                <Facebook className="h-4 w-4 text-white" />
+              </a>
+              <a
+                href="https://instagram.com/ivplatform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors"
+              >
+                <Instagram className="h-4 w-4 text-white" />
+              </a>
+              <a
+                href="https://wa.me/919876543210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-400 transition-colors"
+              >
+                <MessageCircle className="h-4 w-4 text-white" />
+              </a>
             </div>
           </div>
-        </footer>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-white">Programs</h4>
+            <div className="space-y-2 text-sm text-white/80">
+              <Link href="/volunteer" className="block hover:text-white transition-colors">
+                Volunteering
+              </Link>
+              <Link href="/internship" className="block hover:text-white transition-colors">
+                Internship
+              </Link>
+              <Link href="/explore-all" className="block hover:text-white transition-colors">
+                All Programs
+              </Link>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-white">Resources</h4>
+            <div className="space-y-2 text-sm text-white/80">
+              <Link href="/grants" className="block hover:text-white transition-colors">
+                Available Grants
+              </Link>
+              <Link href="/partnerships" className="block hover:text-white transition-colors">
+                Partnerships
+              </Link>
+              <Link href="/faqs" className="block hover:text-white transition-colors">
+                FAQs
+              </Link>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-white">Contact Us</h4>
+            <div className="space-y-2 text-sm text-white/80">
+              <div>
+                <strong className="text-white">Email:</strong>
+                <br />
+                <a href="mailto:info@ivplatform.org" className="hover:text-white transition-colors">
+                  info@ivplatform.org
+                </a>
+                <br />
+                <a href="mailto:support@ivplatform.org" className="hover:text-white transition-colors">
+                  support@ivplatform.org
+                </a>
+              </div>
+              <div>
+                <strong className="text-white">Phone:</strong>
+                <br />
+                <a href="tel:+919876543210" className="hover:text-white transition-colors">
+                  +91 98765 43210
+                </a>
+              </div>
+              <div>
+                <strong className="text-white">Address:</strong>
+                <br />
+                Chennai, Tamil Nadu
+                <br />
+                South India
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/20 mt-12 pt-8 text-center text-sm text-white/80">
+          <p>&copy; 2025 IV Platform. All rights reserved.</p>
+        </div>
       </div>
-    </div>
+    </footer>
   )
 }
