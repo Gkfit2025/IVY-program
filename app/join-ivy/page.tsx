@@ -1,5 +1,3 @@
-// app/join/page.js
-
 "use client"
 
 import { Button } from "@/components/ui/button"
