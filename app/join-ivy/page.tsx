@@ -105,6 +105,9 @@ export default function JoinIVYPage() {
                 </span>
               </Link>
               <div className="hidden md:flex items-center space-x-8">
+                <Link href="/#search" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+                  Find Opportunities
+                </Link>
                 <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
                   About Us
                 </Link>
@@ -529,13 +532,13 @@ export default function JoinIVYPage() {
         </section>
 
         {/* Footer */}
-        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
+        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-green-600 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-4 gap-8">
               <div className="space-y-4">
                 <Link href="/" className="flex items-center space-x-2">
                   <Heart className="h-6 w-6 text-white" />
-                  <span className="font-playfair font-bold text-xl text-white">IVY</span>
+                  <span className="font-playfair font-bold text-xl text-white">IV</span>
                 </Link>
                 <p className="text-white/90 text-sm">
                   Connecting volunteers and meaningful opportunities across South India.
@@ -605,7 +608,7 @@ export default function JoinIVYPage() {
                     <strong className="text-white">Email:</strong>
                     <br />
                     <a href="mailto:info@ivplatform.org" className="hover:text-white transition-colors">
-                      gkfit2025@gmail.com
+                      info@ivplatform.org
                     </a>
                     <br />
                     <a href="mailto:support@ivplatform.org" className="hover:text-white transition-colors">
