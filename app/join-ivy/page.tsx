@@ -103,7 +103,9 @@ export default function JoinIVYPage() {
                 <span className="font-playfair font-bold text-2xl text-[#F0661F]">
                   Grace Kennett Foundation
                 </span>
-              <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
+              </Link>
+              <div className="hidden md:flex items-center space-x-8">
+                <Link href="/#about" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
                   About Us
                 </Link>
                 <Link href="/#impact" className="text-[#F0661F] hover:text-[#F0661F]/90 transition-colors">
@@ -527,13 +529,13 @@ export default function JoinIVYPage() {
         </section>
 
         {/* Footer */}
-        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-black-600 text-white">
+        <footer id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-4 gap-8">
               <div className="space-y-4">
                 <Link href="/" className="flex items-center space-x-2">
                   <Heart className="h-6 w-6 text-white" />
-                  <span className="font-playfair font-bold text-xl text-white">IV</span>
+                  <span className="font-playfair font-bold text-xl text-white">IVY</span>
                 </Link>
                 <p className="text-white/90 text-sm">
                   Connecting volunteers and meaningful opportunities across South India.
