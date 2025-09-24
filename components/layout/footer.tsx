@@ -60,9 +60,15 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-semibold text-white">Resources</h4>
             <div className="space-y-2 text-sm text-white/80">
-              <div className="hover:text-white transition-colors cursor-pointer">Available Grants</div>
-              <div className="hover:text-white transition-colors cursor-pointer">Partnerships</div>
-              <div className="hover:text-white transition-colors cursor-pointer">FAQs</div>
+              <Link href="/grants" className="block hover:text-white transition-colors">
+                Available Grants
+              </Link>
+              <Link href="/partnerships" className="block hover:text-white transition-colors">
+                Partnerships
+              </Link>
+              <Link href="/faqs" className="block hover:text-white transition-colors">
+                FAQs
+              </Link>
             </div>
           </div>
 
@@ -72,14 +78,20 @@ export function Footer() {
               <div>
                 <strong className="text-white">Email:</strong>
                 <br />
-                info@ivplatform.org
+                <a href="mailto:info@ivplatform.org" className="hover:text-white transition-colors">
+                  info@ivplatform.org
+                </a>
                 <br />
-                support@ivplatform.org
+                <a href="mailto:support@ivplatform.org" className="hover:text-white transition-colors">
+                  support@ivplatform.org
+                </a>
               </div>
               <div>
                 <strong className="text-white">Phone:</strong>
                 <br />
-                +91 98765 43210
+                <a href="tel:+919876543210" className="hover:text-white transition-colors">
+                  +91 98765 43210
+                </a>
               </div>
               <div>
                 <strong className="text-white">Address:</strong>
