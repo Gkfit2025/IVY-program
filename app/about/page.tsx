@@ -16,7 +16,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center space-y-6">
             <h1 className="font-playfair font-bold text-4xl md:text-6xl text-foreground text-balance">
-              About <span className="text-primary">IV</span>
+              About <span className="text-primary">IVY</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty leading-relaxed">
               Connecting passionate volunteers with meaningful opportunities across South India. We're transforming how
@@ -52,7 +52,7 @@ export default function AboutPage() {
             <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
               <Image
                 src="/diverse-group-of-volunteers-working-together-in-so.png"
-                alt="IV mission and vision"
+                alt="IVY mission and vision"
                 width={500}
                 height={500}
                 className="object-cover w-full h-full"
